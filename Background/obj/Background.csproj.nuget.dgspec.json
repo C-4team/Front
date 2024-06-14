@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LG\\Desktop\\KWU\\3-1\\응소실\\기말\\Background\\Background.csproj": {}
+    "C:\\Users\\LG\\Desktop\\KWU\\3-1\\ApplicatedSoftwarePractice\\TeamProject\\Background\\Background.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LG\\Desktop\\KWU\\3-1\\응소실\\기말\\Background\\Background.csproj": {
+    "C:\\Users\\LG\\Desktop\\KWU\\3-1\\ApplicatedSoftwarePractice\\TeamProject\\Background\\Background.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\응소실\\기말\\Background\\Background.csproj",
+        "projectUniqueName": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\ApplicatedSoftwarePractice\\TeamProject\\Background\\Background.csproj",
         "projectName": "Background",
-        "projectPath": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\응소실\\기말\\Background\\Background.csproj",
+        "projectPath": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\ApplicatedSoftwarePractice\\TeamProject\\Background\\Background.csproj",
         "packagesPath": "C:\\Users\\LG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\응소실\\기말\\Background\\obj\\",
+        "outputPath": "C:\\Users\\LG\\Desktop\\KWU\\3-1\\ApplicatedSoftwarePractice\\TeamProject\\Background\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LG\\AppData\\Roaming\\NuGet\\NuGet.Config",
