@@ -14,8 +14,14 @@ namespace UI
     {
         public SignupForm()
         {
-            
             InitializeComponent();
+        }
+
+        private void SignupBtn_Click(object sender, EventArgs e)
+        {
+            if (namebox.Text.Length == 0 || IDbox.Text.Length == 0 || pwdbox.Text.Length == 0) return;
+
+
         }
     }
 }
