@@ -58,11 +58,11 @@ namespace Background
             try
             {
                 string isRight = parent.m_Read.ReadLine();
-                if (isRight[0] == 1)
+                if (isRight[0] == 3)
                 {
                     Logined?.Invoke(this, EventArgs.Empty);
                 }
-                else if (isRight[0] == 0)
+                else if (isRight[0] == 2)
                 {
                     m_Readthread.Abort();
                     m_WriteThread.Abort();
