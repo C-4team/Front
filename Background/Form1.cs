@@ -27,7 +27,6 @@ namespace Background
         {
             try
             {
-                MessageBox.Show("try to connect");
                 m_Client = new TcpClient(IpAddress, PORT);
             }
             catch
@@ -42,6 +41,15 @@ namespace Background
             m_Write.AutoFlush = true;
         }
 
+        public void Disconnect()
+        {
+            m_bConnect = false;
+
+            m_Read.Close();
+            m_Write.Close();
+            m_Stream.Close();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             login = new Login(this);
@@ -50,6 +58,7 @@ namespace Background
             login.Show();
             login.SignupClicked += Login_SignupClicked;
             login.Logined += Login_Logined;
+            signup.Joined += Signup_Joined;
         }
 
         private void Login_SignupClicked(object sender, EventArgs e)
@@ -62,7 +71,12 @@ namespace Background
 
         private void Login_Logined(object sender, EventArgs e)
         {
+            //模备芒 家券
+        }
 
+        private void Signup_Joined(object sender, EventArgs e)
+        {
+            //模备芒 家券
         }
     }
 }
