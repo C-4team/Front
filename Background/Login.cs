@@ -15,6 +15,7 @@ namespace Background
         private Form1 parent;
         public event EventHandler SignupClicked;
         public event EventHandler Logined;
+
         public Login(Form1 form)
         {
             parent = form;
@@ -36,10 +37,22 @@ namespace Background
                 return;
             }
             parent.Connect();
-            parent.m_Write.WriteLine("1," + txtID.Text + "," + "###," + txtPwd.Text);
+            parent.m_Thread = new Thread(new ThreadStart(WriteInfo));
 
             string isRight = parent.m_Read.ReadLine();
-            if (isRight == "Right") MessageBox.Show("Right!");
+            //if (isRight == "Right") {
+            //    Logined?Invoke(this, EventArgs.Empty);
+            //}
+        }
+
+        public void WriteInfo()
+        {
+            try
+            {
+                parent.m_Write.WriteLine("1," + txtID.Text + "," + "###," + txtPwd.Text);
+            } catch {
+                MessageBox.Show("Error in WriteInfo");
+            }
         }
 
         private void btnSignup_Click(object sender, EventArgs e)
