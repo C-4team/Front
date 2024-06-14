@@ -39,6 +39,7 @@ namespace Background
             m_Stream = m_Client.GetStream();
             m_Read = new StreamReader(m_Stream);
             m_Write = new StreamWriter(m_Stream);
+            m_Write.AutoFlush = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,14 +49,20 @@ namespace Background
             login.Text = "Log In";
             login.Show();
             login.SignupClicked += Login_SignupClicked;
+            login.Logined += Login_Logined;
         }
 
         private void Login_SignupClicked(object sender, EventArgs e)
         {
-            signup = new Signup();
+            signup = new Signup(this);
             signup.MdiParent = this;
             signup.Text = "Sign Up";
             signup.Show();
+        }
+
+        private void Login_Logined(object sender, EventArgs e)
+        {
+
         }
     }
 }
