@@ -12,6 +12,7 @@ namespace Background
         string IpAddress = "127.0.0.1";
         public bool m_bConnect = false;
         TcpClient m_Client;
+        public Thread m_Thread;
 
         Login login;
         Signup signup;
@@ -38,7 +39,6 @@ namespace Background
             m_Stream = m_Client.GetStream();
             m_Read = new StreamReader(m_Stream);
             m_Write = new StreamWriter(m_Stream);
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
