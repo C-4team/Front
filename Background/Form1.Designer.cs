@@ -38,6 +38,7 @@
             IsMdiContainer = true;
             Name = "Form1";
             Text = "PangTalk";
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 
