@@ -43,7 +43,6 @@ namespace Background
             if(!parent.m_bConnect)
                 parent.Connect();
             if(parent.m_bConnect) {
-                MessageBox.Show("접속 성공");
                 m_WriteThread = new Thread(new ThreadStart(WriteInfo));
                 m_WriteThread.Start();
 
@@ -59,14 +58,16 @@ namespace Background
             try
             {
                 string isRight = parent.m_Read.ReadLine();
-                if (Logined != null)
+                if (isRight[0] == 3)
                 {
-                    if (isRight == "Right")
-                    {
-                        Logined?.Invoke(this, EventArgs.Empty);
-                    }
+                    Logined?.Invoke(this, EventArgs.Empty);
                 }
-                else return;
+                else if (isRight[0] == 2)
+                {
+                    m_Readthread.Abort();
+                    m_WriteThread.Abort();
+                    parent.Disconnect();
+                }
             }
             catch
             {
@@ -78,7 +79,7 @@ namespace Background
         {
             try
             {
-                parent.m_Write.WriteLine("1," + txtID.Text + "," + "###," + txtPwd.Text);
+                parent.m_Write.WriteLine("1," + txtID.Text + "," + txtPwd.Text);
                 parent.m_Write.Flush();
             } catch {
                 MessageBox.Show("Error in WriteInfo");
@@ -87,6 +88,8 @@ namespace Background
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
+            if (!parent.m_bConnect)
+                parent.Connect();
             SignupClicked?.Invoke(this, EventArgs.Empty);
         }
     }
