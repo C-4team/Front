@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace UI
 {
     public class TcpConnection
     {
-        public NetworkStream m_Stream;
+        /*public NetworkStream m_Stream;
         public StreamReader m_Read;
         public StreamWriter m_Write;
         const int PORT = 12000;
@@ -37,8 +37,7 @@ namespace UI
             m_Write = new StreamWriter(m_Stream);
             m_Write.AutoFlush = true;
 
-        }
+        }*/
     }
 
 }
-*/

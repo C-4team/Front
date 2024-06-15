@@ -59,13 +59,14 @@
             // 
             // receiveTxt
             // 
+            receiveTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             receiveTxt.BackColor = Color.FromArgb(46, 49, 61);
             receiveTxt.FlatStyle = FlatStyle.Flat;
             receiveTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             receiveTxt.ForeColor = Color.White;
             receiveTxt.Location = new Point(12, 41);
             receiveTxt.Name = "receiveTxt";
-            receiveTxt.Size = new Size(238, 30);
+            receiveTxt.Size = new Size(280, 30);
             receiveTxt.TabIndex = 2;
             receiveTxt.Text = "여기에 이 글씨가 길어진다면";
             // 

@@ -51,7 +51,7 @@
             sendTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             sendTxt.Location = new Point(368, 26);
             sendTxt.Name = "sendTxt";
-            sendTxt.Size = new Size(140, 31);
+            sendTxt.Size = new Size(281, 31);
             sendTxt.TabIndex = 1;
             sendTxt.Text = "이걸로 보낼거야.";
             // 
