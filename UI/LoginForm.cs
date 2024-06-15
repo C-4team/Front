@@ -9,11 +9,11 @@ namespace UI
     public partial class LoginForm : Form
     {
         SignupForm signupform = new SignupForm();
-        //chattingRoom chatRoom = new chattingRoom();
+        chattingRoom chatRoom = new chattingRoom();
         public LoginForm()
         {
             InitializeComponent();
-            //chatRoom.Show();
+            chatRoom.Show();
         }
 
 

@@ -33,11 +33,13 @@
             chatoutPic = new PictureBox();
             chatPnl = new Panel();
             sendPnl = new Panel();
-            sendBtn = new Button();
             sendTxt = new TextBox();
+            sendShape = new PictureBox();
+            sendBtn = new Button();
             namePnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).BeginInit();
             sendPnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sendShape).BeginInit();
             SuspendLayout();
             // 
             // namePnl
@@ -79,33 +81,20 @@
             chatPnl.AutoScroll = true;
             chatPnl.Location = new Point(0, 76);
             chatPnl.Name = "chatPnl";
-            chatPnl.Size = new Size(463, 599);
+            chatPnl.Size = new Size(463, 586);
             chatPnl.TabIndex = 2;
             // 
             // sendPnl
             // 
             sendPnl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sendPnl.BackColor = Color.FromArgb(46, 49, 61);
-            sendPnl.Controls.Add(sendBtn);
             sendPnl.Controls.Add(sendTxt);
-            sendPnl.Location = new Point(0, 675);
+            sendPnl.Controls.Add(sendShape);
+            sendPnl.Controls.Add(sendBtn);
+            sendPnl.Location = new Point(0, 662);
             sendPnl.Name = "sendPnl";
-            sendPnl.Size = new Size(463, 74);
+            sendPnl.Size = new Size(463, 87);
             sendPnl.TabIndex = 3;
-            // 
-            // sendBtn
-            // 
-            sendBtn.Anchor = AnchorStyles.Right;
-            sendBtn.FlatAppearance.BorderColor = Color.FromArgb(66, 71, 85);
-            sendBtn.FlatStyle = FlatStyle.Flat;
-            sendBtn.ForeColor = Color.White;
-            sendBtn.Location = new Point(402, 12);
-            sendBtn.Name = "sendBtn";
-            sendBtn.Size = new Size(58, 51);
-            sendBtn.TabIndex = 0;
-            sendBtn.Text = "전송";
-            sendBtn.UseVisualStyleBackColor = true;
-            sendBtn.Click += sendBtn_Click;
             // 
             // sendTxt
             // 
@@ -114,11 +103,36 @@
             sendTxt.BorderStyle = BorderStyle.None;
             sendTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             sendTxt.ForeColor = Color.White;
-            sendTxt.Location = new Point(5, 12);
+            sendTxt.Location = new Point(11, 19);
             sendTxt.Multiline = true;
             sendTxt.Name = "sendTxt";
-            sendTxt.Size = new Size(393, 51);
+            sendTxt.Size = new Size(380, 54);
             sendTxt.TabIndex = 0;
+            // 
+            // sendShape
+            // 
+            sendShape.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            sendShape.Image = Properties.Resources.sendtextbox;
+            sendShape.Location = new Point(3, 12);
+            sendShape.Name = "sendShape";
+            sendShape.Size = new Size(394, 68);
+            sendShape.SizeMode = PictureBoxSizeMode.StretchImage;
+            sendShape.TabIndex = 0;
+            sendShape.TabStop = false;
+            // 
+            // sendBtn
+            // 
+            sendBtn.Anchor = AnchorStyles.Right;
+            sendBtn.FlatAppearance.BorderColor = Color.FromArgb(66, 71, 85);
+            sendBtn.FlatStyle = FlatStyle.Flat;
+            sendBtn.ForeColor = Color.White;
+            sendBtn.Location = new Point(402, 19);
+            sendBtn.Name = "sendBtn";
+            sendBtn.Size = new Size(58, 51);
+            sendBtn.TabIndex = 0;
+            sendBtn.Text = "전송";
+            sendBtn.UseVisualStyleBackColor = true;
+            sendBtn.Click += sendBtn_Click;
             // 
             // chattingRoom
             // 
@@ -136,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();
             sendPnl.ResumeLayout(false);
             sendPnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sendShape).EndInit();
             ResumeLayout(false);
         }
 
@@ -147,6 +162,7 @@
         private Panel chatPnl;
         private Panel sendPnl;
         private Button sendBtn;
+        private PictureBox sendShape;
         private TextBox sendTxt;
     }
 }
