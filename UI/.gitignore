@@ -1,0 +1,20 @@
+﻿# Visual Studio 관련 파일 및 디렉토리 제외
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# 빌드 결과물 제외
+bin/
+obj/
+*.dll
+*.exe
+
+# 로그 파일 제외
+*.log
+
+# 기타 제외할 파일 및 디렉토리
+# 예시:
+# data/
+# config/
