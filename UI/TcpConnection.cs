@@ -11,6 +11,8 @@ namespace UI
 {
     public class TcpConnection
     {
+        //public event Action<string> MessageRecevied;
+
         /*public NetworkStream m_Stream;
         public StreamReader m_Read;
         public StreamWriter m_Write;
@@ -37,6 +39,39 @@ namespace UI
             m_Write = new StreamWriter(m_Stream);
             m_Write.AutoFlush = true;
 
+        }*/
+        /*
+        private void RecevieMessages()
+        {
+            try
+            {
+                byte[] buffer new byte[1024];
+                while (true)
+                {
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    if(bytesRead > 0)
+                    {
+                        string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        MessageReceived?.Invoke(message);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                //예외처리
+            }
+        }*/
+
+        /*public void SendMessage(string message)
+        {
+            try
+            {
+                byte[] data = Encoding.UTF8.GetBytes(message);
+                Stream.Write(data, 0, data.Length);
+            }
+            catch(Exception ex) {
+                throw new Exception("Error" + ex.Message);
+            }
         }*/
     }
 
