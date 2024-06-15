@@ -63,6 +63,26 @@ namespace UI.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap receive_chat {
+            get {
+                object obj = ResourceManager.GetObject("receive chat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap send_chat {
+            get {
+                object obj = ResourceManager.GetObject("send chat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap 채팅방_나가기_icon {
             get {
                 object obj = ResourceManager.GetObject("채팅방 나가기 icon", resourceCulture);
