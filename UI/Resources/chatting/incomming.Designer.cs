@@ -36,26 +36,26 @@
             // 
             // inName
             // 
+            inName.Dock = DockStyle.Top;
             inName.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             inName.ForeColor = Color.White;
-            inName.Location = new Point(3, 11);
+            inName.Location = new Point(0, 0);
             inName.Name = "inName";
-            inName.Size = new Size(79, 37);
+            inName.Size = new Size(420, 24);
             inName.TabIndex = 0;
             inName.Text = "name";
-            inName.TextAlign = ContentAlignment.MiddleCenter;
             inName.Click += inName_Click;
             // 
             // inChat
             // 
-            inChat.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             inChat.Image = Properties.Resources.receive_chat;
-            inChat.Location = new Point(-2, 24);
+            inChat.Location = new Point(-1, 24);
             inChat.Name = "inChat";
-            inChat.Size = new Size(484, 170);
+            inChat.Size = new Size(390, 70);
             inChat.SizeMode = PictureBoxSizeMode.StretchImage;
             inChat.TabIndex = 1;
             inChat.TabStop = false;
+            inChat.Click += inChat_Click;
             // 
             // receiveTxt
             // 
@@ -63,7 +63,7 @@
             receiveTxt.FlatStyle = FlatStyle.Flat;
             receiveTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             receiveTxt.ForeColor = Color.White;
-            receiveTxt.Location = new Point(12, 50);
+            receiveTxt.Location = new Point(12, 45);
             receiveTxt.Name = "receiveTxt";
             receiveTxt.Size = new Size(291, 30);
             receiveTxt.TabIndex = 2;
@@ -79,7 +79,7 @@
             Controls.Add(inName);
             Controls.Add(inChat);
             Name = "incomming";
-            Size = new Size(482, 194);
+            Size = new Size(420, 102);
             Load += incomming_Load;
             ((System.ComponentModel.ISupportInitialize)inChat).EndInit();
             ResumeLayout(false);

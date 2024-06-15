@@ -44,5 +44,15 @@ namespace UI
             //textbox 서버로 보내기
             sendTxt.Text = string.Empty;
         }
+
+        private void chatPnl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void incomming1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

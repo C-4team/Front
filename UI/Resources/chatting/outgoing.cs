@@ -49,5 +49,10 @@ namespace UI.Resources.chatting
         {
             AdjustHeight();
         }
+
+        private void sendTxt_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

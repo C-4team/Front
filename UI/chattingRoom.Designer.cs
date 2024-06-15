@@ -35,8 +35,10 @@
             sendPnl = new Panel();
             sendBtn = new Button();
             sendTxt = new TextBox();
+            incomming1 = new Resources.chatting.incomming();
             namePnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).BeginInit();
+            chatPnl.SuspendLayout();
             sendPnl.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,6 +79,7 @@
             // chatPnl
             // 
             chatPnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            chatPnl.Controls.Add(incomming1);
             chatPnl.Location = new Point(0, 76);
             chatPnl.Name = "chatPnl";
             chatPnl.Size = new Size(463, 599);
@@ -120,6 +123,18 @@
             sendTxt.Size = new Size(393, 51);
             sendTxt.TabIndex = 0;
             // 
+            // incomming1
+            // 
+            incomming1.AutoSize = true;
+            incomming1.BackColor = Color.FromArgb(27, 29, 37);
+            incomming1.Dock = DockStyle.Top;
+            incomming1.Location = new Point(0, 0);
+            incomming1.Message = "여기에 서버로 들어온 text 칠거야";
+            incomming1.name = "name";
+            incomming1.Name = "incomming1";
+            incomming1.Size = new Size(463, 102);
+            incomming1.TabIndex = 0;
+            // 
             // chattingRoom
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -135,6 +150,8 @@
             Load += chattingRoom_Load;
             namePnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();
+            chatPnl.ResumeLayout(false);
+            chatPnl.PerformLayout();
             sendPnl.ResumeLayout(false);
             sendPnl.PerformLayout();
             ResumeLayout(false);
@@ -149,5 +166,6 @@
         private Panel sendPnl;
         private Button sendBtn;
         private TextBox sendTxt;
+        private Resources.chatting.incomming incomming1;
     }
 }

@@ -86,5 +86,9 @@ namespace UI.Resources.chatting
             AdjustnameHeight();
         }
 
+        private void inChat_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

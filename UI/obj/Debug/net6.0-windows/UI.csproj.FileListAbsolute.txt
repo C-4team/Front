@@ -36,3 +36,25 @@ C:\Users\LG\Desktop\KWU\3-1\ApplicatedSoftwarePractice\TeamProject\Front\UI\obj\
 C:\Users\LG\Desktop\KWU\3-1\ApplicatedSoftwarePractice\TeamProject\Front\UI\obj\Debug\net6.0-windows\UI.pdb
 C:\Users\LG\Desktop\KWU\3-1\ApplicatedSoftwarePractice\TeamProject\Front\UI\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
 C:\Users\LG\Desktop\KWU\3-1\ApplicatedSoftwarePractice\TeamProject\Front\UI\obj\Debug\net6.0-windows\ref\UI.dll
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\bin\Debug\net6.0-windows\UI.exe
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\bin\Debug\net6.0-windows\UI.deps.json
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\bin\Debug\net6.0-windows\UI.runtimeconfig.json
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\bin\Debug\net6.0-windows\UI.dll
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\bin\Debug\net6.0-windows\UI.pdb
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.chattingRoom.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.LoginForm.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.Properties.Resources.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.Resources.chatting.incomming.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.Resources.chatting.outgoing.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.SignupForm.resources
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.csproj.GenerateResource.cache
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.AssemblyInfoInputs.cache
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.AssemblyInfo.cs
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.sourcelink.json
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.dll
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\refint\UI.dll
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.pdb
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\ref\UI.dll
