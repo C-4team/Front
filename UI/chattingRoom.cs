@@ -57,19 +57,7 @@ namespace UI
                 //AddIncomming(userName, chatMessage); 원래 이게 맞음
                 AddIncomming(chatMessage);
             }
-        }
-
-        private void chattingRoom_Load(object sender, EventArgs e)
-        {
-            //시간 남으면 txt 모양 바꾸기
-        }
-
-        private void namelbl_Click(object sender, EventArgs e)
-        {
-            //서버로부터 요청보내기
-            //서버로부터 요청받기
-        }
-
+        } 
         private void chatoutPic_Click(object sender, EventArgs e)
         {
             //chatlist로 이동

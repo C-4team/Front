@@ -60,7 +60,6 @@
             namelbl.TabIndex = 0;
             namelbl.Text = "name";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
-            namelbl.Click += namelbl_Click;
             // 
             // chatoutPic
             // 
@@ -133,7 +132,6 @@
             Controls.Add(namePnl);
             Name = "chattingRoom";
             Text = "chattingRoom";
-            Load += chattingRoom_Load;
             namePnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();
             sendPnl.ResumeLayout(false);
