@@ -35,24 +35,25 @@
             // 
             // outChat
             // 
+            outChat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             outChat.Image = Properties.Resources.send_chat;
-            outChat.Location = new Point(24, 7);
+            outChat.Location = new Point(355, 10);
             outChat.Name = "outChat";
-            outChat.Size = new Size(390, 70);
+            outChat.Size = new Size(304, 60);
             outChat.SizeMode = PictureBoxSizeMode.StretchImage;
             outChat.TabIndex = 0;
             outChat.TabStop = false;
             // 
             // sendTxt
             // 
+            sendTxt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             sendTxt.BackColor = Color.FromArgb(216, 219, 231);
             sendTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            sendTxt.Location = new Point(36, 28);
+            sendTxt.Location = new Point(368, 26);
             sendTxt.Name = "sendTxt";
             sendTxt.Size = new Size(140, 31);
             sendTxt.TabIndex = 1;
             sendTxt.Text = "이걸로 보낼거야.";
-            sendTxt.Click += sendTxt_Click;
             // 
             // outgoing
             // 
@@ -62,7 +63,8 @@
             Controls.Add(sendTxt);
             Controls.Add(outChat);
             Name = "outgoing";
-            Size = new Size(420, 80);
+            Size = new Size(660, 87);
+            DockChanged += outgoing_DockChanged;
             ((System.ComponentModel.ISupportInitialize)outChat).EndInit();
             ResumeLayout(false);
         }

@@ -17,8 +17,8 @@ namespace UI
             InitializeComponent();
 
 
-            this.MinimumSize = new Size(420, 657);
-            this.MaximumSize = new Size(420, 657);
+            this.MinimumSize = new Size(482, 797);
+            this.MaximumSize = new Size(482, 797);
         }
 
 
@@ -37,22 +37,64 @@ namespace UI
         private void chatoutPic_Click(object sender, EventArgs e)
         {
             //chatlist로 이동
+            this.Close();
         }
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
+            Send();
+        }
+
+        void Send()
+        {
+            if (sendTxt.Text.Trim().Length == 0) return;
+
             //textbox 서버로 보내기
+            AddOutgoing(sendTxt.Text);
             sendTxt.Text = string.Empty;
+
+            //get random response
         }
 
-        private void chatPnl_Paint(object sender, PaintEventArgs e)
+        /*void receiveSend()
         {
+            if (sendTxt.Text.Trim().Length == 0) return;
 
-        }
+            //textbox 서버로 보내기
+            AddIncomming(sendTxt.Text);
+            sendTxt.Text = string.Empty;
 
-        private void incomming1_Load(object sender, EventArgs e)
+        }*/
+        void AddIncomming(string message)
         {
-
+            var bubble = new UI.Resources.chatting.incomming(); //Incomming 인스턴스를 새로 생성
+            chatPnl.Controls.Add(bubble);
+            bubble.BringToFront();
+            bubble.Dock = DockStyle.Top;
+            bubble.Message = message;
         }
+
+        void AddOutgoing(string message)
+        {
+            var bubble = new UI.Resources.chatting.outgoing();
+            chatPnl.Controls.Add(bubble);
+            bubble.BringToFront();
+            bubble.Dock = DockStyle.Top;
+            bubble.Message = message;
+        }
+        /*
+        private void sendTxt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                /*
+                if(sendTxt.Text.StartsWith('2'))
+                {
+                    receiveSend();
+                }
+                Send();
+            }
+
+        }*/
     }
 }

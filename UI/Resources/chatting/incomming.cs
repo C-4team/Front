@@ -62,23 +62,21 @@ namespace UI.Resources.chatting
 
         void AdjustchatHeight()
         {
-            receiveTxt.Location = new Point(14, 50);
-            receiveTxt.Height = Utils.GetTextHeight(receiveTxt) + 10;
+            receiveTxt.Location = new Point(12, 42);
+            receiveTxt.Height = Utils.GetTextHeight(receiveTxt) + 2;
+
+            //incomtxt 상단 좌표값 + height
+            inChat.Location = new Point(-1, 24);
+            inChat.Height = receiveTxt.Height + receiveTxt.Top - 5;
         }
 
         void AdjustnameHeight()
         {
             inName.Location = new Point(3, 0);
-            inName.Width = Utils.GetnameWidth(inName) + 2;
+            inName.Width = Utils.GetnameWidth(inName) + 1;
 
-
-            //incomtxt 상단 좌표값 + height
-            inChat.Height = receiveTxt.Top + receiveTxt.Height;
-
-            //현재 폼의 높이
-            this.Height = inName.Top + inChat.Bottom + 10;
+            this.Height = inName.Top + inChat.Bottom + 5;
         }
-
 
         private void incomming_Resize(object sender, EventArgs e)
         {

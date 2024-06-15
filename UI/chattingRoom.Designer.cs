@@ -32,10 +32,11 @@
             namelbl = new Label();
             chatoutPic = new PictureBox();
             chatPnl = new Panel();
+            incomming1 = new Resources.chatting.incomming();
+            outgoing1 = new Resources.chatting.outgoing();
             sendPnl = new Panel();
             sendBtn = new Button();
             sendTxt = new TextBox();
-            incomming1 = new Resources.chatting.incomming();
             namePnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).BeginInit();
             chatPnl.SuspendLayout();
@@ -80,10 +81,34 @@
             // 
             chatPnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             chatPnl.Controls.Add(incomming1);
+            chatPnl.Controls.Add(outgoing1);
             chatPnl.Location = new Point(0, 76);
             chatPnl.Name = "chatPnl";
             chatPnl.Size = new Size(463, 599);
             chatPnl.TabIndex = 2;
+            // 
+            // incomming1
+            // 
+            incomming1.AutoSize = true;
+            incomming1.BackColor = Color.FromArgb(27, 29, 37);
+            incomming1.Dock = DockStyle.Top;
+            incomming1.Location = new Point(0, 66);
+            incomming1.Message = "여기에 이 글씨가 길어진다면";
+            incomming1.name = "name";
+            incomming1.Name = "incomming1";
+            incomming1.Size = new Size(463, 91);
+            incomming1.TabIndex = 3;
+            // 
+            // outgoing1
+            // 
+            outgoing1.AutoSize = true;
+            outgoing1.BackColor = Color.FromArgb(27, 29, 37);
+            outgoing1.Dock = DockStyle.Top;
+            outgoing1.Location = new Point(0, 0);
+            outgoing1.Message = "이걸로 보낼거야.";
+            outgoing1.Name = "outgoing1";
+            outgoing1.Size = new Size(463, 66);
+            outgoing1.TabIndex = 2;
             // 
             // sendPnl
             // 
@@ -123,18 +148,6 @@
             sendTxt.Size = new Size(393, 51);
             sendTxt.TabIndex = 0;
             // 
-            // incomming1
-            // 
-            incomming1.AutoSize = true;
-            incomming1.BackColor = Color.FromArgb(27, 29, 37);
-            incomming1.Dock = DockStyle.Top;
-            incomming1.Location = new Point(0, 0);
-            incomming1.Message = "여기에 서버로 들어온 text 칠거야";
-            incomming1.name = "name";
-            incomming1.Name = "incomming1";
-            incomming1.Size = new Size(463, 102);
-            incomming1.TabIndex = 0;
-            // 
             // chattingRoom
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -166,6 +179,7 @@
         private Panel sendPnl;
         private Button sendBtn;
         private TextBox sendTxt;
+        private Resources.chatting.outgoing outgoing1;
         private Resources.chatting.incomming incomming1;
     }
 }

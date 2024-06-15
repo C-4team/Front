@@ -41,7 +41,7 @@
             inName.ForeColor = Color.White;
             inName.Location = new Point(0, 0);
             inName.Name = "inName";
-            inName.Size = new Size(420, 24);
+            inName.Size = new Size(660, 24);
             inName.TabIndex = 0;
             inName.Text = "name";
             inName.Click += inName_Click;
@@ -51,7 +51,7 @@
             inChat.Image = Properties.Resources.receive_chat;
             inChat.Location = new Point(-1, 24);
             inChat.Name = "inChat";
-            inChat.Size = new Size(390, 70);
+            inChat.Size = new Size(304, 60);
             inChat.SizeMode = PictureBoxSizeMode.StretchImage;
             inChat.TabIndex = 1;
             inChat.TabStop = false;
@@ -63,11 +63,11 @@
             receiveTxt.FlatStyle = FlatStyle.Flat;
             receiveTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             receiveTxt.ForeColor = Color.White;
-            receiveTxt.Location = new Point(12, 45);
+            receiveTxt.Location = new Point(12, 41);
             receiveTxt.Name = "receiveTxt";
-            receiveTxt.Size = new Size(291, 30);
+            receiveTxt.Size = new Size(238, 30);
             receiveTxt.TabIndex = 2;
-            receiveTxt.Text = "여기에 서버로 들어온 text 칠거야";
+            receiveTxt.Text = "여기에 이 글씨가 길어진다면";
             // 
             // incomming
             // 
@@ -79,7 +79,7 @@
             Controls.Add(inName);
             Controls.Add(inChat);
             Name = "incomming";
-            Size = new Size(420, 102);
+            Size = new Size(660, 87);
             Load += incomming_Load;
             ((System.ComponentModel.ISupportInitialize)inChat).EndInit();
             ResumeLayout(false);
