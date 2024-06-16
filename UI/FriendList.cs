@@ -64,8 +64,10 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                RequestThread.Abort();
-                RespondThread.Abort();
+                if(RequestThread != null)
+                    RequestThread.Abort();
+                if(RespondThread != null)
+                    RespondThread.Abort();
                 Connection.Disconnect();
                 this.Close();
             }

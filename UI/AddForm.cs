@@ -20,13 +20,21 @@ namespace UI
         public AddForm(int ischat, TcpConnection connection)
         {
             isChat = ischat;
+            if (isChat == 0)
+            {
+                this.Text = "AddFriends";
+            }
+            else
+            {
+                this.Text = "AddChats";
+            }
             Connection = connection;
             InitializeComponent();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (txtID.Text.Length == 0) return;
+            if (txtContent.Text.Length == 0) return;
 
             if (isChat == 0)
             {

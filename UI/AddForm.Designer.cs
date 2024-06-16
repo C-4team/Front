@@ -52,7 +52,7 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // AddFriend
+            // AddForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -60,8 +60,8 @@
             ClientSize = new Size(315, 109);
             Controls.Add(btnAdd);
             Controls.Add(txtContent);
-            Name = "AddFriend";
-            Text = "AddFriend";
+            Name = "AddForm";
+            Text = "Add";
             ResumeLayout(false);
             PerformLayout();
         }

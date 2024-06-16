@@ -64,8 +64,10 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                RequestThread.Abort();
-                RespondThread.Abort();
+                if(RequestThread != null)
+                    RequestThread.Abort();
+                if(RespondThread != null)
+                    RespondThread.Abort();
                 Connection.Disconnect();
                 this.Close();
             }
@@ -77,7 +79,7 @@ namespace UI
 
         private void Add_Click(object sender, EventArgs e)
         {
-            addForm = new AddForm(Connection);
+            addForm = new AddForm(1, Connection);
             addForm.ShowDialog();
         }
     }
