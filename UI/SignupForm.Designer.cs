@@ -53,7 +53,7 @@
             // 
             nameLabel.AutoSize = true;
             nameLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            nameLabel.Location = new Point(47, 216);
+            nameLabel.Location = new Point(24, 216);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(73, 25);
             nameLabel.TabIndex = 1;
@@ -63,7 +63,7 @@
             // 
             IDLabel.AutoSize = true;
             IDLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            IDLabel.Location = new Point(47, 290);
+            IDLabel.Location = new Point(24, 290);
             IDLabel.Name = "IDLabel";
             IDLabel.Size = new Size(86, 25);
             IDLabel.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             pwdLabel.AutoSize = true;
             pwdLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            pwdLabel.Location = new Point(47, 366);
+            pwdLabel.Location = new Point(24, 366);
             pwdLabel.Name = "pwdLabel";
             pwdLabel.Size = new Size(105, 25);
             pwdLabel.TabIndex = 3;
@@ -83,21 +83,21 @@
             // 
             namebox.BackColor = Color.White;
             namebox.Font = new Font("Segoe Script", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            namebox.Location = new Point(172, 213);
+            namebox.Location = new Point(135, 216);
             namebox.Name = "namebox";
             namebox.Size = new Size(295, 36);
             namebox.TabIndex = 4;
             // 
             // IDbox
             // 
-            IDbox.Location = new Point(172, 287);
+            IDbox.Location = new Point(135, 290);
             IDbox.Name = "IDbox";
             IDbox.Size = new Size(295, 31);
             IDbox.TabIndex = 5;
             // 
             // pwdbox
             // 
-            pwdbox.Location = new Point(172, 363);
+            pwdbox.Location = new Point(135, 366);
             pwdbox.Name = "pwdbox";
             pwdbox.Size = new Size(295, 31);
             pwdbox.TabIndex = 6;
@@ -109,7 +109,7 @@
             SignupBtn.FlatStyle = FlatStyle.Popup;
             SignupBtn.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
             SignupBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            SignupBtn.Location = new Point(85, 656);
+            SignupBtn.Location = new Point(60, 638);
             SignupBtn.Name = "SignupBtn";
             SignupBtn.Size = new Size(336, 69);
             SignupBtn.TabIndex = 7;
@@ -122,7 +122,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(518, 829);
+            ClientSize = new Size(460, 741);
             Controls.Add(SignupBtn);
             Controls.Add(pwdbox);
             Controls.Add(IDbox);

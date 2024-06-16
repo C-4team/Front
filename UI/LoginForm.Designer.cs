@@ -40,7 +40,7 @@
             // IDbox
             // 
             IDbox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            IDbox.Location = new Point(96, 326);
+            IDbox.Location = new Point(60, 322);
             IDbox.Name = "IDbox";
             IDbox.Size = new Size(332, 47);
             IDbox.TabIndex = 0;
@@ -48,7 +48,7 @@
             // pwdBox
             // 
             pwdBox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            pwdBox.Location = new Point(96, 375);
+            pwdBox.Location = new Point(60, 375);
             pwdBox.Name = "pwdBox";
             pwdBox.Size = new Size(332, 47);
             pwdBox.TabIndex = 1;
@@ -57,7 +57,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(110, 46);
+            pictureBox1.Location = new Point(71, 45);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(309, 244);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -70,7 +70,7 @@
             LoginBtn.FlatStyle = FlatStyle.Popup;
             LoginBtn.Font = new Font("맑은 고딕", 11F, FontStyle.Regular, GraphicsUnit.Point);
             LoginBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            LoginBtn.Location = new Point(96, 456);
+            LoginBtn.Location = new Point(60, 442);
             LoginBtn.Name = "LoginBtn";
             LoginBtn.Size = new Size(332, 48);
             LoginBtn.TabIndex = 4;
@@ -84,7 +84,7 @@
             SignupBtn.FlatStyle = FlatStyle.Popup;
             SignupBtn.Font = new Font("맑은 고딕", 11F, FontStyle.Regular, GraphicsUnit.Point);
             SignupBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            SignupBtn.Location = new Point(160, 674);
+            SignupBtn.Location = new Point(130, 646);
             SignupBtn.Name = "SignupBtn";
             SignupBtn.Size = new Size(201, 59);
             SignupBtn.TabIndex = 5;
@@ -97,7 +97,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(518, 829);
+            ClientSize = new Size(460, 741);
             Controls.Add(SignupBtn);
             Controls.Add(LoginBtn);
             Controls.Add(pictureBox1);
