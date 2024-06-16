@@ -83,7 +83,7 @@ namespace UI
                 else
                 {
                     MessageBox.Show(isRight);
-                }                
+                }
             }
             catch
             {
@@ -105,8 +105,14 @@ namespace UI
         }
         private void SignupBtn_Click(object sender, EventArgs e)
         {
-            signupform.ShowDialog(); 
-            signupform.FormClosed += (s,args) => this.Show();
+            signupform.ShowDialog();
+            signupform.FormClosed += (s, args) => this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            friendlist.ShowDialog();
         }
     }
 }

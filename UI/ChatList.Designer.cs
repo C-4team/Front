@@ -30,16 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatList));
             label2 = new Label();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            pictureBox7 = new PictureBox();
-            pictureBox8 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            toFriend = new PictureBox();
+            toChat = new PictureBox();
+            Setting = new PictureBox();
+            Add = new PictureBox();
+            TLPanel = new TableLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)toFriend).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)toChat).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Setting).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Add).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -53,57 +52,62 @@
             label2.TabIndex = 2;
             label2.Text = "Chats";
             // 
-            // pictureBox4
+            // toFriend
             // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(74, 502);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(92, 82);
-            pictureBox4.TabIndex = 7;
-            pictureBox4.TabStop = false;
+            toFriend.Image = (Image)resources.GetObject("toFriend.Image");
+            toFriend.Location = new Point(74, 502);
+            toFriend.Margin = new Padding(3, 2, 3, 2);
+            toFriend.Name = "toFriend";
+            toFriend.Size = new Size(92, 82);
+            toFriend.TabIndex = 7;
+            toFriend.TabStop = false;
+            toFriend.Click += toFriend_Click;
             // 
-            // pictureBox5
+            // toChat
             // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(253, 502);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(97, 85);
-            pictureBox5.TabIndex = 8;
-            pictureBox5.TabStop = false;
+            toChat.Image = (Image)resources.GetObject("toChat.Image");
+            toChat.Location = new Point(253, 502);
+            toChat.Margin = new Padding(3, 2, 3, 2);
+            toChat.Name = "toChat";
+            toChat.Size = new Size(97, 85);
+            toChat.TabIndex = 8;
+            toChat.TabStop = false;
             // 
-            // pictureBox6
+            // Setting
             // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(345, 13);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(43, 45);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 11;
-            pictureBox6.TabStop = false;
+            Setting.Image = (Image)resources.GetObject("Setting.Image");
+            Setting.Location = new Point(347, 14);
+            Setting.Margin = new Padding(3, 2, 3, 2);
+            Setting.Name = "Setting";
+            Setting.Size = new Size(43, 45);
+            Setting.SizeMode = PictureBoxSizeMode.Zoom;
+            Setting.TabIndex = 11;
+            Setting.TabStop = false;
+            Setting.Click += Setting_Click;
             // 
-            // pictureBox7
+            // Add
             // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(240, 11);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(52, 52);
-            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox7.TabIndex = 10;
-            pictureBox7.TabStop = false;
+            Add.Image = (Image)resources.GetObject("Add.Image");
+            Add.Location = new Point(290, 12);
+            Add.Name = "Add";
+            Add.Size = new Size(63, 52);
+            Add.SizeMode = PictureBoxSizeMode.StretchImage;
+            Add.TabIndex = 9;
+            Add.TabStop = false;
+            Add.Click += Add_Click;
             // 
-            // pictureBox8
+            // TLPanel
             // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(290, 12);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(63, 52);
-            pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox8.TabIndex = 9;
-            pictureBox8.TabStop = false;
+            TLPanel.ColumnCount = 1;
+            TLPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            TLPanel.Location = new Point(8, 81);
+            TLPanel.Name = "TLPanel";
+            TLPanel.RowCount = 3;
+            TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            TLPanel.Size = new Size(397, 413);
+            TLPanel.TabIndex = 12;
             // 
             // ChatList
             // 
@@ -111,21 +115,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
             ClientSize = new Size(414, 593);
-            Controls.Add(pictureBox6);
-            Controls.Add(pictureBox7);
-            Controls.Add(pictureBox8);
-            Controls.Add(pictureBox5);
-            Controls.Add(pictureBox4);
+            Controls.Add(TLPanel);
+            Controls.Add(Setting);
+            Controls.Add(Add);
+            Controls.Add(toChat);
+            Controls.Add(toFriend);
             Controls.Add(label2);
             Location = new Point(13, 11);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ChatList";
             Text = "ChatList";
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)toFriend).EndInit();
+            ((System.ComponentModel.ISupportInitialize)toChat).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Setting).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Add).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,10 +136,10 @@
         #endregion
 
         private Label label2;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox7;
-        private PictureBox pictureBox8;
+        private PictureBox toFriend;
+        private PictureBox toChat;
+        private PictureBox Setting;
+        private PictureBox Add;
+        private TableLayoutPanel TLPanel;
     }
 }
