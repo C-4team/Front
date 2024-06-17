@@ -31,11 +31,12 @@ namespace UI
             this.Text = name;
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
+            pnlMain.Controls.Add(TLPanel);
         }
 
         private void GetDataFromServer(CancellationToken token)
         {
-            while(!token.IsCancellationRequested)
+            while (!token.IsCancellationRequested)
             {
                 RequestDataFromServer();
                 RespondDataFromServer();
@@ -69,6 +70,7 @@ namespace UI
             {
                 string[] datas = data.Split(',');
                 int G_Cnt = Convert.ToInt32(datas[1]);
+                TLPanel.ColumnCount = G_Cnt;
                 int[] U_cnt;
 
                 if (G_Cnt == 0)
@@ -226,7 +228,6 @@ namespace UI
         private void toChat_Click(object sender, EventArgs e)
         {
             this.Hide();
-            cts.Cancel();
             chatlist = new ChatList(Myname, Connection);
             chatlist.ShowDialog();
         }
@@ -257,6 +258,19 @@ namespace UI
         {
             GetData = new Thread(() => GetDataFromServer(cts.Token));
             GetData.Start();
+        }
+
+        private void FriendList_VisibleChanged(object sender, EventArgs e)
+        {
+            if(this.Visible)
+            {
+                GetData = new Thread(()=>GetDataFromServer(cts.Token));
+                GetData.Start();
+            }
+            else
+            {
+                cts.Cancel();
+            }
         }
     }
 }

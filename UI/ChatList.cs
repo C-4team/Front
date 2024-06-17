@@ -176,7 +176,6 @@ namespace UI
 
         private void toFriend_Click(object sender, EventArgs e)
         {
-            cts.Cancel();
             this.Hide();
             friendlist = new FriendList(MyName, Connection);
             friendlist.ShowDialog();
@@ -208,6 +207,19 @@ namespace UI
         {
             GetData = new Thread(()=> GetDataFromServer(cts.Token));
             GetData.Start();
+        }
+
+        private void ChatList_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                GetData = new Thread(() => GetDataFromServer(cts.Token));
+                GetData.Start();
+            }
+            else
+            {
+                cts.Cancel();
+            }
         }
 
         private void Group1_Panel_Click(object sender, EventArgs e)
