@@ -34,7 +34,7 @@ namespace UI
         {
             if (namebox.Text.Length == 0 || IDbox.Text.Length == 0 || pwdbox.Text.Length == 0) return;
 
-            if(!Connection.m_bConnect) Connection.Connect();
+            if (!Connection.m_bConnect) Connection.Connect();
 
             m_RequestThread = new Thread(new ThreadStart(Send));
             m_RequestThread.Start();

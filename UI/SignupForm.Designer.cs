@@ -41,77 +41,87 @@
             // Signup
             // 
             Signup.AutoSize = true;
-            Signup.Font = new Font("맑은 고딕", 25F, FontStyle.Regular, GraphicsUnit.Point);
+            Signup.Font = new Font("Centaur", 30F, FontStyle.Regular, GraphicsUnit.Point);
             Signup.ForeColor = Color.FromArgb(247, 255, 255);
-            Signup.Location = new Point(8, -8);
+            Signup.Location = new Point(4, 8);
             Signup.Name = "Signup";
-            Signup.Size = new Size(204, 67);
+            Signup.Size = new Size(162, 56);
             Signup.TabIndex = 0;
             Signup.Text = "Sign up";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
+            nameLabel.Font = new Font("Centaur", 20F, FontStyle.Regular, GraphicsUnit.Point);
             nameLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            nameLabel.Location = new Point(24, 216);
+            nameLabel.Location = new Point(18, 170);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(73, 25);
+            nameLabel.Size = new Size(115, 38);
             nameLabel.TabIndex = 1;
-            nameLabel.Text = "name : ";
+            nameLabel.Text = "Name : ";
             // 
             // IDLabel
             // 
             IDLabel.AutoSize = true;
+            IDLabel.Font = new Font("Centaur", 15F, FontStyle.Regular, GraphicsUnit.Point);
             IDLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            IDLabel.Location = new Point(24, 290);
+            IDLabel.Location = new Point(19, 289);
             IDLabel.Name = "IDLabel";
-            IDLabel.Size = new Size(86, 25);
+            IDLabel.Size = new Size(95, 28);
             IDLabel.TabIndex = 2;
-            IDLabel.Text = "KW ID :  ";
+            IDLabel.Text = "KW ID :";
             // 
             // pwdLabel
             // 
             pwdLabel.AutoSize = true;
+            pwdLabel.Font = new Font("Centaur", 15F, FontStyle.Regular, GraphicsUnit.Point);
             pwdLabel.ForeColor = Color.FromArgb(247, 255, 255);
-            pwdLabel.Location = new Point(24, 366);
+            pwdLabel.Location = new Point(15, 407);
             pwdLabel.Name = "pwdLabel";
-            pwdLabel.Size = new Size(105, 25);
+            pwdLabel.Size = new Size(108, 28);
             pwdLabel.TabIndex = 3;
-            pwdLabel.Text = "password : ";
+            pwdLabel.Text = "Password :";
             // 
             // namebox
             // 
             namebox.BackColor = Color.White;
             namebox.Font = new Font("Segoe Script", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            namebox.Location = new Point(135, 216);
+            namebox.Location = new Point(122, 173);
+            namebox.Margin = new Padding(3, 2, 3, 2);
             namebox.Name = "namebox";
-            namebox.Size = new Size(295, 36);
+            namebox.Size = new Size(266, 31);
             namebox.TabIndex = 4;
             // 
             // IDbox
             // 
-            IDbox.Location = new Point(135, 290);
+            IDbox.Location = new Point(122, 286);
+            IDbox.Margin = new Padding(3, 2, 3, 2);
+            IDbox.Multiline = true;
             IDbox.Name = "IDbox";
-            IDbox.Size = new Size(295, 31);
+            IDbox.Size = new Size(266, 31);
             IDbox.TabIndex = 5;
             // 
             // pwdbox
             // 
-            pwdbox.Location = new Point(135, 366);
+            pwdbox.Location = new Point(122, 405);
+            pwdbox.Margin = new Padding(3, 2, 3, 2);
+            pwdbox.Multiline = true;
             pwdbox.Name = "pwdbox";
-            pwdbox.Size = new Size(295, 31);
+            pwdbox.Size = new Size(266, 31);
             pwdbox.TabIndex = 6;
             pwdbox.UseSystemPasswordChar = true;
             // 
             // SignupBtn
             // 
             SignupBtn.BackColor = Color.FromArgb(42, 47, 55);
-            SignupBtn.FlatStyle = FlatStyle.Popup;
-            SignupBtn.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            SignupBtn.FlatAppearance.BorderColor = Color.FromArgb(42, 47, 55);
+            SignupBtn.FlatStyle = FlatStyle.Flat;
+            SignupBtn.Font = new Font("Centaur", 20F, FontStyle.Regular, GraphicsUnit.Point);
             SignupBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            SignupBtn.Location = new Point(60, 638);
+            SignupBtn.Location = new Point(78, 579);
+            SignupBtn.Margin = new Padding(3, 2, 3, 2);
             SignupBtn.Name = "SignupBtn";
-            SignupBtn.Size = new Size(336, 69);
+            SignupBtn.Size = new Size(302, 55);
             SignupBtn.TabIndex = 7;
             SignupBtn.Text = "Sign up";
             SignupBtn.UseVisualStyleBackColor = false;
@@ -119,10 +129,10 @@
             // 
             // SignupForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(460, 741);
+            ClientSize = new Size(464, 750);
             Controls.Add(SignupBtn);
             Controls.Add(pwdbox);
             Controls.Add(IDbox);
@@ -131,6 +141,7 @@
             Controls.Add(IDLabel);
             Controls.Add(nameLabel);
             Controls.Add(Signup);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SignupForm";
             Text = "SignupForm";
             ResumeLayout(false);
