@@ -152,7 +152,7 @@
             Friend1_ID.AutoSize = true;
             Friend1_ID.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Friend1_ID.ForeColor = Color.White;
-            Friend1_ID.Location = new Point(175, 121);
+            Friend1_ID.Location = new Point(175, 112);
             Friend1_ID.Name = "Friend1_ID";
             Friend1_ID.Size = new Size(100, 23);
             Friend1_ID.TabIndex = 1;
@@ -160,12 +160,12 @@
             // 
             // Friend1_Name
             // 
-            Friend1_Name.Dock = DockStyle.Fill;
+            Friend1_Name.AutoSize = true;
             Friend1_Name.Font = new Font("맑은 고딕", 23F, FontStyle.Bold, GraphicsUnit.Point);
             Friend1_Name.ForeColor = Color.White;
-            Friend1_Name.Location = new Point(0, 0);
+            Friend1_Name.Location = new Point(157, 60);
             Friend1_Name.Name = "Friend1_Name";
-            Friend1_Name.Size = new Size(457, 196);
+            Friend1_Name.Size = new Size(139, 52);
             Friend1_Name.TabIndex = 0;
             Friend1_Name.Text = "홍길동";
             Friend1_Name.TextAlign = ContentAlignment.MiddleCenter;
