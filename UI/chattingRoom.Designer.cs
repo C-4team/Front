@@ -162,7 +162,6 @@
             Name = "chattingRoom";
             Text = "chattingRoom";
             FormClosing += chattingRoom_FormClosing;
-            Load += chattingRoom_Load;
             namePnl.ResumeLayout(false);
             namePnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)FriendAdd).EndInit();
