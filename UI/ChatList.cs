@@ -88,6 +88,14 @@ namespace UI
                     Group1_ID = datas[2];
                     Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
+                    string list = "";
+                    for (int i = 0; i < FriendCnt[0] - 1; i++)
+                    {
+                        list += datas[5 + i];
+                        list += ", ";
+                    }
+                    list += datas[5 + FriendCnt[0]];
+                    Group1_List.Text = list;
                 }
                 else if (GroupCnt == 2)
                 {
@@ -95,9 +103,25 @@ namespace UI
                     FriendCnt[0] = Convert.ToInt32(datas[4]);
                     FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
                     Group1_ID = datas[2];
-                    Group2_ID = datas[FriendCnt[0] + 5];
+                    string list = "";
+                    for(int i = 0; i < FriendCnt[0] -1; i++)
+                    {
+                        list += datas[5 + i];
+                        list += ", ";
+                    }
+                    list += datas[5 + FriendCnt[0]];
+                    Group1_List.Text = list;
+                    Group1_ID = datas[FriendCnt[0] + 5];
                     Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
+                    list = "";
+                    for(int i = 0; i < FriendCnt[1] - 1; i++)
+                    {
+                        list += datas[8 + FriendCnt[1] + i];
+                        list += ", ";
+                    }
+                    list += datas[8 + FriendCnt[0] + FriendCnt[1]];
+                    Group2_List.Text = list;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
@@ -107,13 +131,36 @@ namespace UI
                     FriendCnt[0] = Convert.ToInt32(datas[4]);
                     FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
                     FriendCnt[2] = Convert.ToInt32(datas[FriendCnt[0] + FriendCnt[1] + 10]);
+                    string list = "";
+                    for (int i = 0; i < FriendCnt[0] - 1; i++)
+                    {
+                        list += datas[5 + i];
+                        list += ", ";
+                    }
+                    list += datas[5 + FriendCnt[0]];
+                    Group1_List.Text = list;
                     Group1_ID = datas[2];
                     Group2_ID = datas[FriendCnt[0] + 5];
                     Group3_ID = datas[FriendCnt[0] + FriendCnt[1] + 8];
+                    list = "";
+                    for (int i = 0; i < FriendCnt[1] - 1; i++)
+                    {
+                        list += datas[8 + FriendCnt[1] + i];
+                        list += ", ";
+                    }
+                    list += datas[8 + FriendCnt[0] + FriendCnt[1]];
+                    Group2_List.Text = list;
                     Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
+                    list = "";
+                    for (int i = 0; i < FriendCnt[2] - 1; i++)
+                    {
+                        list += data[10 + FriendCnt[0] + FriendCnt[1] + i];
+                        list += ", ";
+                    }
+                    list += data[10 + FriendCnt[0] + FriendCnt[1] + FriendCnt[2]];
                     Group3_Info.Text = datas[FriendCnt[0] + FriendCnt[1] + 9] + " " + FriendCnt[2];
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
