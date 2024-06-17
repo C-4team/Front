@@ -12,10 +12,15 @@ namespace UI
 {
     public partial class AddGroupFriend : Form
     {
-        public AddGroupFriend()
+        private TcpConnection tcpConnection;
+        private Thread requestThread;
+        private Thread responseThread;
+        private string groupID = "";
+        public AddGroupFriend(TcpConnection Connection, string groupId)
         {
+            groupID = groupId;
+            tcpConnection = Connection;
             InitializeComponent();
-
             inputId.Leave += new EventHandler(inputId_Leave);
         }
 
@@ -30,7 +35,30 @@ namespace UI
 
         private void Addbutton_Click(object sender, EventArgs e)
         {
-            //서버로 pasing해서 정보 보내기
+            if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
+
+            if (tcpConnection.m_bConnect)
+            {
+                requestThread = new Thread(new ThreadStart(Send));
+                requestThread.Start();
+                responseThread = new Thread(new ThreadStart(checkResponse));
+            }
+        }
+
+        private void Send()
+        {
+            if (inputId.Text.Trim().Length == 0) { return; }
+
+            tcpConnection.m_Write.WriteLine("6," + groupID + "," + inputId.Text);
+        }
+
+        private void checkResponse()
+        {
+            string response = tcpConnection.m_Read.ReadLine();
+            if (response != "10")
+            {
+                MessageBox.Show("없는 ID 입니다.");
+            }
         }
     }
 }

@@ -15,13 +15,13 @@ namespace UI
     {
         //TCP 객체 불러오기
         private TcpConnection tcpConnection;
-        AddGroupFriend addGroupFriend = new AddGroupFriend();
+        AddGroupFriend addGroupFriend;
         private Thread receiveThread; //그룹채팅이든 아니든 이걸로 연결해야함
         private Thread sendThread; //그룹채팅이든 아니든 이걸로 연결해야함
-        string groupId;
-        string userName;
-        string chatMessage;
-        string timeStamp;
+        string groupId = "";
+        string userName = "";
+        string chatMessage = "";
+        string timeStamp = "";
 
         public chattingRoom(TcpConnection Connection)
         {
@@ -31,7 +31,7 @@ namespace UI
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
 
-            if(!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
+            if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
 
             if (tcpConnection.m_bConnect)
             {
@@ -39,7 +39,6 @@ namespace UI
                 sendThread.Start();
             }
         }
-
 
         private void ProcessIncomingMessage()
         {
@@ -52,7 +51,7 @@ namespace UI
                 chatMessage = parts[3];
                 timeStamp = parts[4];
 
-                if(groupId != "11")
+                if (groupId != "11")
                 {
                     AddIncomming(userName, chatMessage);
                 }
@@ -63,7 +62,7 @@ namespace UI
         void AddIncomming(string userName, string message)
         {
             var bubble = new UI.Resources.chatting.incomming(); //Incomming 인스턴스를 새로 생성
-            chatPnl.Controls.Add(bubble);
+            chatPnl.Controls.Add(풍선껌);
             bubble.BringToFront();
             bubble.Dock = DockStyle.Top;
             bubble.name = userName; //userName 으로 들어가야함
@@ -106,14 +105,14 @@ namespace UI
             //메세지에 UI 추가
             AddOutgoing(sendTxt.Text);
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            tcpConnection.m_Write.WriteLine("7," + groupId + sendTxt.Text + timestamp);
+            tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
             sendTxt.Text = string.Empty;
         }
 
         void AddOutgoing(string message)
         {
             var bubble = new UI.Resources.chatting.outgoing();
-            chatPnl.Controls.Add(bubble);
+            chatPnl.Controls.Add(풍선껌);
             bubble.BringToFront();
             bubble.Dock = DockStyle.Top;
             bubble.Message = message;
@@ -121,6 +120,7 @@ namespace UI
 
         private void FriendAdd_Click(object sender, EventArgs e)
         {
+            addGroupFriend = new AddGroupFriend(tcpConnection, groupId);
             addGroupFriend.ShowDialog();
         }
 
