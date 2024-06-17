@@ -61,6 +61,9 @@ namespace UI
                 groupinter.Start();
 
                 Thread.Sleep(1000);
+
+                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
+                receiveThread.Start();
             }
         }
 
@@ -96,9 +99,6 @@ namespace UI
                 int loopnum = 0;
                 int index = 2; //parts -> 유저이름 부터 보기 위함
                 tcpConnection.m_Write.WriteLine("4," + groupId); //request
-
-                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
-                receiveThread.Start();
             }
             catch (Exception ex)
             {
@@ -233,8 +233,7 @@ namespace UI
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
                 sendTxt.Text = sendTxt.Text.Replace("\n", txt);
-
-                tcpConnection.m_Write.Write("7," + groupId + "," + sendTxt.Text + "," + timestamp);
+                tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
                 Invoke((MethodInvoker)delegate
                 {
