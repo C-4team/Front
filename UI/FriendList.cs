@@ -29,6 +29,7 @@ namespace UI
             Myname = name;
             Connection = connection;
             InitializeComponent();
+            this.Name = name;
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
         }
