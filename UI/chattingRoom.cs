@@ -140,11 +140,10 @@ namespace UI
             {
                 while (true)
                 {
-
                     string messageNum = "";
                     string UserName = "";
                     int loopnum = 0;
-                    int index = 1; //parts -> 유저이름 부터 보기 위함
+                    int index;
 
                     string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
                     if (message == null)
@@ -182,13 +181,16 @@ namespace UI
                     //과거 data 받아올 때
                     else if (parts[0] == "8")
                     {
+                        index = 1;
                         messageNum = parts[1];
                         loopnum = int.Parse(messageNum);
 
                         //과거 메시지 보내기
                         while (loopnum > 0)
                         {
-                            if (myName == parts[index++])
+                            index++;
+                            string prename = parts[index];
+                            if (myName == prename)
                             {
                                 Invoke((MethodInvoker)delegate
                                 {
@@ -202,7 +204,7 @@ namespace UI
                                 Invoke((MethodInvoker)delegate
                                 {
                                     index++;
-                                    AddIncomming(parts[index], parts[index++]); //username, msg
+                                    AddIncomming(prename, parts[index]); //username, msg
                                 });
                                 index++; //timestamp
                             }
@@ -225,6 +227,21 @@ namespace UI
 
         private void chatoutPic_Click(object sender, EventArgs e)
         {
+            if (groupinter != null && groupinter.IsAlive)
+            {
+                groupinter.Abort();
+            }
+
+            if (receiveThread != null && receiveThread.IsAlive)
+            {
+                receiveThread.Abort();
+            }
+
+            if (sendThread != null && sendThread.IsAlive)
+            {
+                sendThread.Abort();
+            }
+
             this.Close();
         }
 
@@ -255,12 +272,6 @@ namespace UI
                 {
                     sendTxt.Text = string.Empty;
                 });
-
-                /*//메세지에 UI 추가
-                Invoke((MethodInvoker)delegate
-                {
-                    AddOutgoing(sendTxt.Text);
-                });*/
 
             }
             catch (Exception ex)
