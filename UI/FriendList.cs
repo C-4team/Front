@@ -35,6 +35,10 @@ namespace UI
         {
             RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
             RequestThread.Start();
+<<<<<<< HEAD
+=======
+
+>>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
             RespondThread.Start();
 
@@ -59,12 +63,23 @@ namespace UI
             FriendPanel3.BorderStyle = BorderStyle.None;
 
             string data = Connection.m_Read.ReadLine();
+<<<<<<< HEAD
 
             if (data.StartsWith("4"))
                 return;
             else if (data.StartsWith("5"))
             {
                 string[] datas = data.Split(',');
+=======
+            string[] datas = data.Split(',');
+            string four = "4";
+            string five = "5";
+
+            if (datas[0] == four)
+                return;
+            else if (datas[0] == five)
+            {
+>>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
                 int G_Cnt = Convert.ToInt32(datas[1]);
                 int[] U_cnt;
 

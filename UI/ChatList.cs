@@ -167,21 +167,21 @@ namespace UI
         private void Group1_Panel_Click(object sender, EventArgs e)
         {
             if (Group1_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group1_ID, Connection);
+            ChatRoom = new chattingRoom(MyName, Group1_ID, Group2_Info.Text, Connection);
             ChatRoom.Show();
         }
 
         private void Group2_Panel_Click(object sender, EventArgs e)
         {
             if (Group2_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group2_ID, Connection);
+            ChatRoom = new chattingRoom(MyName, Group2_ID, Group2_Info.Text, Connection);
             ChatRoom.Show();
         }
 
         private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group3_ID, Connection);
+            ChatRoom = new chattingRoom(MyName, Group3_ID, Group2_Info.Text, Connection);
             ChatRoom.Show();
         }
     }

@@ -82,12 +82,10 @@ namespace UI
             Invoke((MethodInvoker)delegate {
                 namelbl.Text = groupName;
             });
-
             loopnum = int.Parse(messageNum);
 
             while (loopnum >= 0)
             {
-                //내 톡 내용
                 if (myName == parts[index])
                 {
                     Invoke((MethodInvoker)delegate
@@ -196,8 +194,7 @@ namespace UI
 
         private void chattingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //receiveThread.Abort();
-            //sendThread.Abort();
+
         }
 
         private void chattingRoom_Load(object sender, EventArgs e)
