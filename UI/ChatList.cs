@@ -38,9 +38,9 @@ namespace UI
             Group1_Info.Text = "";
             Group2_Info.Text = "";
             Group3_Info.Text = "";
-            Group1_Count.Location = new Point(Group1_Info.Right, 44);
-            Group2_Count.Location = new Point(Group2_Info.Right, 44);
-            Group3_Count.Location = new Point(Group3_Info.Right, 44);
+            Group1_Count.Text = "";
+            Group2_Count.Text = "";
+            Group3_Count.Text = "";
             Group1_Panel.BorderStyle = BorderStyle.None;
             Group2_Panel.BorderStyle = BorderStyle.None;
             Group3_Panel.BorderStyle = BorderStyle.None;
@@ -98,6 +98,10 @@ namespace UI
                     Group1_Count.Text = group1.User_Count.ToString();
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
 
+                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
+                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
+                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
+
                 }
                 else if (GroupCnt == 2)
                 {
@@ -125,6 +129,10 @@ namespace UI
                     Group2_List.Text = result2;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
+
+                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
+                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
+                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
                 }
                 else
                 {
@@ -164,6 +172,10 @@ namespace UI
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
+
+                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
+                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
+                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
                 }
             }
         }
