@@ -109,11 +109,5 @@ namespace UI
             signupform.ShowDialog();
             signupform.FormClosed += (s, args) => this.Show();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            friendlist.ShowDialog();
-        }
     }
 }

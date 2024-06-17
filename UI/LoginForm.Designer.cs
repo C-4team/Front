@@ -34,7 +34,6 @@
             pictureBox1 = new PictureBox();
             LoginBtn = new Button();
             SignupBtn = new Button();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -98,23 +97,12 @@
             SignupBtn.UseVisualStyleBackColor = false;
             SignupBtn.Click += SignupBtn_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(259, 453);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 6;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
             ClientSize = new Size(414, 593);
-            Controls.Add(button1);
             Controls.Add(SignupBtn);
             Controls.Add(LoginBtn);
             Controls.Add(pictureBox1);
@@ -136,6 +124,5 @@
         private PictureBox pictureBox1;
         private Button LoginBtn;
         private Button SignupBtn;
-        private Button button1;
     }
 }
