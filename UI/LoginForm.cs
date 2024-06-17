@@ -26,8 +26,8 @@ namespace UI
             signupform = new SignupForm(Connection, this);
             myName = "";
 
-            MinimumSize = new Size(420, 657);
-            MaximumSize = new Size(420, 657);
+            this.MinimumSize = new Size(482, 797);
+            this.MaximumSize = new Size(482, 797);
         }
 
 

@@ -35,12 +35,14 @@ namespace UI
             group3 = new Group();
 
             InitializeComponent();
+            this.MinimumSize = new Size(482, 797);
+            this.MaximumSize = new Size(482, 797);
             Group1_Info.Text = "";
             Group2_Info.Text = "";
             Group3_Info.Text = "";
-            Group1_Count.Text = "";
-            Group2_Count.Text = "";
-            Group3_Count.Text = "";
+            Group1_List.Text = "";
+            Group2_List.Text = "";
+            Group3_List.Text = "";
             Group1_Panel.BorderStyle = BorderStyle.None;
             Group2_Panel.BorderStyle = BorderStyle.None;
             Group3_Panel.BorderStyle = BorderStyle.None;
@@ -94,13 +96,8 @@ namespace UI
                     }
                     string result = string.Join(", ", group1.Users);
                     Group1_Info.Text = group1.Name;
-                    Group1_List.Text = result;
-                    Group1_Count.Text = group1.User_Count.ToString();
+                    Group1_List.Text = group1.User_Count + ") " + result;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
-
-                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
-                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
-                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
 
                 }
                 else if (GroupCnt == 2)
@@ -123,16 +120,10 @@ namespace UI
                     String result2 = string.Join(", ", group2.Users);
                     Group1_Info.Text = group1.Name;
                     Group2_Info.Text = group2.Name;
-                    Group1_Count.Text = group1.User_Count.ToString();
-                    Group2_Count.Text = group2.User_Count.ToString();
-                    Group1_List.Text = result1;
-                    Group2_List.Text = result2;
+                    Group1_List.Text = group1.User_Count + ") " + result1;
+                    Group2_List.Text = group2.User_Count + ") " + result2;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
-
-                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
-                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
-                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
                 }
                 else
                 {
@@ -163,19 +154,12 @@ namespace UI
                     Group1_Info.Text = group1.Name;
                     Group2_Info.Text = group2.Name;
                     Group3_Info.Text = group3.Name;
-                    Group1_Count.Text = group1.User_Count.ToString();
-                    Group2_Count.Text = group2.User_Count.ToString();
-                    Group3_Count.Text = group3.User_Count.ToString();
-                    Group1_List.Text = result1;
-                    Group2_List.Text = result2;
-                    Group3_List.Text = result3;
+                    Group1_List.Text = group1.User_Count + ") " + result1;
+                    Group2_List.Text = group2.User_Count + ") " + result2;
+                    Group3_List.Text = group3.User_Count + ") " + result3;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
-
-                    Group1_Count.Location = new Point(Group1_Info.Right, 44);
-                    Group2_Count.Location = new Point(Group2_Info.Right, 44);
-                    Group3_Count.Location = new Point(Group3_Info.Right, 44);
                 }
             }
         }

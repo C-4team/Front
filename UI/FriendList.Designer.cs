@@ -150,23 +150,25 @@
             // Friend1_ID
             // 
             Friend1_ID.AutoSize = true;
+            Friend1_ID.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Friend1_ID.ForeColor = Color.White;
-            Friend1_ID.Location = new Point(72, 73);
+            Friend1_ID.Location = new Point(175, 121);
             Friend1_ID.Name = "Friend1_ID";
-            Friend1_ID.Size = new Size(89, 20);
+            Friend1_ID.Size = new Size(100, 23);
             Friend1_ID.TabIndex = 1;
             Friend1_ID.Text = "2020203080";
             // 
             // Friend1_Name
             // 
-            Friend1_Name.AutoSize = true;
-            Friend1_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Friend1_Name.Dock = DockStyle.Fill;
+            Friend1_Name.Font = new Font("맑은 고딕", 23F, FontStyle.Bold, GraphicsUnit.Point);
             Friend1_Name.ForeColor = Color.White;
-            Friend1_Name.Location = new Point(56, 30);
+            Friend1_Name.Location = new Point(0, 0);
             Friend1_Name.Name = "Friend1_Name";
-            Friend1_Name.Size = new Size(89, 43);
+            Friend1_Name.Size = new Size(457, 196);
             Friend1_Name.TabIndex = 0;
-            Friend1_Name.Text = "이름";
+            Friend1_Name.Text = "홍길동";
+            Friend1_Name.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FriendPanel3
             // 
@@ -181,19 +183,20 @@
             // Friend3_Name
             // 
             Friend3_Name.AutoSize = true;
-            Friend3_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Friend3_Name.Font = new Font("Microsoft Sans Serif", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
             Friend3_Name.ForeColor = Color.White;
-            Friend3_Name.Location = new Point(56, 30);
+            Friend3_Name.Location = new Point(157, 70);
             Friend3_Name.Name = "Friend3_Name";
-            Friend3_Name.Size = new Size(121, 43);
+            Friend3_Name.Size = new Size(124, 42);
             Friend3_Name.TabIndex = 1;
             Friend3_Name.Text = "label6";
+            Friend3_Name.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Friend3_ID
             // 
             Friend3_ID.AutoSize = true;
             Friend3_ID.ForeColor = Color.White;
-            Friend3_ID.Location = new Point(72, 73);
+            Friend3_ID.Location = new Point(175, 112);
             Friend3_ID.Name = "Friend3_ID";
             Friend3_ID.Size = new Size(50, 20);
             Friend3_ID.TabIndex = 0;
@@ -213,7 +216,7 @@
             // 
             Friend2_ID.AutoSize = true;
             Friend2_ID.ForeColor = Color.White;
-            Friend2_ID.Location = new Point(72, 73);
+            Friend2_ID.Location = new Point(175, 109);
             Friend2_ID.Name = "Friend2_ID";
             Friend2_ID.Size = new Size(50, 20);
             Friend2_ID.TabIndex = 1;
@@ -222,13 +225,14 @@
             // Friend2_Name
             // 
             Friend2_Name.AutoSize = true;
-            Friend2_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Friend2_Name.Font = new Font("맑은 고딕", 22.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             Friend2_Name.ForeColor = Color.White;
-            Friend2_Name.Location = new Point(56, 30);
+            Friend2_Name.Location = new Point(157, 57);
             Friend2_Name.Name = "Friend2_Name";
-            Friend2_Name.Size = new Size(121, 43);
+            Friend2_Name.Size = new Size(139, 52);
             Friend2_Name.TabIndex = 0;
-            Friend2_Name.Text = "label3";
+            Friend2_Name.Text = "김현호";
+            Friend2_Name.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FriendList
             // 

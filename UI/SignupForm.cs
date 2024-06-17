@@ -26,8 +26,8 @@ namespace UI
             InitializeComponent();
             loginForm = login;
 
-            MinimumSize = new Size(420, 657);
-            MaximumSize = new Size(420, 657);
+            this.MinimumSize = new Size(482, 797);
+            this.MaximumSize = new Size(482, 797);
         }
 
         private void SignupBtn_Click(object sender, EventArgs e)

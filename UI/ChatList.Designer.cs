@@ -36,17 +36,14 @@
             Add = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             Group1_Panel = new Panel();
-            Group1_Count = new Label();
             Group1_List = new Label();
             Group1_Info = new Label();
             Group2_Panel = new Panel();
-            Group2_Count = new Label();
             Group2_List = new Label();
-            Group2_Info = new Label();
             Group3_Panel = new Panel();
-            Group3_Count = new Label();
             Group3_List = new Label();
             Group3_Info = new Label();
+            Group2_Info = new Label();
             ((System.ComponentModel.ISupportInitialize)toFriend).BeginInit();
             ((System.ComponentModel.ISupportInitialize)toChat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Setting).BeginInit();
@@ -133,7 +130,6 @@
             // 
             // Group1_Panel
             // 
-            Group1_Panel.Controls.Add(Group1_Count);
             Group1_Panel.Controls.Add(Group1_List);
             Group1_Panel.Controls.Add(Group1_Info);
             Group1_Panel.Dock = DockStyle.Fill;
@@ -143,25 +139,16 @@
             Group1_Panel.TabIndex = 0;
             Group1_Panel.Click += Group1_Panel_Click;
             // 
-            // Group1_Count
-            // 
-            Group1_Count.AutoSize = true;
-            Group1_Count.Location = new Point(176, 44);
-            Group1_Count.Name = "Group1_Count";
-            Group1_Count.Size = new Size(50, 20);
-            Group1_Count.TabIndex = 2;
-            Group1_Count.Text = "label1";
-            // 
             // Group1_List
             // 
             Group1_List.AutoSize = true;
             Group1_List.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Group1_List.ForeColor = Color.White;
-            Group1_List.Location = new Point(103, 68);
+            Group1_List.Location = new Point(103, 67);
             Group1_List.Name = "Group1_List";
-            Group1_List.Size = new Size(88, 18);
+            Group1_List.Size = new Size(105, 18);
             Group1_List.TabIndex = 1;
-            Group1_List.Text = "User_Name";
+            Group1_List.Text = "4) User_Name";
             // 
             // Group1_Info
             // 
@@ -176,7 +163,6 @@
             // 
             // Group2_Panel
             // 
-            Group2_Panel.Controls.Add(Group2_Count);
             Group2_Panel.Controls.Add(Group2_List);
             Group2_Panel.Controls.Add(Group2_Info);
             Group2_Panel.Dock = DockStyle.Fill;
@@ -185,15 +171,6 @@
             Group2_Panel.Size = new Size(457, 196);
             Group2_Panel.TabIndex = 1;
             Group2_Panel.Click += Group2_Panel_Click;
-            // 
-            // Group2_Count
-            // 
-            Group2_Count.AutoSize = true;
-            Group2_Count.Location = new Point(203, 88);
-            Group2_Count.Name = "Group2_Count";
-            Group2_Count.Size = new Size(50, 20);
-            Group2_Count.TabIndex = 3;
-            Group2_Count.Text = "label1";
             // 
             // Group2_List
             // 
@@ -206,20 +183,8 @@
             Group2_List.TabIndex = 2;
             Group2_List.Text = "User_Name";
             // 
-            // Group2_Info
-            // 
-            Group2_Info.AutoSize = true;
-            Group2_Info.Font = new Font("Microsoft Sans Serif", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Group2_Info.ForeColor = Color.White;
-            Group2_Info.Location = new Point(52, 25);
-            Group2_Info.Name = "Group2_Info";
-            Group2_Info.Size = new Size(124, 42);
-            Group2_Info.TabIndex = 0;
-            Group2_Info.Text = "label1";
-            // 
             // Group3_Panel
             // 
-            Group3_Panel.Controls.Add(Group3_Count);
             Group3_Panel.Controls.Add(Group3_List);
             Group3_Panel.Controls.Add(Group3_Info);
             Group3_Panel.Dock = DockStyle.Fill;
@@ -228,15 +193,6 @@
             Group3_Panel.Size = new Size(457, 198);
             Group3_Panel.TabIndex = 2;
             Group3_Panel.Click += Group3_Panel_Click;
-            // 
-            // Group3_Count
-            // 
-            Group3_Count.AutoSize = true;
-            Group3_Count.Location = new Point(203, 89);
-            Group3_Count.Name = "Group3_Count";
-            Group3_Count.Size = new Size(50, 20);
-            Group3_Count.TabIndex = 3;
-            Group3_Count.Text = "label1";
             // 
             // Group3_List
             // 
@@ -259,6 +215,17 @@
             Group3_Info.Size = new Size(124, 42);
             Group3_Info.TabIndex = 0;
             Group3_Info.Text = "label1";
+            // 
+            // Group2_Info
+            // 
+            Group2_Info.AutoSize = true;
+            Group2_Info.Font = new Font("Microsoft Sans Serif", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Group2_Info.ForeColor = Color.White;
+            Group2_Info.Location = new Point(52, 25);
+            Group2_Info.Name = "Group2_Info";
+            Group2_Info.Size = new Size(124, 42);
+            Group2_Info.TabIndex = 0;
+            Group2_Info.Text = "label1";
             // 
             // ChatList
             // 
@@ -303,14 +270,11 @@
         private Panel Group1_Panel;
         private Label Group1_Info;
         private Panel Group2_Panel;
-        private Label Group2_Info;
         private Panel Group3_Panel;
         private Label Group3_Info;
         private Label Group1_List;
         private Label Group2_List;
         private Label Group3_List;
-        private Label Group1_Count;
-        private Label Group2_Count;
-        private Label Group3_Count;
+        private Label Group2_Info;
     }
 }
