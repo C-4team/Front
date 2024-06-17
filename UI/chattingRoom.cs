@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -162,9 +163,14 @@ namespace UI
                     }
                 }//incomming while
             }
-            catch (Exception ex)
+            catch (SocketException ex)
             {
                 MessageBox.Show("ProcessingIncommingMessage 오류 : " + ex.Message);
+            }
+            
+            catch(Exception ex)
+            {
+                MessageBox.Show("ProcessingincommingMessage 오류 : " + ex.Message);
             }
         }//processincommingmessage()
 
