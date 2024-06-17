@@ -25,22 +25,14 @@ namespace UI
         string chatMessage = "";
         string timeStamp = "";
         string myName = "";
-<<<<<<< HEAD
         string groupName = "";
 
         public chattingRoom(string MyName, string groupID, string GroupName, TcpConnection Connection)
-=======
-
-        public chattingRoom(string MyName, string groupID, TcpConnection Connection)
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
         {
             groupId = groupID;
             tcpConnection = Connection;
             myName = MyName;
-<<<<<<< HEAD
             groupName = GroupName;
-=======
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             InitializeComponent();
 
             this.MinimumSize = new Size(482, 797);
@@ -61,17 +53,9 @@ namespace UI
         {
             string messageNum = "";
             string UserName = "";
-<<<<<<< HEAD
             string message = "";
             int loopnum = 0;
             int index = 2; //parts -> 유저이름 부터 보기 위함
-            
-=======
-            string message ="";
-            int loopnum = 0;
-            int index = 2; //parts -> 유저이름 부터 보기 위함
-
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             tcpConnection.m_Write.WriteLine("4," + groupId); //request
 
             string interresponse = tcpConnection.m_Read.ReadLine(); //response
@@ -83,11 +67,7 @@ namespace UI
                 MessageBox.Show("intergroup resposne : error");
             }
 
-<<<<<<< HEAD
             if (parts.Length >= 5)
-=======
-            if(parts.Length >= 5)
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             {
                 if (groupId != parts[1])
                 {
@@ -95,38 +75,25 @@ namespace UI
                 }
 
                 messageNum = parts[1];
-<<<<<<< HEAD
-           
             }
 
             Invoke((MethodInvoker)delegate {
                 namelbl.Text = groupName;
             });
-=======
-            }
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             loopnum = int.Parse(messageNum);
 
             while (loopnum >= 0)
             {
-<<<<<<< HEAD
                 if (myName == parts[index])
                 {
                     Invoke((MethodInvoker)delegate
                     {
                         AddOutgoing(parts[index++]); //msg  
                     });
-=======
-                //내 톡 내용
-                if(myName == parts[index])
-                {
-                    AddOutgoing(parts[index++]); //msg
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
                     index++; //tinestamp 건너띄기
                 }
                 else
                 {
-<<<<<<< HEAD
                     Invoke((MethodInvoker)delegate
                     {
                         AddIncomming(parts[index], parts[index++]); //username, msg
@@ -134,11 +101,6 @@ namespace UI
                     index++; //timestamp
                 }
                 loopnum--;
-=======
-                    AddIncomming(parts[index], parts[index++]); //username, msg
-                    index++; //timestamp
-                }
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
             }
         }
 
@@ -146,24 +108,17 @@ namespace UI
         {
             string message = tcpConnection.m_Read.ReadLine();
             string[] parts = message.Split(',');
-<<<<<<< HEAD
             string tag = "";
 
             if (parts.Length >= 5)
             {
                 if (groupId != parts[1])
-=======
-            if (parts.Length >= 5)
-            {
-                if(groupId != parts[1])
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
                 {
                     MessageBox.Show("incomming : groupId error");
                 }
                 userName = parts[2];
                 chatMessage = parts[3];
                 timeStamp = parts[4];
-<<<<<<< HEAD
                 tag = parts[0];
 
                 //receive
@@ -173,21 +128,10 @@ namespace UI
                     {
                         AddIncomming(userName, chatMessage);
                     });
-=======
-
-                //receive
-                if (groupId != "11")
-                {
-                    AddIncomming(userName, chatMessage);
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
                 }
             }
         }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
         //void AddIncomming(string userName, string message)
         void AddIncomming(string userName, string message)
         {
@@ -217,7 +161,6 @@ namespace UI
         {
             if (sendTxt.Text.Trim().Length == 0) return;
 
-<<<<<<< HEAD
             //메세지에 UI 추가
             Invoke((MethodInvoker)delegate
             {
@@ -231,31 +174,6 @@ namespace UI
             });
         }
 
-        //UI
-=======
-
-            /***********<TEST>**********
-            if (sendTxt.Text.StartsWith('2'))
-            {
-                AddIncomming(sendTxt.Text);
-                sendTxt.Text = string.Empty;
-            }
-
-            else
-            {
-                //메세지에 UI 추가
-                AddOutgoing(sendTxt.Text);
-                sendTxt.Text = string.Empty;
-            }*/
-
-            //메세지에 UI 추가
-            AddOutgoing(sendTxt.Text);
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
-            sendTxt.Text = string.Empty;
-        }
-
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
         void AddOutgoing(string message)
         {
             var bubble = new UI.Resources.chatting.outgoing();
@@ -273,13 +191,7 @@ namespace UI
 
         private void chattingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
-<<<<<<< HEAD
 
-=======
-            tcpConnection.Disconnect();
-            receiveThread.Abort();
-            sendThread.Abort();
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
         }
 
         private void chattingRoom_Load(object sender, EventArgs e)
