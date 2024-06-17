@@ -19,7 +19,7 @@ namespace UI
             {
                 if (Application.OpenForms.Count == 0)
                 {
-                    Application.ExitThread(); // 더 이상 열려 있는 폼이 없을 때만 종료
+                    Application.ExitThread();
                 }
             }; 
 
