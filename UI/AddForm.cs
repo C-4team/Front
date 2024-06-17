@@ -16,7 +16,7 @@ namespace UI
         Thread RequestThread;
         Thread RespondThread;
 
-        int isChat = 0;
+        int isChat;
         public AddForm(int ischat, TcpConnection connection)
         {
             isChat = ischat;
@@ -65,8 +65,6 @@ namespace UI
 
             if (response.StartsWith("6"))
             {
-                // 이미 친구이거나 존재하지 않는 유저 처리
-                // 예를 들어 MessageBox 등으로 사용자에게 알림
                 MessageBox.Show("이미 친구이거나 존재하지 않는 유저입니다.");
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -75,9 +73,7 @@ namespace UI
             }
             else if (response.StartsWith("7"))
             {
-                // 정상적으로 친구 추가 완료
                 MessageBox.Show("친구 추가가 완료되었습니다.");
-                // 폼을 닫기 위해 UI 스레드에서 처리
                 this.Invoke((MethodInvoker)delegate
                 {
                     this.Close();

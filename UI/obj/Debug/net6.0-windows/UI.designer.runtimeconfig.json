@@ -12,11 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-<<<<<<< HEAD
-      "C:\\Users\\user\\.dotnet\\store\\|arch|\\|tfm|",
-=======
       "C:\\Users\\LG\\.dotnet\\store\\|arch|\\|tfm|",
->>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00
       "C:\\Users\\LG\\.nuget\\packages"
     ],
     "configProperties": {
