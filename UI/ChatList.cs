@@ -17,27 +17,24 @@ namespace UI
         FriendList friendlist;
         AddForm addForm;
 
-        System.Timers.Timer timer;
         Thread RequestThread;
         Thread RespondThread;
         Thread CreateGroupThread;
 
         public ChatList(TcpConnection connect)
         {
-            timer = new System.Timers.Timer();
-            timer.Interval = 5000; // 5000ms = 5초
-            timer.Elapsed += TimerElapsed; // 타이머 이벤트 핸들러 등록
             Connection = connect;
             InitializeComponent();
-            timer.Start();
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void GetDataFromServer()
         {
             RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
             RequestThread.Start();
             RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
             RespondThread.Start();
+
+            return;
         }
 
         private void RequestDataFromServer()
@@ -47,8 +44,60 @@ namespace UI
 
         private void RespondDataFromServer()
         {
+            Group1_Info.Text = "";
+            Group2_Info.Text = "";
+            Group3_Info.Text = "";
+            Group1_Panel.BorderStyle = BorderStyle.None;
+            Group2_Panel.BorderStyle = BorderStyle.None;
+            Group3_Panel.BorderStyle = BorderStyle.None;
+
             string data = Connection.m_Read.ReadLine();
-            //그룹처리
+
+            if (data.StartsWith("4"))
+            {
+                return;
+            }
+            if (data.StartsWith("5"))
+            {
+                string[] datas = data.Split(',');
+                int GroupCnt = Convert.ToInt32(datas[1]);
+                int[] FriendCnt;
+
+                if (GroupCnt == 0)
+                {
+                    return;
+                }
+                else if (GroupCnt == 1)
+                {
+                    FriendCnt = new int[GroupCnt];
+                    FriendCnt[0] = Convert.ToInt32(datas[3]);
+                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
+                    Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
+                }
+                else if (GroupCnt == 2)
+                {
+                    FriendCnt = new int[GroupCnt];
+                    FriendCnt[0] = Convert.ToInt32(datas[3]);
+                    FriendCnt[1] = Convert.ToInt32(datas[5 + 2 * FriendCnt[0]]);
+                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
+                    Group2_Info.Text = datas[4 + 2 * FriendCnt[0]] + " " + FriendCnt[1];
+                    Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
+                    Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
+                }
+                else
+                {
+                    FriendCnt = new int[GroupCnt];
+                    FriendCnt[0] = Convert.ToInt32(datas[3]);
+                    FriendCnt[1] = Convert.ToInt32(datas[5 + 2 * FriendCnt[0]]);
+                    FriendCnt[2] = Convert.ToInt32(datas[FriendCnt[0] * 2 + FriendCnt[1] * 2 + 7]);
+                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
+                    Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
+                    Group2_Info.Text = datas[4 + 2 * FriendCnt[0]] + " " + FriendCnt[1];
+                    Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
+                    Group3_Info.Text = datas[FriendCnt[0] * 2 + FriendCnt[1] * 2 + 6] + " " + FriendCnt[2];
+                    Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
+                }
+            }
         }
 
         private void toFriend_Click(object sender, EventArgs e)
@@ -64,9 +113,9 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                if(RequestThread != null)
+                if (RequestThread != null)
                     RequestThread.Abort();
-                if(RespondThread != null)
+                if (RespondThread != null)
                     RespondThread.Abort();
                 Connection.Disconnect();
                 this.Close();
@@ -81,6 +130,33 @@ namespace UI
         {
             addForm = new AddForm(1, Connection);
             addForm.ShowDialog();
+            GetDataFromServer();
+        }
+
+        private void ChatList_Load(object sender, EventArgs e)
+        {
+            Group1_Info.Text = "";
+            Group2_Info.Text = "";
+            Group3_Info.Text = "";
+            GetDataFromServer();
+        }
+
+        private void Group1_Panel_Paint(object sender, PaintEventArgs e)
+        {
+            if (Group3_Info.Text == "") return;
+            //채팅창 열기
+        }
+
+        private void Group2_Panel_Paint(object sender, PaintEventArgs e)
+        {
+            if (Group3_Info.Text == "") return;
+            //채팅창 열기
+        }
+
+        private void Group3_Panel_Paint(object sender, PaintEventArgs e)
+        {
+            if (Group3_Info.Text == "") return;
+            //채팅창 열기
         }
     }
 }

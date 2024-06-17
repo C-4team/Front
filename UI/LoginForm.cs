@@ -103,6 +103,7 @@ namespace UI
                 MessageBox.Show("Error in WriteInfo");
             }
         }
+
         private void SignupBtn_Click(object sender, EventArgs e)
         {
             signupform.ShowDialog();

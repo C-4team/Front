@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskBand;
 
 namespace UI
 {
@@ -24,20 +25,18 @@ namespace UI
 
         public FriendList(TcpConnection connection)
         {
-            timer = new System.Timers.Timer();
-            timer.Interval = 5000; // 5000ms = 5초
-            timer.Elapsed += TimerElapsed; // 타이머 이벤트 핸들러 등록
             Connection = connection;
             InitializeComponent();
-            timer.Start();
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void GetDataFromServer()
         {
             RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
             RequestThread.Start();
             RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
             RespondThread.Start();
+
+            return;
         }
 
         private void RequestDataFromServer()
@@ -47,8 +46,176 @@ namespace UI
 
         private void RespondDataFromServer()
         {
+            Friend1_ID.Text = "";
+            Friend1_Name.Text = "";
+            Friend2_ID.Text = "";
+            Friend2_Name.Text = "";
+            Friend3_ID.Text = "";
+            Friend3_Name.Text = "";
+            FriendPanel1.BorderStyle = BorderStyle.None;
+            FriendPanel2.BorderStyle = BorderStyle.None;
+            FriendPanel3.BorderStyle = BorderStyle.None;
+
             string data = Connection.m_Read.ReadLine();
-            //그룹처리
+
+            if (data.StartsWith("4"))
+                return;
+            else if (data.StartsWith("5"))
+            {
+                string[] datas = data.Split(',');
+                int G_Cnt = Convert.ToInt32(datas[1]);
+                int[] U_cnt;
+
+                if (G_Cnt == 0)
+                {
+                    int FriendCount = Convert.ToInt32(datas[2]);
+                    if(FriendCount == 0)
+                    {
+                        return;
+                    }
+                    else if (FriendCount == 1)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[3];
+                        Friend1_Name.Text = datas[4];
+                    }
+                    else if(FriendCount == 2)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[3];
+                        Friend1_Name.Text = datas[4];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[5];
+                        Friend2_Name.Text = datas[6];
+                    }
+                    else
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[3];
+                        Friend1_Name.Text = datas[4];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[5];
+                        Friend2_Name.Text = datas[6];
+                        FriendPanel3.BorderStyle = BorderStyle.Fixed3D;
+                        Friend3_ID.Text = datas[7];
+                        Friend3_Name.Text = datas[8];
+                    }
+                }
+                else if (G_Cnt == 1)
+                {
+                    U_cnt = new int[G_Cnt];
+                    U_cnt[0] = Convert.ToInt32(datas[3]);
+                    int FriendCount = Convert.ToInt32(datas[4 + U_cnt[0] ]);
+                    if(FriendCount == 0)
+                    {
+                        return;
+                    }
+                    else if (FriendCount == 1)
+                    {
+                        FriendPanel1.BorderStyle= BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[5 + U_cnt[0] ];
+                        Friend2_Name.Text = datas[6 + U_cnt[0] ];
+                    }
+                    else if (FriendCount == 2)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[5 + U_cnt[0] ];
+                        Friend2_Name.Text = datas[6 + U_cnt[0] ];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[7 + U_cnt[0] ];
+                        Friend2_Name.Text = datas[8 + U_cnt[0]];
+                    }
+                    else
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[5 + U_cnt[0]];
+                        Friend2_Name.Text = datas[6 + U_cnt[0] ];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[7 + U_cnt[0] ];
+                        Friend2_Name.Text = datas[8 + U_cnt[0] ];
+                        FriendPanel3.BorderStyle = BorderStyle.Fixed3D;
+                        Friend3_ID.Text = datas[9 + U_cnt[0] ];
+                        Friend3_Name.Text = datas[10 + U_cnt[0] ];
+                    }
+                }
+                else if (G_Cnt == 2)
+                {
+                    U_cnt = new int[G_Cnt];
+                    U_cnt[0] = Convert.ToInt32(datas[3]);
+                    U_cnt[1] = Convert.ToInt32(datas[5 + U_cnt[0]]);
+                    int FriendCount = Convert.ToInt32(datas[6 + U_cnt[0] + U_cnt[1]]);
+                    if(FriendCount == 0)
+                    {
+                        return;
+                    }
+                    else if(FriendCount == 1)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[7 + U_cnt[0] + U_cnt[1]];
+                        Friend1_Name.Text = datas[8 + U_cnt[0] + U_cnt[1]];
+                    }
+                    else if(FriendCount == 2)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[7 + U_cnt[0] + U_cnt[1]];
+                        Friend1_Name.Text = datas[8 + +U_cnt[0] + U_cnt[1]];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[9 + U_cnt[0] + U_cnt[1]];
+                        Friend2_Name.Text = datas[10 + U_cnt[0] + U_cnt[1]];
+                    }
+                    else
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[7 + U_cnt[0] + U_cnt[1]];
+                        Friend1_Name.Text = datas[8 + +U_cnt[0] + U_cnt[1]];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[9 + U_cnt[0] + U_cnt[1]];
+                        Friend2_Name.Text = datas[10 + U_cnt[0] + U_cnt[1]];
+                        FriendPanel3.BorderStyle = BorderStyle.Fixed3D;
+                        Friend3_ID.Text = datas[11 + U_cnt[0] + U_cnt[1]];
+                        Friend3_Name.Text = datas[12 + U_cnt[0] + U_cnt[1]];
+                    }
+                }
+                else
+                {
+                    U_cnt = new int[G_Cnt];
+                    U_cnt[0] = Convert.ToInt32(datas[3]);
+                    U_cnt[1] = Convert.ToInt32(datas[5 + U_cnt[0]]);
+                    U_cnt[2] = Convert.ToInt32(datas[U_cnt[0] + U_cnt[1] + 7]);
+                    int FriendCount = Convert.ToInt32(datas[8 + U_cnt[0] + U_cnt[1] + U_cnt[2]]);
+                    if(FriendCount == 0)
+                    {
+                        return;
+                    }
+                    else if(FriendCount == 1)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[9 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend1_Name.Text = datas[10 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                    }
+                    else if (FriendCount == 2)
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[9 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend1_Name.Text = datas[10 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[11 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend2_Name.Text = datas[12 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                    }
+                    else
+                    {
+                        FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
+                        Friend1_ID.Text = datas[9 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend1_Name.Text = datas[10 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
+                        Friend2_ID.Text = datas[11 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend2_Name.Text = datas[12 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        FriendPanel3.BorderStyle = BorderStyle.Fixed3D;
+                        Friend3_ID.Text = datas[13 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                        Friend3_Name.Text = datas[14 + U_cnt[0] + U_cnt[1] + U_cnt[2]];
+                    }
+                }
+            }
         }
 
         private void toChat_Click(object sender, EventArgs e)
@@ -64,9 +231,9 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                if(RequestThread != null)
+                if (RequestThread != null)
                     RequestThread.Abort();
-                if(RespondThread != null)
+                if (RespondThread != null)
                     RespondThread.Abort();
                 Connection.Disconnect();
                 this.Close();
@@ -81,6 +248,12 @@ namespace UI
         {
             AddFriendForm = new AddForm(0, Connection);
             AddFriendForm.ShowDialog();
+            GetDataFromServer();
+        }
+
+        private void FriendList_Load(object sender, EventArgs e)
+        {
+            GetDataFromServer();
         }
     }
 }
