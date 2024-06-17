@@ -46,14 +46,12 @@ namespace UI
 
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
 
+            namelbl.Text = groupName;
+
             if (tcpConnection.m_bConnect)
             {
                 groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
                 groupinter.Start();
-
-                Invoke((MethodInvoker)delegate {
-                    namelbl.Text = groupName;
-                });
 
                 sendThread = new Thread(new ThreadStart(ProcessIncomingMessage));
                 sendThread.Start();
