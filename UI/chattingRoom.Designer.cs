@@ -58,7 +58,7 @@
             // 
             FriendAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             FriendAdd.Image = Properties.Resources.친구_추가_icon;
-            FriendAdd.Location = new Point(372, 13);
+            FriendAdd.Location = new Point(360, 13);
             FriendAdd.Name = "FriendAdd";
             FriendAdd.Size = new Size(38, 34);
             FriendAdd.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -82,7 +82,7 @@
             // 
             chatoutPic.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chatoutPic.Image = Properties.Resources.채팅방_나가기_icon;
-            chatoutPic.Location = new Point(416, 12);
+            chatoutPic.Location = new Point(405, 12);
             chatoutPic.Name = "chatoutPic";
             chatoutPic.Size = new Size(36, 35);
             chatoutPic.SizeMode = PictureBoxSizeMode.StretchImage;

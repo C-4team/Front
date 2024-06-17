@@ -162,11 +162,22 @@ namespace UI
                     //receive
                     if (tag == "11")
                     {
-                        Invoke((MethodInvoker)delegate
+                        if(userName == myName)
                         {
-                            MessageBox.Show("incomming message : " + chatMessage);
-                            AddIncomming(userName, chatMessage);
-                        });
+                            Invoke((MethodInvoker)delegate
+                            {
+                                MessageBox.Show("incomming message : " + chatMessage);
+                                AddOutgoing(chatMessage);
+                            });
+                        }
+                        else
+                        {
+                            Invoke((MethodInvoker)delegate
+                            {
+                                MessageBox.Show("incomming message : " + chatMessage);
+                                AddIncomming(userName, chatMessage);
+                            });
+                        }
                     }
                 }//incomming while
             }
@@ -198,12 +209,6 @@ namespace UI
             {
                 if (sendTxt.Text.Trim().Length == 0) return;
 
-                //메세지에 UI 추가
-                Invoke((MethodInvoker)delegate
-                {
-                    AddOutgoing(sendTxt.Text);
-                });
-
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
@@ -215,6 +220,13 @@ namespace UI
                 {
                     sendTxt.Text = string.Empty;
                 });
+
+                /*//메세지에 UI 추가
+                Invoke((MethodInvoker)delegate
+                {
+                    AddOutgoing(sendTxt.Text);
+                });*/
+
             }
             catch (Exception ex)
             {
