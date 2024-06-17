@@ -101,7 +101,6 @@ namespace UI
                 string[] parts = interresponse.Split(',');
                 //response가 올바르지 않을 경우
                 if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
-                if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
 
                 messageNum = parts[1];
                 loopnum = int.Parse(messageNum);
@@ -163,11 +162,22 @@ namespace UI
                     //receive
                     if (tag == "11")
                     {
-                        Invoke((MethodInvoker)delegate
+                        if(userName == myName)
                         {
-                            MessageBox.Show("incomming message : " + chatMessage);
-                            AddIncomming(userName, chatMessage);
-                        });
+                            Invoke((MethodInvoker)delegate
+                            {
+                                MessageBox.Show("incomming message : " + chatMessage);
+                                AddOutgoing(chatMessage);
+                            });
+                        }
+                        else
+                        {
+                            Invoke((MethodInvoker)delegate
+                            {
+                                MessageBox.Show("incomming message : " + chatMessage);
+                                AddIncomming(userName, chatMessage);
+                            });
+                        }
                     }
                 }//incomming while
             }
@@ -199,16 +209,10 @@ namespace UI
             {
                 if (sendTxt.Text.Trim().Length == 0) return;
 
-                //메세지에 UI 추가
-                Invoke((MethodInvoker)delegate
-                {
-                    AddOutgoing(sendTxt.Text);
-                });
-
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
-                sendTxt.Text.Replace("\n", txt);
+                sendTxt.Text = sendTxt.Text.Replace("\n", txt);
 
                 tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
@@ -216,6 +220,13 @@ namespace UI
                 {
                     sendTxt.Text = string.Empty;
                 });
+
+                /*//메세지에 UI 추가
+                Invoke((MethodInvoker)delegate
+                {
+                    AddOutgoing(sendTxt.Text);
+                });*/
+
             }
             catch (Exception ex)
             {
