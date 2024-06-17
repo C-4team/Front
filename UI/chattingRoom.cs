@@ -48,6 +48,7 @@ namespace UI
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완결
 
             namelbl.Location = new Point(91, 13);
+            
             namelbl.Text = groupName;
 
             if (tcpConnection.m_bConnect)
@@ -204,11 +205,10 @@ namespace UI
 
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string txt = "";
-                sendTxt.Text.Replace("\n", txt);
-                string response = "7," + groupId + "," + txt + "," + timestamp;
+                //string txt = "";
+                //sendTxt.Text.Replace("\n", txt);
 
-                tcpConnection.m_Write.WriteLine(response);
+                tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
                 Invoke((MethodInvoker)delegate
                 {
