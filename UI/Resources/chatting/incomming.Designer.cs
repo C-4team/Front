@@ -59,8 +59,8 @@
             // 
             // receiveTxt
             // 
-            receiveTxt.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            receiveTxt.BackColor = Color.FromArgb(46, 49, 61);
+            receiveTxt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            receiveTxt.BackColor = Color.FromArgb(46, 49, 50);
             receiveTxt.FlatStyle = FlatStyle.Flat;
             receiveTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             receiveTxt.ForeColor = Color.White;

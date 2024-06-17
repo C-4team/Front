@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             namePnl = new Panel();
+            FriendAdd = new PictureBox();
             namelbl = new Label();
             chatoutPic = new PictureBox();
             chatPnl = new Panel();
@@ -37,6 +38,7 @@
             sendShape = new PictureBox();
             sendBtn = new Button();
             namePnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)FriendAdd).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).BeginInit();
             sendPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sendShape).BeginInit();
@@ -45,11 +47,23 @@
             // namePnl
             // 
             namePnl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            namePnl.Controls.Add(FriendAdd);
             namePnl.Controls.Add(namelbl);
             namePnl.Location = new Point(0, 0);
             namePnl.Name = "namePnl";
             namePnl.Size = new Size(463, 76);
             namePnl.TabIndex = 0;
+            // 
+            // FriendAdd
+            // 
+            FriendAdd.Image = Properties.Resources.친구_추가_icon;
+            FriendAdd.Location = new Point(372, 13);
+            FriendAdd.Name = "FriendAdd";
+            FriendAdd.Size = new Size(38, 34);
+            FriendAdd.SizeMode = PictureBoxSizeMode.StretchImage;
+            FriendAdd.TabIndex = 0;
+            FriendAdd.TabStop = false;
+            FriendAdd.Click += FriendAdd_Click;
             // 
             // namelbl
             // 
@@ -147,6 +161,7 @@
             Name = "chattingRoom";
             Text = "chattingRoom";
             namePnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)FriendAdd).EndInit();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();
             sendPnl.ResumeLayout(false);
             sendPnl.PerformLayout();
@@ -164,5 +179,6 @@
         private Button sendBtn;
         private PictureBox sendShape;
         private TextBox sendTxt;
+        private PictureBox FriendAdd;
     }
 }

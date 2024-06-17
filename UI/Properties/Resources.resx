@@ -121,13 +121,19 @@
   <data name="send chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\send chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="친구 추가 icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\친구 추가 icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sendtextbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sendtextbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="채팅방 나가기 icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\채팅방 나가기 icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="receive chat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\receive chat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sendtextbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sendtextbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="send chat1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\send chat1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

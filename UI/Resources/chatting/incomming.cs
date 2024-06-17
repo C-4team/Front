@@ -63,11 +63,11 @@ namespace UI.Resources.chatting
         void AdjustchatHeight()
         {
             receiveTxt.Location = new Point(12, 42);
-            receiveTxt.Height = Utils.GetTextHeight(receiveTxt) + 2;
+            receiveTxt.Height = Utils.GetTextHeight(receiveTxt);
 
             //incomtxt 상단 좌표값 + height
-            inChat.Location = new Point(-1, 24);
-            inChat.Height = receiveTxt.Height + receiveTxt.Top - 5;
+            inChat.Location = new Point(-1, 20);
+            inChat.Height = receiveTxt.Height + receiveTxt.Top;
         }
 
         void AdjustnameHeight()

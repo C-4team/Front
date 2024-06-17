@@ -58,3 +58,4 @@ C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net
 C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.pdb
 C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
 C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\ref\UI.dll
+C:\Users\user\Documents\3학년 1학기\응소실\Project\Front\UI\obj\Debug\net6.0-windows\UI.AddGroupFriend.resources

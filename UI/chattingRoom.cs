@@ -15,6 +15,7 @@ namespace UI
     {
         //TCP 객체 불러오기
         private TcpConnection tcpConnection;
+        AddGroupFriend addGroupFriend = new AddGroupFriend();
 
         public chattingRoom()
         {
@@ -28,7 +29,7 @@ namespace UI
             //tcpConnection = new TcpConnection();
 
             //tcpConnection.MessageReceived += TcpConnection_MessageReceived;
-            
+
             //서버에 연결
             //tcpConnection.Connect("Server_IP_ADDRESS", SERVER_PORT);
         }
@@ -43,7 +44,7 @@ namespace UI
           }
         */
 
-        
+
         private void ProcessIncomingMessage(string message)
         {
             string[] parts = message.Split(',');
@@ -57,7 +58,7 @@ namespace UI
                 //AddIncomming(userName, chatMessage); 원래 이게 맞음
                 AddIncomming(chatMessage);
             }
-        } 
+        }
         private void chatoutPic_Click(object sender, EventArgs e)
         {
             //chatlist로 이동
@@ -67,7 +68,7 @@ namespace UI
         private void ProcessIncommingMessage(string message)
         {
             string[] parts = message.Split(',');
-            if(parts.Length >= 5 )
+            if (parts.Length >= 5)
             {
                 string groupId = parts[1];
                 string userName = parts[2];
@@ -86,8 +87,8 @@ namespace UI
         {
             if (sendTxt.Text.Trim().Length == 0) return;
 
-            /*
-             ***********<TEST>***********
+            
+             /***********<TEST>***********/
             if (sendTxt.Text.StartsWith('2'))
             {
                 AddIncomming(sendTxt.Text);
@@ -100,7 +101,7 @@ namespace UI
                 AddOutgoing(sendTxt.Text);
                 sendTxt.Text = string.Empty;
             }
-            */
+            
 
             /*
             //textbox 서버로 보내기
@@ -112,10 +113,10 @@ namespace UI
 
             //서버에 보내기 tcpConnection 클래스에 새로 만들어야할 듯
             //tcpConnection.SendMessage(request);
-            
+
             //메세지에 UI 추가
-            AddOutgoing(sendTxt.Text);
-            sendTxt.Text = string.Empty;
+            /*AddOutgoing(sendTxt.Text);
+            sendTxt.Text = string.Empty;*/
         }
 
         //void AddIncomming(string userName, string message)
@@ -136,6 +137,11 @@ namespace UI
             bubble.BringToFront();
             bubble.Dock = DockStyle.Top;
             bubble.Message = message;
+        }
+
+        private void FriendAdd_Click(object sender, EventArgs e)
+        {
+            addGroupFriend.ShowDialog();
         }
     }
 }
