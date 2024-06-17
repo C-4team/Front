@@ -19,7 +19,6 @@ namespace UI
 
         Thread RequestThread;
         Thread RespondThread;
-        Thread CreateGroupThread;
 
         public ChatList(TcpConnection connect)
         {
