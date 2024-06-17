@@ -39,7 +39,7 @@ namespace UI
             {
                 RequestDataFromServer();
                 RespondDataFromServer();
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
             }
             return;
         }
