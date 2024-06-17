@@ -44,12 +44,12 @@ namespace UI
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
 
-            if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
+            if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완결
+
+            namelbl.Text = groupName;
 
             if (tcpConnection.m_bConnect)
-            {
-                namelbl.Text = groupName;
-
+            { 
                 groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
                 groupinter.Start();
 
