@@ -20,19 +20,25 @@ namespace UI
         private Thread sendThread; //그룹채팅이든 아니든 이걸로 연결해야함
         private Thread groupinter; //그룹 입장
 
+        //chattingRoom에 있어야할 기본 정보
+        string myName = "";
         string groupId = "";
+        string groupName = "";
+
+        //incomming에서 받아오는 data
         string userName = "";
         string chatMessage = "";
         string timeStamp = "";
-        string myName = "";
-        string groupName = "";
 
+        //처음 chattingRoom load
         public chattingRoom(string MyName, string groupID, string GroupName, TcpConnection Connection)
         {
             groupId = groupID;
             tcpConnection = Connection;
             myName = MyName;
             groupName = GroupName;
+            MessageBox.Show(groupName); //check용
+
             InitializeComponent();
 
             this.MinimumSize = new Size(482, 797);
@@ -44,11 +50,38 @@ namespace UI
             {
                 groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
                 groupinter.Start();
+
+                Invoke((MethodInvoker)delegate {
+                    namelbl.Text = groupName;
+                });
+
                 sendThread = new Thread(new ThreadStart(ProcessIncomingMessage));
                 sendThread.Start();
             }
         }
 
+        //incomming UI
+        void AddIncomming(string userName, string message)
+        {
+            var bubble = new UI.Resources.chatting.incomming(); //Incomming 인스턴스를 새로 생성
+            chatPnl.Controls.Add(bubble);
+            bubble.BringToFront();
+            bubble.Dock = DockStyle.Top;
+            bubble.name = userName; //userName 으로 들어가야함
+            bubble.Message = message;
+        }
+
+        //outcomming UI
+        void AddOutgoing(string message)
+        {
+            var bubble = new UI.Resources.chatting.outgoing();
+            chatPnl.Controls.Add(bubble);
+            bubble.BringToFront();
+            bubble.Dock = DockStyle.Top;
+            bubble.Message = message;
+        }
+
+        //그룹 입장 + 과거 메시지 보내주기
         private void Intergroup()
         {
             string messageNum = "";
@@ -62,26 +95,15 @@ namespace UI
 
             string[] parts = interresponse.Split(',');
             //response가 올바르지 않을 경우
-            if (parts[0] != "8")
-            {
-                MessageBox.Show("intergroup resposne : error");
-            }
+            MessageBox.Show("response의 tag 올바름?" + parts[0]);
+            if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
 
-            if (parts.Length >= 5)
-            {
-                if (groupId != parts[1])
-                {
-                    MessageBox.Show("incomming : groupId error");
-                }
+            if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
 
-                messageNum = parts[1];
-            }
-
-            Invoke((MethodInvoker)delegate {
-                namelbl.Text = groupName;
-            });
+            messageNum = parts[1];
             loopnum = int.Parse(messageNum);
 
+            //과거 메시지 보내기
             while (loopnum >= 0)
             {
                 if (myName == parts[index])
@@ -101,20 +123,20 @@ namespace UI
                     index++; //timestamp
                 }
                 loopnum--;
-            }
-        }
+            }//while문
+        }//Intergroup func
 
         private void ProcessIncomingMessage()
         {
-            string message = tcpConnection.m_Read.ReadLine();
+            string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
             string[] parts = message.Split(',');
             string tag = "";
 
-            if (parts.Length >= 5)
+            while (true)
             {
                 if (groupId != parts[1])
                 {
-                    MessageBox.Show("incomming : groupId error");
+                   MessageBox.Show("incomming : groupId error");
                 }
                 userName = parts[2];
                 chatMessage = parts[3];
@@ -124,23 +146,12 @@ namespace UI
                 //receive
                 if (tag == "11")
                 {
-                    Invoke((MethodInvoker)delegate
-                    {
-                        AddIncomming(userName, chatMessage);
-                    });
+                  Invoke((MethodInvoker)delegate
+                  {
+                      AddIncomming(userName, chatMessage);
+                  });
                 }
             }
-        }
-
-        //void AddIncomming(string userName, string message)
-        void AddIncomming(string userName, string message)
-        {
-            var bubble = new UI.Resources.chatting.incomming(); //Incomming 인스턴스를 새로 생성
-            chatPnl.Controls.Add(bubble);
-            bubble.BringToFront();
-            bubble.Dock = DockStyle.Top;
-            bubble.name = userName; //userName 으로 들어가야함
-            bubble.Message = message;
         }
 
         private void chatoutPic_Click(object sender, EventArgs e)
@@ -167,20 +178,19 @@ namespace UI
                 AddOutgoing(sendTxt.Text);
             });
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
+            string txt = "";
+            sendTxt.Text.Replace("\n", txt);
+            string response = "7," + groupId + "," + txt + "," + timestamp;
+
+            // 타임스탬프와 메시지 확인을 위한 디버깅 메시지
+            //MessageBox.Show("Timestamp: " + timestamp);
+            //MessageBox.Show("Sending message: " + response);
+
+            tcpConnection.m_Write.WriteLine(response);
             Invoke((MethodInvoker)delegate
             {
                 sendTxt.Text = string.Empty;
             });
-        }
-
-        void AddOutgoing(string message)
-        {
-            var bubble = new UI.Resources.chatting.outgoing();
-            chatPnl.Controls.Add(bubble);
-            bubble.BringToFront();
-            bubble.Dock = DockStyle.Top;
-            bubble.Message = message;
         }
 
         private void FriendAdd_Click(object sender, EventArgs e)
