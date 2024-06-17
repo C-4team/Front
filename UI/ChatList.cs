@@ -36,7 +36,7 @@ namespace UI
             cts = new CancellationTokenSource();
 
             InitializeComponent();
-            this.Name = name;
+            this.Text = name;
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
 
