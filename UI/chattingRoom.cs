@@ -49,9 +49,11 @@ namespace UI
             namelbl.Text = groupName;
 
             if (tcpConnection.m_bConnect)
-            { 
+            {
                 groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
                 groupinter.Start();
+
+                Thread.Sleep(1000);
 
                 receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
                 receiveThread.Start();
@@ -95,7 +97,6 @@ namespace UI
             //response가 올바르지 않을 경우
             MessageBox.Show("response의 tag 올바름?" + parts[0]);
             if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
-
             if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
 
             messageNum = parts[1];
@@ -129,12 +130,13 @@ namespace UI
             while (true)
             {
                 string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+                if (message == null) continue;
                 string[] parts = message.Split(',');
                 string tag = "";
 
                 if (groupId != parts[1])
                 {
-                   MessageBox.Show("incomming : groupId error");
+                    MessageBox.Show("incomming : groupId error");
                 }
                 userName = parts[2];
                 chatMessage = parts[3];
@@ -144,17 +146,16 @@ namespace UI
                 //receive
                 if (tag == "11")
                 {
-                  Invoke((MethodInvoker)delegate
-                  {
-                      AddIncomming(userName, chatMessage);
-                  });
+                    Invoke((MethodInvoker)delegate
+                    {
+                        AddIncomming(userName, chatMessage);
+                    });
                 }
-            }
-        }
+            }//incomming while
+        }//processincommingmessage()
 
         private void chatoutPic_Click(object sender, EventArgs e)
         {
-            //chatlist로 이동
             this.Close();
         }
 
@@ -162,8 +163,6 @@ namespace UI
         {
             sendThread = new Thread(new ThreadStart(Send));
             sendThread.Start();
-
-            //Send();
         }
 
         void Send()
@@ -175,16 +174,15 @@ namespace UI
             {
                 AddOutgoing(sendTxt.Text);
             });
+
+            //response
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string txt = "";
             sendTxt.Text.Replace("\n", txt);
             string response = "7," + groupId + "," + txt + "," + timestamp;
 
-            // 타임스탬프와 메시지 확인을 위한 디버깅 메시지
-            //MessageBox.Show("Timestamp: " + timestamp);
-            //MessageBox.Show("Sending message: " + response);
-
             tcpConnection.m_Write.WriteLine(response);
+            
             Invoke((MethodInvoker)delegate
             {
                 sendTxt.Text = string.Empty;
@@ -195,16 +193,6 @@ namespace UI
         {
             addGroupFriend = new AddGroupFriend(tcpConnection, groupId);
             addGroupFriend.ShowDialog();
-        }
-
-        private void chattingRoom_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-
-        private void chattingRoom_Load(object sender, EventArgs e)
-        {
-            tcpConnection.m_Write.WriteLine();
         }
     }
 }
