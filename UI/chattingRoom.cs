@@ -101,7 +101,6 @@ namespace UI
                 string[] parts = interresponse.Split(',');
                 //response가 올바르지 않을 경우
                 if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
-                if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
 
                 messageNum = parts[1];
                 loopnum = int.Parse(messageNum);
@@ -208,7 +207,7 @@ namespace UI
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
-                sendTxt.Text.Replace("\n", txt);
+                sendTxt.Text = sendTxt.Text.Replace("\n", txt);
 
                 tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
