@@ -46,15 +46,15 @@ namespace UI
 
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완료
 
-            namelbl.Text = groupName;
-
             if (tcpConnection.m_bConnect)
             {
+                namelbl.Text = groupName;
+
                 groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
                 groupinter.Start();
 
-                sendThread = new Thread(new ThreadStart(ProcessIncomingMessage));
-                sendThread.Start();
+                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
+                receiveThread.Start();
             }
         }
 
@@ -126,12 +126,12 @@ namespace UI
 
         private void ProcessIncomingMessage()
         {
-            string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
-            string[] parts = message.Split(',');
-            string tag = "";
-
             while (true)
             {
+                string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+                string[] parts = message.Split(',');
+                string tag = "";
+
                 if (groupId != parts[1])
                 {
                    MessageBox.Show("incomming : groupId error");
@@ -160,8 +160,8 @@ namespace UI
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
-            receiveThread = new Thread(new ThreadStart(Send));
-            receiveThread.Start();
+            sendThread = new Thread(new ThreadStart(Send));
+            sendThread.Start();
 
             //Send();
         }
@@ -199,7 +199,7 @@ namespace UI
 
         private void chattingRoom_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            
         }
 
         private void chattingRoom_Load(object sender, EventArgs e)
