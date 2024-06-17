@@ -48,6 +48,7 @@ namespace UI
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완결
 
             namelbl.Location = new Point(91, 13);
+            
             namelbl.Text = groupName;
 
             if (tcpConnection.m_bConnect)
@@ -99,7 +100,6 @@ namespace UI
 
                 string[] parts = interresponse.Split(',');
                 //response가 올바르지 않을 경우
-                MessageBox.Show("response의 tag 올바름?" + parts[0]);
                 if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
                 if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
 
@@ -152,7 +152,9 @@ namespace UI
                     if (groupId != parts[1])
                     {
                         MessageBox.Show("incomming : groupId error");
+                        continue;
                     }
+
                     userName = parts[2];
                     chatMessage = parts[3];
                     timeStamp = parts[4];
@@ -163,6 +165,7 @@ namespace UI
                     {
                         Invoke((MethodInvoker)delegate
                         {
+                            MessageBox.Show("incomming message : " + chatMessage);
                             AddIncomming(userName, chatMessage);
                         });
                     }
@@ -206,9 +209,8 @@ namespace UI
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
                 sendTxt.Text.Replace("\n", txt);
-                string response = "7," + groupId + "," + txt + "," + timestamp;
 
-                tcpConnection.m_Write.WriteLine(response);
+                tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
                 Invoke((MethodInvoker)delegate
                 {
