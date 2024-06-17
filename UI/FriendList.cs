@@ -115,14 +115,14 @@ namespace UI
                     else if (FriendCount == 1)
                     {
                         FriendPanel1.BorderStyle= BorderStyle.Fixed3D;
-                        Friend1_ID.Text = datas[6 + U_cnt[0] ];
-                        Friend2_Name.Text = datas[7 + U_cnt[0] ];
+                        Friend1_ID.Text = datas[6 + U_cnt[0]];
+                        Friend1_Name.Text = datas[7 + U_cnt[0]];
                     }
                     else if (FriendCount == 2)
                     {
                         FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
                         Friend1_ID.Text = datas[6 + U_cnt[0] ];
-                        Friend2_Name.Text = datas[7 + U_cnt[0] ];
+                        Friend1_Name.Text = datas[7 + U_cnt[0] ];
                         FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
                         Friend2_ID.Text = datas[8 + U_cnt[0] ];
                         Friend2_Name.Text = datas[9 + U_cnt[0]];
@@ -131,7 +131,7 @@ namespace UI
                     {
                         FriendPanel1.BorderStyle = BorderStyle.Fixed3D;
                         Friend1_ID.Text = datas[6 + U_cnt[0]];
-                        Friend2_Name.Text = datas[7 + U_cnt[0] ];
+                        Friend1_Name.Text = datas[7 + U_cnt[0] ];
                         FriendPanel2.BorderStyle = BorderStyle.Fixed3D;
                         Friend2_ID.Text = datas[8 + U_cnt[0] ];
                         Friend2_Name.Text = datas[9 + U_cnt[0] ];
