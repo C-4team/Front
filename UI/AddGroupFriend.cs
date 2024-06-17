@@ -43,7 +43,6 @@ namespace UI
                 requestThread.Start();
                 responseThread = new Thread(new ThreadStart(checkResponse));
             }
-
             inputId.Text = string.Empty;
             this.Close();
         }

@@ -14,6 +14,10 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = UI
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\user\Documents\3학년 1학기\응소실\Front-main\UI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+=======
+build_property.ProjectDir = C:\Users\LG\Desktop\KWU\3-1\ApplicatedSoftwarePractice\Merged\UI\
+>>>>>>> daf876f0c43f5080aa55483454f9dbce57aefb00

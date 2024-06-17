@@ -174,7 +174,7 @@ namespace UI
         private void Group2_Panel_Click(object sender, EventArgs e)
         {
             if (Group2_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group2_ID, Group2_Info.Text, Connection);
+            ChatRoom = new chattingRoom(MyName, Group2_ID, Group2_Info.Text , Connection);
             ChatRoom.Show();
         }
 
