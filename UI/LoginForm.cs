@@ -67,7 +67,6 @@ namespace UI
 
                 if (datas[0] == Right)
                 {
-                    MessageBox.Show("3 input");
                     myName = datas[1];
 
                     this.Hide();
@@ -76,7 +75,6 @@ namespace UI
                 }
                 else if (datas[0] == Wrong)
                 {
-                    MessageBox.Show("2 input");
                     m_RequestThread.Abort();
                     m_RespondThread.Abort();
                     Connection.Disconnect();

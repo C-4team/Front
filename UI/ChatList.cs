@@ -37,6 +37,7 @@ namespace UI
             InitializeComponent();
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
+
             Group1_Info.Text = "";
             Group2_Info.Text = "";
             Group3_Info.Text = "";

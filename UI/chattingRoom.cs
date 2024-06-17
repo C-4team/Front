@@ -166,7 +166,7 @@ namespace UI
                         {
                             Invoke((MethodInvoker)delegate
                             {
-                                MessageBox.Show("incomming message : " + chatMessage);
+                                MessageBox.Show("outgoing message : " + chatMessage);
                                 AddOutgoing(chatMessage);
                             });
                         }
