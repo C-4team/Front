@@ -47,6 +47,7 @@ namespace UI
 
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완결
 
+            namelbl.Location = new Point(91, 13);
             namelbl.Text = groupName;
 
             if (tcpConnection.m_bConnect)
@@ -139,11 +140,15 @@ namespace UI
             {
                 while (true)
                 {
-                    string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
-                    if (message == null) continue;
-                    string[] parts = message.Split(',');
                     string tag = "";
+                    string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+                    if (message == null)
+                    {
+                        tag = "";
+                        continue;
+                    }
 
+                    string[] parts = message.Split(',');
                     if (groupId != parts[1])
                     {
                         MessageBox.Show("incomming : groupId error");

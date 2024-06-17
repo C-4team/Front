@@ -67,13 +67,12 @@
             // 
             // namelbl
             // 
-            namelbl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            namelbl.AutoSize = true;
+            namelbl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             namelbl.Font = new Font("맑은 고딕", 17F, FontStyle.Regular, GraphicsUnit.Point);
             namelbl.ForeColor = Color.White;
-            namelbl.Location = new Point(185, 15);
+            namelbl.Location = new Point(91, 13);
             namelbl.Name = "namelbl";
-            namelbl.Size = new Size(91, 40);
+            namelbl.Size = new Size(276, 40);
             namelbl.TabIndex = 0;
             namelbl.Text = "name";
             namelbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -163,7 +162,6 @@
             Text = "chattingRoom";
             FormClosing += chattingRoom_FormClosing;
             namePnl.ResumeLayout(false);
-            namePnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)FriendAdd).EndInit();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();
             sendPnl.ResumeLayout(false);
