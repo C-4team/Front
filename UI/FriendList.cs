@@ -16,31 +16,31 @@ namespace UI
     public partial class FriendList : Form
     {
         TcpConnection Connection;
+        CancellationTokenSource cts;
         ChatList chatlist;
         AddForm AddFriendForm;
 
-        System.Timers.Timer timer;
-        Thread RequestThread;
-        Thread RespondThread;
-
+        Thread GetData;
         string Myname = "";
         public FriendList(string name, TcpConnection connection)
         {
             Myname = name;
             Connection = connection;
+            cts = new CancellationTokenSource();
             InitializeComponent();
             this.Name = name;
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
         }
 
-        private void GetDataFromServer()
+        private void GetDataFromServer(CancellationToken token)
         {
-            RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
-            RequestThread.Start();
-            RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
-            RespondThread.Start();
-
+            while(!token.IsCancellationRequested)
+            {
+                RequestDataFromServer();
+                RespondDataFromServer();
+                Thread.Sleep(1000);
+            }
             return;
         }
 
@@ -226,6 +226,7 @@ namespace UI
         private void toChat_Click(object sender, EventArgs e)
         {
             this.Hide();
+            cts.Cancel();
             chatlist = new ChatList(Myname, Connection);
             chatlist.ShowDialog();
         }
@@ -236,10 +237,7 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                if (RequestThread != null)
-                    RequestThread.Abort();
-                if (RespondThread != null)
-                    RespondThread.Abort();
+                cts.Cancel();
                 Connection.Disconnect();
                 this.Close();
             }
@@ -253,12 +251,12 @@ namespace UI
         {
             AddFriendForm = new AddForm(0, Connection);
             AddFriendForm.ShowDialog();
-            GetDataFromServer();
         }
 
         private void FriendList_Load(object sender, EventArgs e)
         {
-            GetDataFromServer();
+            GetData = new Thread(() => GetDataFromServer(cts.Token));
+            GetData.Start();
         }
     }
 }

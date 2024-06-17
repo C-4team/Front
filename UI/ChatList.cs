@@ -14,12 +14,12 @@ namespace UI
     public partial class ChatList : Form
     {
         TcpConnection Connection;
+        CancellationTokenSource cts;
         FriendList friendlist;
         AddForm addForm;
         chattingRoom ChatRoom;
 
-        Thread RequestThread;
-        Thread RespondThread;
+        Thread GetData;
 
         string MyName;
         Group group1;
@@ -33,6 +33,7 @@ namespace UI
             group1 = new Group();
             group2 = new Group();
             group3 = new Group();
+            cts = new CancellationTokenSource();
 
             InitializeComponent();
             this.Name = name;
@@ -50,13 +51,13 @@ namespace UI
             Group3_Panel.BorderStyle = BorderStyle.None;
         }
 
-        private void GetDataFromServer()
+        private void GetDataFromServer(CancellationToken token)
         {
-            RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
-            RequestThread.Start();
-            RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
-            RespondThread.Start();
-
+            while(!token.IsCancellationRequested)
+            {
+                RequestDataFromServer();
+                RespondDataFromServer();
+            }
             return;
         }
 
@@ -92,6 +93,7 @@ namespace UI
                     group1.User_Count = Convert.ToInt32(datas[4]);
                     group1.ID = datas[2];
                     group1.Name = datas[3];
+                    group1.Users.Clear();
                     for (int i = 0; i < group1.User_Count; i++)
                     {
                         group1.Users.Add(datas[5 + i]);
@@ -107,6 +109,7 @@ namespace UI
                     group1.User_Count = Convert.ToInt32(datas[4]);
                     group1.ID = datas[2];
                     group1.Name = datas[3];
+                    group1.Users.Clear();
                     for (int i = 0; i < group1.User_Count; i++)
                     {
                         group1.Users.Add(datas[5 + i]);
@@ -114,6 +117,7 @@ namespace UI
                     group2.ID = datas[group1.User_Count + 5];
                     group2.Name = datas[group1.User_Count + 6];
                     group2.User_Count = Convert.ToInt32(datas[7 + group1.User_Count]);
+                    group2.Users.Clear();
                     for (int i = 0; i < group2.User_Count; i++)
                     {
                         group2.Users.Add(datas[8 + group1.User_Count + i]);
@@ -132,6 +136,7 @@ namespace UI
                     group1.User_Count = Convert.ToInt32(datas[4]);
                     group1.ID = datas[2];
                     group1.Name = datas[3];
+                    group1.Users.Clear();
                     for (int i = 0; i < group1.User_Count; i++)
                     {
                         group1.Users.Add(datas[5 + i]);
@@ -140,6 +145,7 @@ namespace UI
                     group2.ID = datas[group1.User_Count + 5];
                     group2.Name = datas[group1.User_Count + 6];
                     group2.User_Count = Convert.ToInt32(datas[7 + group1.User_Count]);
+                    group2.Users.Clear();
                     for (int i = 0; i < group2.User_Count; i++)
                     {
                         group2.Users.Add(datas[8 + group1.User_Count + i]);
@@ -148,6 +154,7 @@ namespace UI
                     group3.Name = datas[group1.User_Count + group2.Users.Count + 9];
                     group3.User_Count = Convert.ToInt32(datas[group1.User_Count + group2.User_Count + 8]);
                     group3.ID = datas[group1.User_Count + group2.User_Count + 8];
+                    group3.Users.Clear();
                     for (int i = 0; i < group3.User_Count; i++)
                     {
                         group3.Users.Add(datas[group1.User_Count + group2.User_Count + 9 + i]);
@@ -168,6 +175,7 @@ namespace UI
 
         private void toFriend_Click(object sender, EventArgs e)
         {
+            cts.Cancel();
             this.Hide();
             friendlist = new FriendList(MyName, Connection);
             friendlist.ShowDialog();
@@ -179,10 +187,7 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                if (RequestThread != null)
-                    RequestThread.Abort();
-                if (RespondThread != null)
-                    RespondThread.Abort();
+                cts.Cancel();
                 Connection.Disconnect();
                 this.Close();
             }
@@ -196,15 +201,11 @@ namespace UI
         {
             addForm = new AddForm(1, Connection);
             addForm.ShowDialog();
-            GetDataFromServer();
         }
 
         private void ChatList_Load(object sender, EventArgs e)
         {
-            Group1_Info.Text = "";
-            Group2_Info.Text = "";
-            Group3_Info.Text = "";
-            GetDataFromServer();
+            GetData = new Thread(()=> GetDataFromServer(cts.Token));
         }
 
         private void Group1_Panel_Click(object sender, EventArgs e)
