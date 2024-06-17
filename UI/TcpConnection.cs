@@ -22,11 +22,9 @@ namespace UI
             try
             {
                 m_Client = new TcpClient(IpAddress, PORT);
-                MessageBox.Show("연결");
             }
             catch
             {
-                MessageBox.Show("연결 오류");
                 m_bConnect = false;
                 return;
             }

@@ -45,6 +45,7 @@
             FriendPanel2 = new Panel();
             Friend2_ID = new Label();
             Friend2_Name = new Label();
+            pnlMain = new Panel();
             ((System.ComponentModel.ISupportInitialize)Add).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Setting).BeginInit();
             ((System.ComponentModel.ISupportInitialize)toFriend).BeginInit();
@@ -53,6 +54,7 @@
             FriendPanel1.SuspendLayout();
             FriendPanel3.SuspendLayout();
             FriendPanel2.SuspendLayout();
+            pnlMain.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -128,7 +130,7 @@
             TLPanel.Controls.Add(FriendPanel1, 0, 0);
             TLPanel.Controls.Add(FriendPanel3, 0, 2);
             TLPanel.Controls.Add(FriendPanel2, 0, 1);
-            TLPanel.Location = new Point(0, 70);
+            TLPanel.Location = new Point(3, 7);
             TLPanel.Name = "TLPanel";
             TLPanel.RowCount = 3;
             TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
@@ -234,13 +236,21 @@
             Friend2_Name.Text = "김현호";
             Friend2_Name.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // pnlMain
+            // 
+            pnlMain.Controls.Add(TLPanel);
+            pnlMain.Location = new Point(0, 67);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Size = new Size(462, 615);
+            pnlMain.TabIndex = 8;
+            // 
             // FriendList
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
             ClientSize = new Size(464, 750);
-            Controls.Add(TLPanel);
+            Controls.Add(pnlMain);
             Controls.Add(toChat);
             Controls.Add(toFriend);
             Controls.Add(Setting);
@@ -249,8 +259,8 @@
             Controls.Add(Add);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FriendList";
-            Text = " ";
             Load += FriendList_Load;
+            VisibleChanged += FriendList_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)Add).EndInit();
             ((System.ComponentModel.ISupportInitialize)Setting).EndInit();
             ((System.ComponentModel.ISupportInitialize)toFriend).EndInit();
@@ -262,6 +272,7 @@
             FriendPanel3.PerformLayout();
             FriendPanel2.ResumeLayout(false);
             FriendPanel2.PerformLayout();
+            pnlMain.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -284,5 +295,6 @@
         private Panel FriendPanel2;
         private Label Friend2_ID;
         private Label Friend2_Name;
+        private Panel pnlMain;
     }
 }

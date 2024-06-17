@@ -244,6 +244,7 @@
             Name = "ChatList";
             Text = "ChatList";
             Load += ChatList_Load;
+            VisibleChanged += ChatList_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)toFriend).EndInit();
             ((System.ComponentModel.ISupportInitialize)toChat).EndInit();
             ((System.ComponentModel.ISupportInitialize)Setting).EndInit();
