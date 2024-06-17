@@ -181,7 +181,6 @@ namespace UI
             {
                 if (RequestThread != null)
                     RequestThread.Abort();
-                if (RespondThread != null)
                     RespondThread.Abort();
                 Connection.Disconnect();
                 this.Close();

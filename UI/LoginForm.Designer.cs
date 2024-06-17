@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             IDbox = new TextBox();
             pwdBox = new TextBox();
             pictureBox1 = new PictureBox();
@@ -40,7 +39,7 @@
             // IDbox
             // 
             IDbox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            IDbox.Location = new Point(76, 344);
+            IDbox.Location = new Point(81, 328);
             IDbox.Margin = new Padding(3, 2, 3, 2);
             IDbox.Name = "IDbox";
             IDbox.Size = new Size(299, 41);
@@ -49,7 +48,7 @@
             // pwdBox
             // 
             pwdBox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            pwdBox.Location = new Point(76, 389);
+            pwdBox.Location = new Point(81, 373);
             pwdBox.Margin = new Padding(3, 2, 3, 2);
             pwdBox.Name = "pwdBox";
             pwdBox.Size = new Size(299, 41);
@@ -58,11 +57,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(91, 79);
+            pictureBox1.Image = Properties.Resources.PangTalk_Logo_removebg_preview;
+            pictureBox1.Location = new Point(97, 115);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(278, 195);
+            pictureBox1.Size = new Size(278, 181);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -70,7 +69,6 @@
             // LoginBtn
             // 
             LoginBtn.BackColor = Color.FromArgb(42, 47, 55);
-
             LoginBtn.FlatAppearance.BorderColor = Color.FromArgb(42, 47, 55);
             LoginBtn.FlatStyle = FlatStyle.Flat;
             LoginBtn.Font = new Font("Century", 16.8000011F, FontStyle.Regular, GraphicsUnit.Point);
@@ -110,7 +108,6 @@
             Controls.Add(pictureBox1);
             Controls.Add(pwdBox);
             Controls.Add(IDbox);
-
             ForeColor = Color.FromArgb(18, 19, 25);
             Margin = new Padding(3, 2, 3, 2);
             Name = "LoginForm";
