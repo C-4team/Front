@@ -97,8 +97,45 @@ namespace UI
                 string UserName = "";
                 string message = "";
                 int loopnum = 0;
-                int index = 2; //parts -> 유저이름 부터 보기 위함
+                int index; //parts -> 유저이름 부터 보기 위함
+
                 tcpConnection.m_Write.WriteLine("4," + groupId); //request
+
+                string[] parts = message.Split(',');
+
+                //과거 data 받아올 때
+                if (parts[0] == "8")
+                {
+                    index = 1;
+                    messageNum = parts[1];
+                    loopnum = int.Parse(messageNum);
+
+                    //과거 메시지 보내기
+                    while (loopnum > 0)
+                    {
+                        index++;
+                        string prename = parts[index];
+                        if (myName == prename)
+                        {
+                            Invoke((MethodInvoker)delegate
+                            {
+                                index++;
+                                AddOutgoing(parts[index]); //msg  
+                            });
+                            index++; //tinestamp 건너띄기
+                        }
+                        else
+                        {
+                            Invoke((MethodInvoker)delegate
+                            {
+                                index++;
+                                AddIncomming(prename, parts[index]); //username, msg
+                            });
+                            index++; //timestamp
+                        }
+                        loopnum--;
+                    }//while문
+                }
             }
             catch (Exception ex)
             {
@@ -148,40 +185,6 @@ namespace UI
                                 AddIncomming(userName, chatMessage);
                             });
                         }
-                    }
-
-                    //과거 data 받아올 때
-                    else if (parts[0] == "8")
-                    {
-                        index = 1;
-                        messageNum = parts[1];
-                        loopnum = int.Parse(messageNum);
-
-                        //과거 메시지 보내기
-                        while (loopnum > 0)
-                        {
-                            index++;
-                            string prename = parts[index];
-                            if (myName == prename)
-                            {
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    index++;
-                                    AddOutgoing(parts[index]); //msg  
-                                });
-                                index++; //tinestamp 건너띄기
-                            }
-                            else
-                            {
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    index++;
-                                    AddIncomming(prename, parts[index]); //username, msg
-                                });
-                                index++; //timestamp
-                            }
-                            loopnum--;
-                        }//while문
                     }
 
                 }//incomming while
