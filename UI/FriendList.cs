@@ -35,6 +35,7 @@ namespace UI
         {
             RequestThread = new Thread(new ThreadStart(RequestDataFromServer));
             RequestThread.Start();
+
             RespondThread = new Thread(new ThreadStart(RespondDataFromServer));
             RespondThread.Start();
 
@@ -59,12 +60,14 @@ namespace UI
             FriendPanel3.BorderStyle = BorderStyle.None;
 
             string data = Connection.m_Read.ReadLine();
+            string[] datas = data.Split(',');
+            string four = "4";
+            string five = "5";
 
-            if (data.StartsWith("4"))
+            if (datas[0] == four)
                 return;
-            else if (data.StartsWith("5"))
+            else if (datas[0] == five)
             {
-                string[] datas = data.Split(',');
                 int G_Cnt = Convert.ToInt32(datas[1]);
                 int[] U_cnt;
 

@@ -40,7 +40,7 @@
             // IDbox
             // 
             IDbox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            IDbox.Location = new Point(54, 258);
+            IDbox.Location = new Point(76, 344);
             IDbox.Margin = new Padding(3, 2, 3, 2);
             IDbox.Name = "IDbox";
             IDbox.Size = new Size(299, 41);
@@ -49,7 +49,7 @@
             // pwdBox
             // 
             pwdBox.Font = new Font("맑은 고딕", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            pwdBox.Location = new Point(54, 300);
+            pwdBox.Location = new Point(76, 389);
             pwdBox.Margin = new Padding(3, 2, 3, 2);
             pwdBox.Name = "pwdBox";
             pwdBox.Size = new Size(299, 41);
@@ -59,7 +59,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(64, 36);
+            pictureBox1.Location = new Point(91, 79);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(278, 195);
@@ -70,13 +70,14 @@
             // LoginBtn
             // 
             LoginBtn.BackColor = Color.FromArgb(42, 47, 55);
-            LoginBtn.FlatStyle = FlatStyle.Popup;
-            LoginBtn.Font = new Font("맑은 고딕", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            LoginBtn.FlatAppearance.BorderColor = Color.FromArgb(42, 47, 55);
+            LoginBtn.FlatStyle = FlatStyle.Flat;
+            LoginBtn.Font = new Font("Century", 16.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             LoginBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            LoginBtn.Location = new Point(54, 354);
+            LoginBtn.Location = new Point(107, 560);
             LoginBtn.Margin = new Padding(3, 2, 3, 2);
             LoginBtn.Name = "LoginBtn";
-            LoginBtn.Size = new Size(299, 38);
+            LoginBtn.Size = new Size(247, 56);
             LoginBtn.TabIndex = 4;
             LoginBtn.Text = "Log In";
             LoginBtn.UseVisualStyleBackColor = false;
@@ -86,9 +87,9 @@
             // 
             SignupBtn.BackColor = Color.FromArgb(12, 13, 19);
             SignupBtn.FlatStyle = FlatStyle.Popup;
-            SignupBtn.Font = new Font("맑은 고딕", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            SignupBtn.Font = new Font("Century", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             SignupBtn.ForeColor = Color.FromArgb(247, 255, 255);
-            SignupBtn.Location = new Point(117, 517);
+            SignupBtn.Location = new Point(140, 620);
             SignupBtn.Margin = new Padding(3, 2, 3, 2);
             SignupBtn.Name = "SignupBtn";
             SignupBtn.Size = new Size(181, 47);
@@ -102,12 +103,13 @@
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(414, 593);
+            ClientSize = new Size(464, 750);
             Controls.Add(SignupBtn);
             Controls.Add(LoginBtn);
             Controls.Add(pictureBox1);
             Controls.Add(pwdBox);
             Controls.Add(IDbox);
+            ForeColor = Color.FromArgb(18, 19, 25);
             Margin = new Padding(3, 2, 3, 2);
             Name = "LoginForm";
             Text = "Form1";

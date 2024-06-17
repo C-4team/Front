@@ -50,14 +50,16 @@
             namePnl.Controls.Add(FriendAdd);
             namePnl.Controls.Add(namelbl);
             namePnl.Location = new Point(0, 0);
+            namePnl.Margin = new Padding(3, 4, 3, 4);
             namePnl.Name = "namePnl";
-            namePnl.Size = new Size(463, 76);
+            namePnl.Size = new Size(464, 76);
             namePnl.TabIndex = 0;
             // 
             // FriendAdd
             // 
             FriendAdd.Image = Properties.Resources.친구_추가_icon;
             FriendAdd.Location = new Point(372, 13);
+            FriendAdd.Margin = new Padding(3, 4, 3, 4);
             FriendAdd.Name = "FriendAdd";
             FriendAdd.Size = new Size(38, 34);
             FriendAdd.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -70,7 +72,7 @@
             namelbl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             namelbl.Font = new Font("맑은 고딕", 17F, FontStyle.Regular, GraphicsUnit.Point);
             namelbl.ForeColor = Color.White;
-            namelbl.Location = new Point(185, 15);
+            namelbl.Location = new Point(184, 15);
             namelbl.Name = "namelbl";
             namelbl.Size = new Size(96, 47);
             namelbl.TabIndex = 0;
@@ -82,6 +84,7 @@
             chatoutPic.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             chatoutPic.Image = Properties.Resources.채팅방_나가기_icon;
             chatoutPic.Location = new Point(416, 12);
+            chatoutPic.Margin = new Padding(3, 4, 3, 4);
             chatoutPic.Name = "chatoutPic";
             chatoutPic.Size = new Size(36, 35);
             chatoutPic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -94,8 +97,9 @@
             chatPnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             chatPnl.AutoScroll = true;
             chatPnl.Location = new Point(0, 76);
+            chatPnl.Margin = new Padding(3, 4, 3, 4);
             chatPnl.Name = "chatPnl";
-            chatPnl.Size = new Size(463, 586);
+            chatPnl.Size = new Size(464, 586);
             chatPnl.TabIndex = 2;
             // 
             // sendPnl
@@ -106,8 +110,9 @@
             sendPnl.Controls.Add(sendShape);
             sendPnl.Controls.Add(sendBtn);
             sendPnl.Location = new Point(0, 662);
+            sendPnl.Margin = new Padding(3, 4, 3, 4);
             sendPnl.Name = "sendPnl";
-            sendPnl.Size = new Size(463, 87);
+            sendPnl.Size = new Size(464, 87);
             sendPnl.TabIndex = 3;
             // 
             // sendTxt
@@ -118,6 +123,7 @@
             sendTxt.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
             sendTxt.ForeColor = Color.White;
             sendTxt.Location = new Point(11, 19);
+            sendTxt.Margin = new Padding(3, 4, 3, 4);
             sendTxt.Multiline = true;
             sendTxt.Name = "sendTxt";
             sendTxt.Size = new Size(380, 54);
@@ -128,6 +134,7 @@
             sendShape.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sendShape.Image = Properties.Resources.sendtextbox;
             sendShape.Location = new Point(3, 12);
+            sendShape.Margin = new Padding(3, 4, 3, 4);
             sendShape.Name = "sendShape";
             sendShape.Size = new Size(394, 68);
             sendShape.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -141,6 +148,7 @@
             sendBtn.FlatStyle = FlatStyle.Flat;
             sendBtn.ForeColor = Color.White;
             sendBtn.Location = new Point(402, 19);
+            sendBtn.Margin = new Padding(3, 4, 3, 4);
             sendBtn.Name = "sendBtn";
             sendBtn.Size = new Size(58, 51);
             sendBtn.TabIndex = 0;
@@ -153,11 +161,12 @@
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(27, 29, 37);
-            ClientSize = new Size(464, 750);
+            ClientSize = new Size(464, 751);
             Controls.Add(sendPnl);
             Controls.Add(chatPnl);
             Controls.Add(chatoutPic);
             Controls.Add(namePnl);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "chattingRoom";
             Text = "chattingRoom";
             FormClosing += chattingRoom_FormClosing;
