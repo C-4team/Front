@@ -160,6 +160,7 @@
             Controls.Add(namePnl);
             Name = "chattingRoom";
             Text = "chattingRoom";
+            FormClosing += chattingRoom_FormClosing;
             namePnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)FriendAdd).EndInit();
             ((System.ComponentModel.ISupportInitialize)chatoutPic).EndInit();

@@ -1,6 +1,8 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using System.ComponentModel;
 using System.Net;
+using System.Net.Http.Headers;
+
 //using System.Net.Sockets;
 using System.Security.Cryptography;
 
@@ -8,12 +10,15 @@ namespace UI
 {
     public partial class LoginForm : Form
     {
+        TcpConnection tcpConnection;
         SignupForm signupform = new SignupForm();
-        chattingRoom chatRoom = new chattingRoom();
+        chattingRoom chatRoom;
+
         public LoginForm()
         {
+            chatRoom = new chattingRoom(tcpConnection);
             InitializeComponent();
-            chatRoom.Show();
+            chatRoom.ShowDialog();
         }
 
 

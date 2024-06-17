@@ -27,5 +27,10 @@ namespace UI
                 inputId.ForeColor = Color.White;
             }
         }
+
+        private void Addbutton_Click(object sender, EventArgs e)
+        {
+            //서버로 pasing해서 정보 보내기
+        }
     }
 }

@@ -40,7 +40,7 @@
             inputId.BackColor = Color.FromArgb(216, 219, 231);
             inputId.BorderStyle = BorderStyle.None;
             inputId.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            inputId.ForeColor = Color.White;
+            inputId.ForeColor = Color.Black;
             inputId.Location = new Point(27, 20);
             inputId.Name = "inputId";
             inputId.Size = new Size(220, 23);
@@ -63,6 +63,7 @@
             Addbutton.TabIndex = 1;
             Addbutton.Text = "Add";
             Addbutton.UseVisualStyleBackColor = false;
+            Addbutton.Click += Addbutton_Click;
             // 
             // inputPic
             // 
