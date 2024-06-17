@@ -21,21 +21,23 @@ namespace UI
         Thread RequestThread;
         Thread RespondThread;
 
-        string Group1_ID = "";
-        string Group2_ID = "";
-        string Group3_ID = "";
         string MyName;
+        Group group1;
+        Group group2;
+        Group group3;
+        
         public ChatList(string name, TcpConnection connect)
         {
             MyName = name;
             Connection = connect;
+            group1 = new Group();
+            group2 = new Group();
+            group3 = new Group();
+
             InitializeComponent();
             Group1_Info.Text = "";
             Group2_Info.Text = "";
             Group3_Info.Text = "";
-            Group1_List.Text = "";
-            Group2_List.Text = "";
-            Group3_List.Text = "";
             Group1_Panel.BorderStyle = BorderStyle.None;
             Group2_Panel.BorderStyle = BorderStyle.None;
             Group3_Panel.BorderStyle = BorderStyle.None;
@@ -58,9 +60,6 @@ namespace UI
 
         private void RespondDataFromServer()
         {
-            Group1_Info.Text = "";
-            Group2_Info.Text = "";
-            Group3_Info.Text = "";
             Group1_Panel.BorderStyle = BorderStyle.None;
             Group2_Panel.BorderStyle = BorderStyle.None;
             Group3_Panel.BorderStyle = BorderStyle.None;
@@ -83,85 +82,78 @@ namespace UI
                 }
                 else if (GroupCnt == 1)
                 {
-                    FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[4]);
-                    Group1_ID = datas[2];
-                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
-                    Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
-                    string list = "";
-                    for (int i = 0; i < FriendCnt[0] - 1; i++)
+                    group1.User_Count = Convert.ToInt32(datas[4]);
+                    group1.ID = datas[2];
+                    group1.Name = datas[3];
+                    for (int i = 0; i < group1.User_Count; i++)
                     {
-                        list += datas[5 + i];
-                        list += ", ";
+                        group1.Users.Add(datas[5 + i]);
                     }
-                    list += datas[5 + FriendCnt[0] - 1];
-                    Group1_List.Text = list;
+                    string result = string.Join(", ", group1.Users);
+                    Group1_Info.Text = group1.Name + " " + group1.User_Count;
+                    Group1_List.Text = result;
+                    Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
+
                 }
                 else if (GroupCnt == 2)
                 {
-                    FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[4]);
-                    FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
-                    Group1_ID = datas[2];
-                    string list = "";
-                    for(int i = 0; i < FriendCnt[0] -1; i++)
+                    group1.User_Count = Convert.ToInt32(datas[4]);
+                    group1.ID = datas[2];
+                    group1.Name = datas[3];
+                    for(int i = 0; i < group1.User_Count; i++)
                     {
-                        list += datas[5 + i];
-                        list += ", ";
+                        group1.Users.Add(datas[5 + i]);
                     }
-                    list += datas[4 + FriendCnt[0]];
-                    Group1_List.Text = list;
-                    Group1_ID = datas[FriendCnt[0] + 5];
-                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
-                    Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
-                    list = "";
-                    for(int i = 0; i < FriendCnt[1] - 1; i++)
+                    group2.ID = datas[group1.User_Count + 5];
+                    group2.Name = datas[group1.User_Count + 6];
+                    group2.User_Count = Convert.ToInt32(datas[7 + group1.User_Count]);
+                    for (int i = 0; i < group2.User_Count; i++)
                     {
-                        list += datas[8 + FriendCnt[1] + i];
-                        list += ", ";
+                        group2.Users.Add(datas[8 + group1.User_Count + i]);
                     }
-                    list += datas[7 + FriendCnt[0] + FriendCnt[1]];
-                    Group2_List.Text = list;
+                    String result1 = string.Join(", ", group1.Users);
+                    String result2 = string.Join(", ", group2.Users);
+                    Group1_Info.Text = group1.Name + " " + group1.User_Count;
+                    Group2_Info.Text = group2.Name + " " + group2.User_Count;
+                    Group1_List.Text = result1;
+                    Group2_List.Text = result2;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
                 else
                 {
-                    FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[4]);
-                    FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
-                    FriendCnt[2] = Convert.ToInt32(datas[FriendCnt[0] + FriendCnt[1] + 10]);
-                    string list = "";
-                    for (int i = 0; i < FriendCnt[0] - 1; i++)
+                    group1.User_Count = Convert.ToInt32(datas[4]);
+                    group1.ID = datas[2];
+                    group1.Name = datas[3];
+                    for (int i = 0; i < group1.User_Count; i++)
                     {
-                        list += datas[5 + i];
-                        list += ", ";
+                        group1.Users.Add(datas[5 + i]);
                     }
-                    list += datas[4 + FriendCnt[0]];
-                    Group1_List.Text = list;
-                    Group1_ID = datas[2];
-                    Group2_ID = datas[FriendCnt[0] + 5];
-                    Group3_ID = datas[FriendCnt[0] + FriendCnt[1] + 8];
-                    list = "";
-                    for (int i = 0; i < FriendCnt[1] - 1; i++)
+                    String result1 = string.Join(", ", group1.Users);
+                    group2.ID = datas[group1.User_Count + 5];
+                    group2.Name = datas[group1.User_Count + 6];
+                    group2.User_Count = Convert.ToInt32(datas[7 + group1.User_Count]);
+                    for (int i = 0; i < group2.User_Count; i++)
                     {
-                        list += datas[8 + FriendCnt[1] + i];
-                        list += ", ";
+                        group2.Users.Add(datas[8 + group1.User_Count + i]);
                     }
-                    list += datas[7 + FriendCnt[0] + FriendCnt[1]];
-                    Group2_List.Text = list;
-                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
+                    String result2 = string.Join(", ", group2.Users);
+                    group3.Name = datas[group1.User_Count + group2.Users.Count + 9];
+                    group3.User_Count = Convert.ToInt32(datas[group1.User_Count + group2.User_Count + 8]);
+                    group3.ID = datas[group1.User_Count + group2.User_Count + 8];
+                    for (int i = 0; i < group3.User_Count; i++)
+                    {
+                        group3.Users.Add(datas[group1.User_Count + group2.User_Count + 9 + i]);
+                    }
+                    String result3 = string.Join(", ", group3.Users);
+                    Group1_Info.Text = group1.Name + " " + group1.User_Count;
+                    Group2_Info.Text = group2.Name + " " + group2.User_Count;
+                    Group3_Info.Text = group3.Name + " " + group3.User_Count;
+                    Group1_List.Text = result1;
+                    Group2_List.Text = result2;
+                    Group3_List.Text = result3;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
-                    Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
-                    list = "";
-                    for (int i = 0; i < FriendCnt[2] - 1; i++)
-                    {
-                        list += data[10 + FriendCnt[0] + FriendCnt[1] + i];
-                        list += ", ";
-                    }
-                    list += data[9 + FriendCnt[0] + FriendCnt[1] + FriendCnt[2]];
-                    Group3_Info.Text = datas[FriendCnt[0] + FriendCnt[1] + 9] + " " + FriendCnt[2];
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
             }
@@ -210,23 +202,40 @@ namespace UI
 
         private void Group1_Panel_Click(object sender, EventArgs e)
         {
+            
             if (Group1_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group1_ID, Group1_Info.Text, Connection);
+            ChatRoom = new chattingRoom(MyName, group1.ID, group1.Name, Connection);
             ChatRoom.Show();
         }
 
         private void Group2_Panel_Click(object sender, EventArgs e)
         {
             if (Group2_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group2_ID, Group2_Info.Text , Connection);
+            ChatRoom = new chattingRoom(MyName, group2.ID, group2.Name, Connection);
             ChatRoom.Show();
         }
 
         private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group3_ID, Group3_Info.Text, Connection);
+            ChatRoom = new chattingRoom(MyName, group3.ID, group3.Name, Connection);
             ChatRoom.Show();
+        }
+    }
+
+    public class Group
+    {
+        public string ID = "";
+        public string Name = "";
+        public List<string> Users = new List<string>();
+        public int User_Count = 0;
+
+        public Group() { }
+
+        public Group(string id, string name)
+        {
+            ID = id;
+            Name = name;
         }
     }
 }
