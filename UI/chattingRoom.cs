@@ -56,7 +56,7 @@ namespace UI
             string message = "";
             int loopnum = 0;
             int index = 2; //parts -> 유저이름 부터 보기 위함
-
+            
             tcpConnection.m_Write.WriteLine("4," + groupId); //request
 
             string interresponse = tcpConnection.m_Read.ReadLine(); //response
@@ -76,7 +76,9 @@ namespace UI
                 }
 
                 messageNum = parts[1];
+           
             }
+
             Invoke((MethodInvoker)delegate {
                 namelbl.Text = groupName;
             });
@@ -110,6 +112,8 @@ namespace UI
         {
             string message = tcpConnection.m_Read.ReadLine();
             string[] parts = message.Split(',');
+            string tag = "";
+
             if (parts.Length >= 5)
             {
                 if (groupId != parts[1])
@@ -119,9 +123,10 @@ namespace UI
                 userName = parts[2];
                 chatMessage = parts[3];
                 timeStamp = parts[4];
+                tag = parts[0];
 
                 //receive
-                if (groupId != "11")
+                if (tag == "11")
                 {
                     Invoke((MethodInvoker)delegate
                     {
@@ -130,7 +135,6 @@ namespace UI
                 }
             }
         }
-
 
         //void AddIncomming(string userName, string message)
         void AddIncomming(string userName, string message)
@@ -171,9 +175,10 @@ namespace UI
             Invoke((MethodInvoker)delegate
             {
                 sendTxt.Text = string.Empty;
-            })
+            });
         }
 
+        //UI
         void AddOutgoing(string message)
         {
             var bubble = new UI.Resources.chatting.outgoing();
