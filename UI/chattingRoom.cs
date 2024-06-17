@@ -99,34 +99,6 @@ namespace UI
                 int loopnum = 0;
                 int index = 2; //parts -> 유저이름 부터 보기 위함
                 tcpConnection.m_Write.WriteLine("4," + groupId); //request
-
-                //string interresponse = tcpConnection.m_Read.ReadLine(); //response
-                //string[] parts = interresponse.Split(',');
-                /*
-                messageNum = parts[1];
-                loopnum = int.Parse(messageNum);
-                
-                //과거 메시지 보내기
-                while (loopnum > 0)
-                {
-                    if (myName == parts[index])
-                    {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            AddOutgoing(parts[index++]); //msg  
-                        });
-                        index++; //tinestamp 건너띄기
-                    }
-                    else
-                    {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            AddIncomming(parts[index], parts[index++]); //username, msg
-                        });
-                        index++; //timestamp
-                    }
-                    loopnum--;
-                }//while문*/
             }
             catch (Exception ex)
             {
@@ -266,7 +238,7 @@ namespace UI
                     sendTxt.Text = sendTxt.Text.Replace("\n", txt);
                 }
 
-                tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
+                tcpConnection.m_Write.Write("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
                 Invoke((MethodInvoker)delegate
                 {
