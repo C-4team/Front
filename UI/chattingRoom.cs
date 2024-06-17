@@ -212,7 +212,11 @@ namespace UI
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
-                sendTxt.Text = sendTxt.Text.Replace("\n", txt);
+
+                while (sendTxt.Text.Contains("\n"))
+                {
+                    sendTxt.Text = sendTxt.Text.Replace("\n", txt);
+                }
 
                 tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
