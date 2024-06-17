@@ -94,7 +94,7 @@ namespace UI
                         list += datas[5 + i];
                         list += ", ";
                     }
-                    list += datas[5 + FriendCnt[0]];
+                    list += datas[5 + FriendCnt[0] - 1];
                     Group1_List.Text = list;
                 }
                 else if (GroupCnt == 2)
@@ -109,7 +109,7 @@ namespace UI
                         list += datas[5 + i];
                         list += ", ";
                     }
-                    list += datas[5 + FriendCnt[0]];
+                    list += datas[4 + FriendCnt[0]];
                     Group1_List.Text = list;
                     Group1_ID = datas[FriendCnt[0] + 5];
                     Group1_Info.Text = datas[3] + " " + FriendCnt[0];
@@ -120,7 +120,7 @@ namespace UI
                         list += datas[8 + FriendCnt[1] + i];
                         list += ", ";
                     }
-                    list += datas[8 + FriendCnt[0] + FriendCnt[1]];
+                    list += datas[7 + FriendCnt[0] + FriendCnt[1]];
                     Group2_List.Text = list;
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
@@ -137,7 +137,7 @@ namespace UI
                         list += datas[5 + i];
                         list += ", ";
                     }
-                    list += datas[5 + FriendCnt[0]];
+                    list += datas[4 + FriendCnt[0]];
                     Group1_List.Text = list;
                     Group1_ID = datas[2];
                     Group2_ID = datas[FriendCnt[0] + 5];
@@ -148,7 +148,7 @@ namespace UI
                         list += datas[8 + FriendCnt[1] + i];
                         list += ", ";
                     }
-                    list += datas[8 + FriendCnt[0] + FriendCnt[1]];
+                    list += datas[7 + FriendCnt[0] + FriendCnt[1]];
                     Group2_List.Text = list;
                     Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
@@ -160,7 +160,7 @@ namespace UI
                         list += data[10 + FriendCnt[0] + FriendCnt[1] + i];
                         list += ", ";
                     }
-                    list += data[10 + FriendCnt[0] + FriendCnt[1] + FriendCnt[2]];
+                    list += data[9 + FriendCnt[0] + FriendCnt[1] + FriendCnt[2]];
                     Group3_Info.Text = datas[FriendCnt[0] + FriendCnt[1] + 9] + " " + FriendCnt[2];
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
@@ -208,16 +208,10 @@ namespace UI
             GetDataFromServer();
         }
 
-        private void Group1_Panel_Paint(object sender, PaintEventArgs e)
-        {
-
-            //채팅창 열기
-        }
-
         private void Group1_Panel_Click(object sender, EventArgs e)
         {
             if (Group1_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group1_ID, Group2_Info.Text, Connection);
+            ChatRoom = new chattingRoom(MyName, Group1_ID, Group1_Info.Text, Connection);
             ChatRoom.Show();
         }
 
@@ -231,7 +225,7 @@ namespace UI
         private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
-            ChatRoom = new chattingRoom(MyName, Group3_ID, Group2_Info.Text, Connection);
+            ChatRoom = new chattingRoom(MyName, Group3_ID, Group3_Info.Text, Connection);
             ChatRoom.Show();
         }
     }
