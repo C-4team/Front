@@ -30,38 +30,59 @@
         {
             txtContent = new TextBox();
             btnAdd = new Button();
+            inputPic = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)inputPic).BeginInit();
             SuspendLayout();
             // 
             // txtContent
             // 
-            txtContent.Location = new Point(13, 21);
+            txtContent.BackColor = Color.FromArgb(216, 219, 231);
+            txtContent.BorderStyle = BorderStyle.None;
+            txtContent.Font = new Font("Centaur", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtContent.Location = new Point(29, 22);
             txtContent.Name = "txtContent";
-            txtContent.Size = new Size(286, 27);
+            txtContent.Size = new Size(220, 23);
             txtContent.TabIndex = 0;
             // 
             // btnAdd
             // 
-            btnAdd.FlatStyle = FlatStyle.Popup;
-            btnAdd.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            btnAdd.BackColor = Color.FromArgb(66, 71, 85);
+            btnAdd.FlatAppearance.BorderColor = Color.FromArgb(66, 71, 85);
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Centaur", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(107, 65);
+            btnAdd.Location = new Point(94, 67);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(87, 29);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
+            // 
+            // inputPic
+            // 
+            inputPic.Image = Properties.Resources.send_chat;
+            inputPic.Location = new Point(20, 14);
+            inputPic.Name = "inputPic";
+            inputPic.Size = new Size(239, 35);
+            inputPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            inputPic.TabIndex = 3;
+            inputPic.TabStop = false;
             // 
             // AddForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(315, 109);
-            Controls.Add(btnAdd);
+            BackColor = Color.FromArgb(46, 49, 61);
+            ClientSize = new Size(274, 111);
             Controls.Add(txtContent);
+            Controls.Add(inputPic);
+            Controls.Add(btnAdd);
             Name = "AddForm";
             Text = "Add";
+            ((System.ComponentModel.ISupportInitialize)inputPic).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -70,5 +91,6 @@
 
         private TextBox txtContent;
         private Button btnAdd;
+        private PictureBox inputPic;
     }
 }

@@ -39,9 +39,9 @@
             inputId.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             inputId.BackColor = Color.FromArgb(216, 219, 231);
             inputId.BorderStyle = BorderStyle.None;
-            inputId.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            inputId.Font = new Font("Centaur", 12F, FontStyle.Regular, GraphicsUnit.Point);
             inputId.ForeColor = Color.Black;
-            inputId.Location = new Point(27, 20);
+            inputId.Location = new Point(29, 21);
             inputId.Name = "inputId";
             inputId.Size = new Size(220, 23);
             inputId.TabIndex = 0;
@@ -55,7 +55,7 @@
             Addbutton.FlatAppearance.BorderColor = Color.FromArgb(66, 71, 85);
             Addbutton.FlatAppearance.BorderSize = 0;
             Addbutton.FlatStyle = FlatStyle.Flat;
-            Addbutton.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Addbutton.Font = new Font("Centaur", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Addbutton.ForeColor = Color.White;
             Addbutton.Location = new Point(94, 67);
             Addbutton.Name = "Addbutton";

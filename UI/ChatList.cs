@@ -33,6 +33,9 @@ namespace UI
             Group1_Info.Text = "";
             Group2_Info.Text = "";
             Group3_Info.Text = "";
+            Group1_List.Text = "";
+            Group2_List.Text = "";
+            Group3_List.Text = "";
             Group1_Panel.BorderStyle = BorderStyle.None;
             Group2_Panel.BorderStyle = BorderStyle.None;
             Group3_Panel.BorderStyle = BorderStyle.None;

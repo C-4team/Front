@@ -67,20 +67,20 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("맑은 고딕", 35F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Centaur", 30F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(0, -8);
+            label2.Location = new Point(4, 8);
             label2.Name = "label2";
-            label2.Size = new Size(200, 78);
+            label2.Size = new Size(142, 56);
             label2.TabIndex = 1;
             label2.Text = "Friend";
             // 
             // Add
             // 
             Add.Image = (Image)resources.GetObject("Add.Image");
-            Add.Location = new Point(282, 18);
+            Add.Location = new Point(338, 10);
             Add.Name = "Add";
-            Add.Size = new Size(63, 52);
+            Add.Size = new Size(62, 47);
             Add.SizeMode = PictureBoxSizeMode.Zoom;
             Add.TabIndex = 2;
             Add.TabStop = false;
@@ -89,11 +89,11 @@
             // Setting
             // 
             Setting.Image = (Image)resources.GetObject("Setting.Image");
-            Setting.Location = new Point(340, 18);
+            Setting.Location = new Point(406, 11);
             Setting.Margin = new Padding(3, 2, 3, 2);
             Setting.Name = "Setting";
-            Setting.Size = new Size(54, 52);
-            Setting.SizeMode = PictureBoxSizeMode.Zoom;
+            Setting.Size = new Size(43, 45);
+            Setting.SizeMode = PictureBoxSizeMode.StretchImage;
             Setting.TabIndex = 4;
             Setting.TabStop = false;
             Setting.Click += Setting_Click;
@@ -101,20 +101,22 @@
             // toFriend
             // 
             toFriend.Image = (Image)resources.GetObject("toFriend.Image");
-            toFriend.Location = new Point(70, 502);
+            toFriend.Location = new Point(88, 686);
             toFriend.Margin = new Padding(3, 2, 3, 2);
             toFriend.Name = "toFriend";
-            toFriend.Size = new Size(92, 82);
+            toFriend.Size = new Size(72, 64);
+            toFriend.SizeMode = PictureBoxSizeMode.StretchImage;
             toFriend.TabIndex = 5;
             toFriend.TabStop = false;
             // 
             // toChat
             // 
             toChat.Image = (Image)resources.GetObject("toChat.Image");
-            toChat.Location = new Point(251, 502);
+            toChat.Location = new Point(281, 685);
             toChat.Margin = new Padding(3, 2, 3, 2);
             toChat.Name = "toChat";
-            toChat.Size = new Size(97, 85);
+            toChat.Size = new Size(73, 60);
+            toChat.SizeMode = PictureBoxSizeMode.StretchImage;
             toChat.TabIndex = 6;
             toChat.TabStop = false;
             toChat.Click += toChat_Click;
@@ -126,13 +128,13 @@
             TLPanel.Controls.Add(FriendPanel1, 0, 0);
             TLPanel.Controls.Add(FriendPanel3, 0, 2);
             TLPanel.Controls.Add(FriendPanel2, 0, 1);
-            TLPanel.Location = new Point(11, 83);
+            TLPanel.Location = new Point(0, 70);
             TLPanel.Name = "TLPanel";
             TLPanel.RowCount = 3;
             TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             TLPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            TLPanel.Size = new Size(393, 410);
+            TLPanel.Size = new Size(463, 608);
             TLPanel.TabIndex = 7;
             // 
             // FriendPanel1
@@ -142,46 +144,48 @@
             FriendPanel1.Dock = DockStyle.Fill;
             FriendPanel1.Location = new Point(3, 3);
             FriendPanel1.Name = "FriendPanel1";
-            FriendPanel1.Size = new Size(387, 130);
+            FriendPanel1.Size = new Size(457, 196);
             FriendPanel1.TabIndex = 0;
             // 
             // Friend1_ID
             // 
             Friend1_ID.AutoSize = true;
             Friend1_ID.ForeColor = Color.White;
-            Friend1_ID.Location = new Point(56, 58);
+            Friend1_ID.Location = new Point(72, 73);
             Friend1_ID.Name = "Friend1_ID";
-            Friend1_ID.Size = new Size(17, 20);
+            Friend1_ID.Size = new Size(89, 20);
             Friend1_ID.TabIndex = 1;
-            Friend1_ID.Text = "1";
+            Friend1_ID.Text = "2020203080";
             // 
             // Friend1_Name
             // 
             Friend1_Name.AutoSize = true;
+            Friend1_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
             Friend1_Name.ForeColor = Color.White;
-            Friend1_Name.Location = new Point(56, 20);
+            Friend1_Name.Location = new Point(56, 30);
             Friend1_Name.Name = "Friend1_Name";
-            Friend1_Name.Size = new Size(17, 20);
+            Friend1_Name.Size = new Size(89, 43);
             Friend1_Name.TabIndex = 0;
-            Friend1_Name.Text = "1";
+            Friend1_Name.Text = "이름";
             // 
             // FriendPanel3
             // 
             FriendPanel3.Controls.Add(Friend3_Name);
             FriendPanel3.Controls.Add(Friend3_ID);
             FriendPanel3.Dock = DockStyle.Fill;
-            FriendPanel3.Location = new Point(3, 275);
+            FriendPanel3.Location = new Point(3, 407);
             FriendPanel3.Name = "FriendPanel3";
-            FriendPanel3.Size = new Size(387, 132);
+            FriendPanel3.Size = new Size(457, 198);
             FriendPanel3.TabIndex = 1;
             // 
             // Friend3_Name
             // 
             Friend3_Name.AutoSize = true;
+            Friend3_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
             Friend3_Name.ForeColor = Color.White;
-            Friend3_Name.Location = new Point(56, 22);
+            Friend3_Name.Location = new Point(56, 30);
             Friend3_Name.Name = "Friend3_Name";
-            Friend3_Name.Size = new Size(50, 20);
+            Friend3_Name.Size = new Size(121, 43);
             Friend3_Name.TabIndex = 1;
             Friend3_Name.Text = "label6";
             // 
@@ -189,7 +193,7 @@
             // 
             Friend3_ID.AutoSize = true;
             Friend3_ID.ForeColor = Color.White;
-            Friend3_ID.Location = new Point(56, 56);
+            Friend3_ID.Location = new Point(72, 73);
             Friend3_ID.Name = "Friend3_ID";
             Friend3_ID.Size = new Size(50, 20);
             Friend3_ID.TabIndex = 0;
@@ -200,16 +204,16 @@
             FriendPanel2.Controls.Add(Friend2_ID);
             FriendPanel2.Controls.Add(Friend2_Name);
             FriendPanel2.Dock = DockStyle.Fill;
-            FriendPanel2.Location = new Point(3, 139);
+            FriendPanel2.Location = new Point(3, 205);
             FriendPanel2.Name = "FriendPanel2";
-            FriendPanel2.Size = new Size(387, 130);
+            FriendPanel2.Size = new Size(457, 196);
             FriendPanel2.TabIndex = 2;
             // 
             // Friend2_ID
             // 
             Friend2_ID.AutoSize = true;
             Friend2_ID.ForeColor = Color.White;
-            Friend2_ID.Location = new Point(56, 55);
+            Friend2_ID.Location = new Point(72, 73);
             Friend2_ID.Name = "Friend2_ID";
             Friend2_ID.Size = new Size(50, 20);
             Friend2_ID.TabIndex = 1;
@@ -218,10 +222,11 @@
             // Friend2_Name
             // 
             Friend2_Name.AutoSize = true;
+            Friend2_Name.Font = new Font("나눔고딕", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
             Friend2_Name.ForeColor = Color.White;
-            Friend2_Name.Location = new Point(56, 24);
+            Friend2_Name.Location = new Point(56, 30);
             Friend2_Name.Name = "Friend2_Name";
-            Friend2_Name.Size = new Size(50, 20);
+            Friend2_Name.Size = new Size(121, 43);
             Friend2_Name.TabIndex = 0;
             Friend2_Name.Text = "label3";
             // 
@@ -230,7 +235,7 @@
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
-            ClientSize = new Size(414, 593);
+            ClientSize = new Size(464, 750);
             Controls.Add(TLPanel);
             Controls.Add(toChat);
             Controls.Add(toFriend);
