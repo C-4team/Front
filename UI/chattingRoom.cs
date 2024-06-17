@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -99,15 +100,12 @@ namespace UI
                 int index = 2; //parts -> 유저이름 부터 보기 위함
                 tcpConnection.m_Write.WriteLine("4," + groupId); //request
 
-                string interresponse = tcpConnection.m_Read.ReadLine(); //response
-
-                string[] parts = interresponse.Split(',');
-                //response가 올바르지 않을 경우
-                if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
-
+                //string interresponse = tcpConnection.m_Read.ReadLine(); //response
+                //string[] parts = interresponse.Split(',');
+                /*
                 messageNum = parts[1];
                 loopnum = int.Parse(messageNum);
-
+                
                 //과거 메시지 보내기
                 while (loopnum > 0)
                 {
@@ -128,7 +126,7 @@ namespace UI
                         index++; //timestamp
                     }
                     loopnum--;
-                }//while문
+                }//while문*/
             }
             catch (Exception ex)
             {
@@ -142,30 +140,27 @@ namespace UI
             {
                 while (true)
                 {
-                    string tag = "";
+                    string messageNum = "";
+                    string UserName = "";
+                    int loopnum = 0;
+                    int index;
+
                     string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
                     if (message == null)
                     {
-                        tag = "";
                         continue;
                     }
 
                     string[] parts = message.Split(',');
-                    if (groupId != parts[1])
-                    {
-                        MessageBox.Show("incomming : groupId error");
-                        continue;
-                    }
 
-                    userName = parts[2];
-                    chatMessage = parts[3];
-                    timeStamp = parts[4];
-                    tag = parts[0];
-
-                    //receive
-                    if (tag == "11")
+                    //받아오는 data 일 때,
+                    if (parts[0] == "11")
                     {
-                        if(userName == myName)
+                        userName = parts[2];
+                        chatMessage = parts[3];
+                        timeStamp = parts[4];
+
+                        if (userName == myName)
                         {
                             Invoke((MethodInvoker)delegate
                             {
@@ -182,6 +177,41 @@ namespace UI
                             });
                         }
                     }
+
+                    //과거 data 받아올 때
+                    else if (parts[0] == "8")
+                    {
+                        index = 1;
+                        messageNum = parts[1];
+                        loopnum = int.Parse(messageNum);
+
+                        //과거 메시지 보내기
+                        while (loopnum > 0)
+                        {
+                            index++;
+                            string prename = parts[index];
+                            if (myName == prename)
+                            {
+                                Invoke((MethodInvoker)delegate
+                                {
+                                    index++;
+                                    AddOutgoing(parts[index]); //msg  
+                                });
+                                index++; //tinestamp 건너띄기
+                            }
+                            else
+                            {
+                                Invoke((MethodInvoker)delegate
+                                {
+                                    index++;
+                                    AddIncomming(prename, parts[index]); //username, msg
+                                });
+                                index++; //timestamp
+                            }
+                            loopnum--;
+                        }//while문
+                    }
+
                 }//incomming while
             }
             catch (SocketException ex)
@@ -197,6 +227,21 @@ namespace UI
 
         private void chatoutPic_Click(object sender, EventArgs e)
         {
+            if (groupinter != null && groupinter.IsAlive)
+            {
+                groupinter.Abort();
+            }
+
+            if (receiveThread != null && receiveThread.IsAlive)
+            {
+                receiveThread.Abort();
+            }
+
+            if (sendThread != null && sendThread.IsAlive)
+            {
+                sendThread.Abort();
+            }
+
             this.Close();
         }
 
@@ -227,12 +272,6 @@ namespace UI
                 {
                     sendTxt.Text = string.Empty;
                 });
-
-                /*//메세지에 UI 추가
-                Invoke((MethodInvoker)delegate
-                {
-                    AddOutgoing(sendTxt.Text);
-                });*/
 
             }
             catch (Exception ex)
