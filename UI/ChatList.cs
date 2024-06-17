@@ -207,6 +207,7 @@ namespace UI
         private void ChatList_Load(object sender, EventArgs e)
         {
             GetData = new Thread(()=> GetDataFromServer(cts.Token));
+            GetData.Start();
         }
 
         private void Group1_Panel_Click(object sender, EventArgs e)
