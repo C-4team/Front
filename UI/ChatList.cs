@@ -16,14 +16,26 @@ namespace UI
         TcpConnection Connection;
         FriendList friendlist;
         AddForm addForm;
+        chattingRoom ChatRoom;
 
         Thread RequestThread;
         Thread RespondThread;
 
-        public ChatList(TcpConnection connect)
+        string Group1_ID = "";
+        string Group2_ID = "";
+        string Group3_ID = "";
+        string MyName;
+        public ChatList(string name, TcpConnection connect)
         {
+            MyName = name;
             Connection = connect;
             InitializeComponent();
+            Group1_Info.Text = "";
+            Group2_Info.Text = "";
+            Group3_Info.Text = "";
+            Group1_Panel.BorderStyle = BorderStyle.None;
+            Group2_Panel.BorderStyle = BorderStyle.None;
+            Group3_Panel.BorderStyle = BorderStyle.None;
         }
 
         private void GetDataFromServer()
@@ -69,31 +81,37 @@ namespace UI
                 else if (GroupCnt == 1)
                 {
                     FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[3]);
-                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
+                    FriendCnt[0] = Convert.ToInt32(datas[4]);
+                    Group1_ID = datas[2];
+                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
                 else if (GroupCnt == 2)
                 {
                     FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[3]);
-                    FriendCnt[1] = Convert.ToInt32(datas[5 + 2 * FriendCnt[0]]);
-                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
-                    Group2_Info.Text = datas[4 + 2 * FriendCnt[0]] + " " + FriendCnt[1];
+                    FriendCnt[0] = Convert.ToInt32(datas[4]);
+                    FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
+                    Group1_ID = datas[2];
+                    Group2_ID = datas[FriendCnt[0] + 5];
+                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
+                    Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
                 else
                 {
                     FriendCnt = new int[GroupCnt];
-                    FriendCnt[0] = Convert.ToInt32(datas[3]);
-                    FriendCnt[1] = Convert.ToInt32(datas[5 + 2 * FriendCnt[0]]);
-                    FriendCnt[2] = Convert.ToInt32(datas[FriendCnt[0] * 2 + FriendCnt[1] * 2 + 7]);
-                    Group1_Info.Text = datas[2] + " " + FriendCnt[0];
+                    FriendCnt[0] = Convert.ToInt32(datas[4]);
+                    FriendCnt[1] = Convert.ToInt32(datas[7 + FriendCnt[0]]);
+                    FriendCnt[2] = Convert.ToInt32(datas[FriendCnt[0] + FriendCnt[1] + 10]);
+                    Group1_ID = datas[2];
+                    Group2_ID = datas[FriendCnt[0] + 5];
+                    Group3_ID = datas[FriendCnt[0] + FriendCnt[1] + 8];
+                    Group1_Info.Text = datas[3] + " " + FriendCnt[0];
                     Group1_Panel.BorderStyle = BorderStyle.Fixed3D;
-                    Group2_Info.Text = datas[4 + 2 * FriendCnt[0]] + " " + FriendCnt[1];
+                    Group2_Info.Text = datas[6 + FriendCnt[0]] + " " + FriendCnt[1];
                     Group2_Panel.BorderStyle = BorderStyle.Fixed3D;
-                    Group3_Info.Text = datas[FriendCnt[0] * 2 + FriendCnt[1] * 2 + 6] + " " + FriendCnt[2];
+                    Group3_Info.Text = datas[FriendCnt[0] + FriendCnt[1] + 9] + " " + FriendCnt[2];
                     Group3_Panel.BorderStyle = BorderStyle.Fixed3D;
                 }
             }
@@ -102,7 +120,7 @@ namespace UI
         private void toFriend_Click(object sender, EventArgs e)
         {
             this.Hide();
-            friendlist = new FriendList(Connection);
+            friendlist = new FriendList(MyName, Connection);
             friendlist.ShowDialog();
         }
 
@@ -142,20 +160,29 @@ namespace UI
 
         private void Group1_Panel_Paint(object sender, PaintEventArgs e)
         {
-            if (Group3_Info.Text == "") return;
+
             //채팅창 열기
         }
 
-        private void Group2_Panel_Paint(object sender, PaintEventArgs e)
+        private void Group1_Panel_Click(object sender, EventArgs e)
         {
-            if (Group3_Info.Text == "") return;
-            //채팅창 열기
+            if (Group1_Info.Text == "") return;
+            ChatRoom = new chattingRoom(MyName, Group1_ID, Connection);
+            ChatRoom.Show();
         }
 
-        private void Group3_Panel_Paint(object sender, PaintEventArgs e)
+        private void Group2_Panel_Click(object sender, EventArgs e)
+        {
+            if (Group2_Info.Text == "") return;
+            ChatRoom = new chattingRoom(MyName, Group2_ID, Connection);
+            ChatRoom.Show();
+        }
+
+        private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
-            //채팅창 열기
+            ChatRoom = new chattingRoom(MyName, Group3_ID, Connection);
+            ChatRoom.Show();
         }
     }
 }

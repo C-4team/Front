@@ -17,15 +17,14 @@ namespace UI
 
         SignupForm signupform;
         FriendList friendlist;
-        ChatList chatlist;
 
+        string myName;
         public LoginForm()
         {
             InitializeComponent();
             Connection = new TcpConnection();
             signupform = new SignupForm(Connection, this);
-            friendlist = new FriendList(Connection);
-            chatlist = new ChatList(Connection);
+            myName = "";
 
             MinimumSize = new Size(420, 657);
             MaximumSize = new Size(420, 657);
@@ -62,18 +61,20 @@ namespace UI
             try
             {
                 string isRight = Connection.m_Read.ReadLine();
-                string prefix = isRight.Length >= 2 ? isRight.Substring(0, 1) : isRight;
+                string[] datas = isRight.Split(',');
                 string Right = "3";
                 string Wrong = "2";
 
-                if (prefix == Right)
+                if (datas[0] == Right)
                 {
                     MessageBox.Show("3 input");
+                    myName = datas[1];
+
                     this.Hide();
-                    friendlist = new FriendList(Connection);
+                    friendlist = new FriendList(myName, Connection);
                     friendlist.ShowDialog();
                 }
-                else if (prefix == Wrong)
+                else if (datas[0] == Wrong)
                 {
                     MessageBox.Show("2 input");
                     m_RequestThread.Abort();

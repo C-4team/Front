@@ -18,14 +18,19 @@ namespace UI
         AddGroupFriend addGroupFriend;
         private Thread receiveThread; //그룹채팅이든 아니든 이걸로 연결해야함
         private Thread sendThread; //그룹채팅이든 아니든 이걸로 연결해야함
+        private Thread groupinter; //그룹 입장
+
         string groupId = "";
         string userName = "";
         string chatMessage = "";
         string timeStamp = "";
+        string myName = "";
 
-        public chattingRoom(TcpConnection Connection)
+        public chattingRoom(string MyName, string groupID, TcpConnection Connection)
         {
+            groupId = groupID;
             tcpConnection = Connection;
+            myName = MyName;
             InitializeComponent();
 
             this.MinimumSize = new Size(482, 797);
@@ -35,8 +40,56 @@ namespace UI
 
             if (tcpConnection.m_bConnect)
             {
+                groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
+                groupinter.Start();
                 sendThread = new Thread(new ThreadStart(ProcessIncomingMessage));
                 sendThread.Start();
+            }
+        }
+
+        private void Intergroup()
+        {
+            string messageNum = "";
+            string UserName = "";
+            string message ="";
+            int loopnum = 0;
+            int index = 2; //parts -> 유저이름 부터 보기 위함
+
+            tcpConnection.m_Write.WriteLine("4," + groupId); //request
+
+            string interresponse = tcpConnection.m_Read.ReadLine(); //response
+
+            string[] parts = interresponse.Split(',');
+            //response가 올바르지 않을 경우
+            if (parts[0] != "8")
+            {
+                MessageBox.Show("intergroup resposne : error");
+            }
+
+            if(parts.Length >= 5)
+            {
+                if (groupId != parts[1])
+                {
+                    MessageBox.Show("incomming : groupId error");
+                }
+
+                messageNum = parts[1];
+            }
+            loopnum = int.Parse(messageNum);
+
+            while (loopnum >= 0)
+            {
+                //내 톡 내용
+                if(myName == parts[index])
+                {
+                    AddOutgoing(parts[index++]); //msg
+                    index++; //tinestamp 건너띄기
+                }
+                else
+                {
+                    AddIncomming(parts[index], parts[index++]); //username, msg
+                    index++; //timestamp
+                }
             }
         }
 
@@ -46,11 +99,15 @@ namespace UI
             string[] parts = message.Split(',');
             if (parts.Length >= 5)
             {
-                groupId = parts[1];
+                if(groupId != parts[1])
+                {
+                    MessageBox.Show("incomming : groupId error");
+                }
                 userName = parts[2];
                 chatMessage = parts[3];
                 timeStamp = parts[4];
 
+                //receive
                 if (groupId != "11")
                 {
                     AddIncomming(userName, chatMessage);
@@ -58,11 +115,12 @@ namespace UI
             }
         }
 
+
         //void AddIncomming(string userName, string message)
         void AddIncomming(string userName, string message)
         {
             var bubble = new UI.Resources.chatting.incomming(); //Incomming 인스턴스를 새로 생성
-            chatPnl.Controls.Add(풍선껌);
+            chatPnl.Controls.Add(bubble);
             bubble.BringToFront();
             bubble.Dock = DockStyle.Top;
             bubble.name = userName; //userName 으로 들어가야함
@@ -112,7 +170,7 @@ namespace UI
         void AddOutgoing(string message)
         {
             var bubble = new UI.Resources.chatting.outgoing();
-            chatPnl.Controls.Add(풍선껌);
+            chatPnl.Controls.Add(bubble);
             bubble.BringToFront();
             bubble.Dock = DockStyle.Top;
             bubble.Message = message;
@@ -129,6 +187,11 @@ namespace UI
             tcpConnection.Disconnect();
             receiveThread.Abort();
             sendThread.Abort();
+        }
+
+        private void chattingRoom_Load(object sender, EventArgs e)
+        {
+            tcpConnection.m_Write.WriteLine();
         }
     }
 }

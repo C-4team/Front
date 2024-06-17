@@ -131,7 +131,7 @@
             Group1_Panel.Name = "Group1_Panel";
             Group1_Panel.Size = new Size(387, 136);
             Group1_Panel.TabIndex = 0;
-            Group1_Panel.Paint += Group1_Panel_Paint;
+            Group1_Panel.Click += Group1_Panel_Click;
             // 
             // Group1_Info
             // 
@@ -151,7 +151,7 @@
             Group2_Panel.Name = "Group2_Panel";
             Group2_Panel.Size = new Size(387, 136);
             Group2_Panel.TabIndex = 1;
-            Group2_Panel.Paint += Group2_Panel_Paint;
+            Group2_Panel.Click += Group2_Panel_Click;
             // 
             // Group2_Info
             // 
@@ -171,7 +171,7 @@
             Group3_Panel.Name = "Group3_Panel";
             Group3_Panel.Size = new Size(387, 137);
             Group3_Panel.TabIndex = 2;
-            Group3_Panel.Paint += Group3_Panel_Paint;
+            Group3_Panel.Click += Group3_Panel_Click;
             // 
             // Group3_Info
             // 

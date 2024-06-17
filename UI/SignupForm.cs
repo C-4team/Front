@@ -68,7 +68,7 @@ namespace UI
                 {
                     this.Hide();
                     loginForm.Hide();
-                    friendlist = new FriendList(Connection);
+                    friendlist = new FriendList(namebox.Text, Connection);
                     friendlist.ShowDialog();
                 }
                 else if (prefix == "0")
