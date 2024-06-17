@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace UI
 {
@@ -41,6 +42,8 @@ namespace UI
             MessageBox.Show("GroupName : " + groupName); //check용
 
             InitializeComponent();
+            this.Name = MyName;
+
 
             this.MinimumSize = new Size(482, 797);
             this.MaximumSize = new Size(482, 797);
