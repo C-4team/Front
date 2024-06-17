@@ -214,6 +214,7 @@ namespace UI
         {
 
             if (Group1_Info.Text == "") return;
+            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group1.ID, group1.Name, Connection);
             ChatRoom.Show();
         }
@@ -221,6 +222,7 @@ namespace UI
         private void Group2_Panel_Click(object sender, EventArgs e)
         {
             if (Group2_Info.Text == "") return;
+            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group2.ID, group2.Name, Connection);
             ChatRoom.Show();
         }
@@ -228,6 +230,7 @@ namespace UI
         private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
+            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group3.ID, group3.Name, Connection);
             ChatRoom.Show();
         }
