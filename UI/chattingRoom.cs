@@ -232,13 +232,8 @@ namespace UI
                 //response
                 string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string txt = "";
-
-                while (sendTxt.Text.Contains("\n"))
-                {
-                    sendTxt.Text = sendTxt.Text.Replace("\n", txt);
-                }
-
-                tcpConnection.m_Write.Write("7," + groupId + "," + sendTxt.Text + "," + timestamp);
+                sendTxt.Text = sendTxt.Text.Replace("\n", txt);
+                tcpConnection.m_Write.WriteLine("7," + groupId + "," + sendTxt.Text + "," + timestamp);
 
                 Invoke((MethodInvoker)delegate
                 {
