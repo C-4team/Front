@@ -37,7 +37,7 @@ namespace UI
             tcpConnection = Connection;
             myName = MyName;
             groupName = GroupName;
-            MessageBox.Show(groupName); //check용
+            MessageBox.Show("GroupName : " + groupName); //check용
 
             InitializeComponent();
 
@@ -84,74 +84,88 @@ namespace UI
         //그룹 입장 + 과거 메시지 보내주기
         private void Intergroup()
         {
-            string messageNum = "";
-            string UserName = "";
-            string message = "";
-            int loopnum = 0;
-            int index = 2; //parts -> 유저이름 부터 보기 위함
-            tcpConnection.m_Write.WriteLine("4," + groupId); //request
-
-            string interresponse = tcpConnection.m_Read.ReadLine(); //response
-
-            string[] parts = interresponse.Split(',');
-            //response가 올바르지 않을 경우
-            MessageBox.Show("response의 tag 올바름?" + parts[0]);
-            if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
-            if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
-
-            messageNum = parts[1];
-            loopnum = int.Parse(messageNum);
-
-            //과거 메시지 보내기
-            while (loopnum >= 0)
+            try
             {
-                if (myName == parts[index])
+                string messageNum = "";
+                string UserName = "";
+                string message = "";
+                int loopnum = 0;
+                int index = 2; //parts -> 유저이름 부터 보기 위함
+                tcpConnection.m_Write.WriteLine("4," + groupId); //request
+
+                string interresponse = tcpConnection.m_Read.ReadLine(); //response
+
+                string[] parts = interresponse.Split(',');
+                //response가 올바르지 않을 경우
+                MessageBox.Show("response의 tag 올바름?" + parts[0]);
+                if (parts[0] != "8") MessageBox.Show("intergroup resposne : error");
+                if (groupId != parts[1]) MessageBox.Show("incomming : groupId error");
+
+                messageNum = parts[1];
+                loopnum = int.Parse(messageNum);
+
+                //과거 메시지 보내기
+                while (loopnum > 0)
                 {
-                    Invoke((MethodInvoker)delegate
+                    if (myName == parts[index])
                     {
-                        AddOutgoing(parts[index++]); //msg  
-                    });
-                    index++; //tinestamp 건너띄기
-                }
-                else
-                {
-                    Invoke((MethodInvoker)delegate
+                        Invoke((MethodInvoker)delegate
+                        {
+                            AddOutgoing(parts[index++]); //msg  
+                        });
+                        index++; //tinestamp 건너띄기
+                    }
+                    else
                     {
-                        AddIncomming(parts[index], parts[index++]); //username, msg
-                    });
-                    index++; //timestamp
-                }
-                loopnum--;
-            }//while문
+                        Invoke((MethodInvoker)delegate
+                        {
+                            AddIncomming(parts[index], parts[index++]); //username, msg
+                        });
+                        index++; //timestamp
+                    }
+                    loopnum--;
+                }//while문
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Intergroup 오류 : " + ex.Message);
+            }
         }//Intergroup func
 
         private void ProcessIncomingMessage()
         {
-            while (true)
+            try
             {
-                string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
-                if (message == null) continue;
-                string[] parts = message.Split(',');
-                string tag = "";
-
-                if (groupId != parts[1])
+                while (true)
                 {
-                    MessageBox.Show("incomming : groupId error");
-                }
-                userName = parts[2];
-                chatMessage = parts[3];
-                timeStamp = parts[4];
-                tag = parts[0];
+                    string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+                    if (message == null) continue;
+                    string[] parts = message.Split(',');
+                    string tag = "";
 
-                //receive
-                if (tag == "11")
-                {
-                    Invoke((MethodInvoker)delegate
+                    if (groupId != parts[1])
                     {
-                        AddIncomming(userName, chatMessage);
-                    });
-                }
-            }//incomming while
+                        MessageBox.Show("incomming : groupId error");
+                    }
+                    userName = parts[2];
+                    chatMessage = parts[3];
+                    timeStamp = parts[4];
+                    tag = parts[0];
+
+                    //receive
+                    if (tag == "11")
+                    {
+                        Invoke((MethodInvoker)delegate
+                        {
+                            AddIncomming(userName, chatMessage);
+                        });
+                    }
+                }//incomming while
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ProcessingIncommingMessage 오류 : " + ex.Message);
+            }
         }//processincommingmessage()
 
         private void chatoutPic_Click(object sender, EventArgs e)
@@ -167,32 +181,58 @@ namespace UI
 
         void Send()
         {
-            if (sendTxt.Text.Trim().Length == 0) return;
-
-            //메세지에 UI 추가
-            Invoke((MethodInvoker)delegate
+            try
             {
-                AddOutgoing(sendTxt.Text);
-            });
+                if (sendTxt.Text.Trim().Length == 0) return;
 
-            //response
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string txt = "";
-            sendTxt.Text.Replace("\n", txt);
-            string response = "7," + groupId + "," + txt + "," + timestamp;
+                //메세지에 UI 추가
+                Invoke((MethodInvoker)delegate
+                {
+                    AddOutgoing(sendTxt.Text);
+                });
 
-            tcpConnection.m_Write.WriteLine(response);
-            
-            Invoke((MethodInvoker)delegate
+                //response
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string txt = "";
+                sendTxt.Text.Replace("\n", txt);
+                string response = "7," + groupId + "," + txt + "," + timestamp;
+
+                tcpConnection.m_Write.WriteLine(response);
+
+                Invoke((MethodInvoker)delegate
+                {
+                    sendTxt.Text = string.Empty;
+                });
+            }
+            catch (Exception ex)
             {
-                sendTxt.Text = string.Empty;
-            });
+                MessageBox.Show("send 오류 : " + ex.Message);
+            }
+
         }
 
         private void FriendAdd_Click(object sender, EventArgs e)
         {
             addGroupFriend = new AddGroupFriend(tcpConnection, groupId);
             addGroupFriend.ShowDialog();
+        }
+
+        private void chattingRoom_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (groupinter != null && groupinter.IsAlive)
+            {
+                groupinter.Abort();
+            }
+
+            if (receiveThread != null && receiveThread.IsAlive)
+            {
+                receiveThread.Abort();
+            }
+
+            if (sendThread != null && sendThread.IsAlive)
+            {
+                sendThread.Abort();
+            }
         }
     }
 }
