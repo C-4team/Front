@@ -40,7 +40,6 @@ namespace UI
             tcpConnection = Connection;
             myName = MyName;
             groupName = GroupName;
-            MessageBox.Show("GroupName : " + groupName); //check용
 
             InitializeComponent();
             this.Text = MyName;
@@ -80,101 +79,79 @@ namespace UI
         //그룹 입장 + 과거 메시지 보내주기
         private void Intergroup()
         {
-            try
+            Thread.Sleep(1000);
+            tcpConnection.m_Write.WriteLine("4," + groupId); //request
+
+            string message = tcpConnection.m_Read.ReadLine();
+            string[] parts = message.Split(',');
+
+            if (parts[0] == "8")
             {
-                tcpConnection.m_Write.WriteLine("4," + groupId); //request
+                int index = 1;
+                string msgNum = parts[1];
+                int loop = int.Parse(msgNum);
 
-                string message = tcpConnection.m_Read.ReadLine();
-                string[] parts = message.Split(',');
-
-                if (parts[0] == "8")
+                while (loop > 0)
                 {
-                    MessageBox.Show("8!");
-                    int index = 1;
-                    string msgNum = parts[1];
-                    int loop = int.Parse(msgNum);
-
-                    while (loop > 0)
+                    index++;
+                    string prename = parts[index];
+                    if (prename == myName)
                     {
+                        Invoke((MethodInvoker)delegate
+                        {
+                            index++;
+                            AddOutgoing(parts[index]);
+                        });
                         index++;
-                        string prename = parts[index];
-                        if (prename == myName)
+                        loop--;
+                    }
+                    else
+                    {
+                        Invoke((MethodInvoker)delegate
                         {
-                            Invoke((MethodInvoker)delegate
-                            {
-                                index++;
-                                AddOutgoing(parts[index]);
-                            });
                             index++;
-                            loop--;
-                        }
-                        else
-                        {
-                            Invoke((MethodInvoker)delegate
-                            {
-                                index++;
-                                AddIncomming(prename, parts[index]);
-                            });
-                            index++;
-                            loop--;
-                        }
+                            AddIncomming(prename, parts[index]);
+                        });
+                        index++;
+                        loop--;
                     }
                 }
-                receiveThread.Start();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Intergroup 오류 : " + ex.Message);
-            }
+            receiveThread.Start();
         }//Intergroup func
 
         private void ProcessIncomingMessage()
         {
-            try
+            while (true)
             {
-                while (true)
+                string messageNum = "";
+                int loopnum = 0;
+                int index;
+
+                string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+                string[] parts = message.Split(',');
+
+                //받아오는 data 일 때,
+                if (parts[0] == "11")
                 {
-                    string messageNum = "";
-                    int loopnum = 0;
-                    int index;
-
-                    string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
-                    if (message != null)
-                        MessageBox.Show("Message: " + message);
-                    string[] parts = message.Split(',');
-
-                    //받아오는 data 일 때,
-                    if (parts[0] == "11")
+                    userName = parts[2];
+                    chatMessage = parts[3];
+                    timeStamp = parts[4];
+                    if (userName == myName)
                     {
-                        MessageBox.Show("11!");
-                        userName = parts[2];
-                        chatMessage = parts[3];
-                        timeStamp = parts[4];
-                        if (userName == myName)
+                        Invoke((MethodInvoker)delegate
                         {
-                            Invoke((MethodInvoker)delegate
-                            {
-                                AddOutgoing(chatMessage);
-                            });
-                        }
-                        else
+                            AddOutgoing(chatMessage);
+                        });
+                    }
+                    else
+                    {
+                        Invoke((MethodInvoker)delegate
                         {
-                            Invoke((MethodInvoker)delegate
-                            {
-                                AddIncomming(userName, chatMessage);
-                            });
-                        }
+                            AddIncomming(userName, chatMessage);
+                        });
                     }
                 }
-            }
-            catch (SocketException ex)
-            {
-                MessageBox.Show("ProcessingIncommingMessage 오류 : " + ex.Message);
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show("ProcessingincommingMessage 오류 : " + ex.Message);
             }
         }//processincommingmessage()
 
@@ -241,7 +218,7 @@ namespace UI
             {
                 groupinter.Abort();
             }
-
+                
             if (receiveThread != null && receiveThread.IsAlive)
             {
                 receiveThread.Abort();

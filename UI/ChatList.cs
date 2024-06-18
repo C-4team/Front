@@ -14,7 +14,6 @@ namespace UI
     public partial class ChatList : Form
     {
         TcpConnection Connection;
-        CancellationTokenSource cts;
         FriendList friendlist;
         AddForm addForm;
         chattingRoom ChatRoom;
@@ -33,7 +32,6 @@ namespace UI
             group1 = new Group();
             group2 = new Group();
             group3 = new Group();
-            cts = new CancellationTokenSource();
 
             InitializeComponent();
             this.Text = name;
@@ -51,14 +49,11 @@ namespace UI
             Group3_Panel.BorderStyle = BorderStyle.None;
         }
 
-        private void GetDataFromServer(CancellationToken token)
+        private void GetDataFromServer()
         {
-            while(!token.IsCancellationRequested)
-            {
-                RequestDataFromServer();
-                RespondDataFromServer();
-                Thread.Sleep(3000);
-            }
+            RequestDataFromServer();
+            RespondDataFromServer();
+
             return;
         }
 
@@ -177,7 +172,6 @@ namespace UI
         private void toFriend_Click(object sender, EventArgs e)
         {
             this.Hide();
-            cts.Cancel();
             friendlist = new FriendList(MyName, Connection);
             friendlist.ShowDialog();
         }
@@ -188,7 +182,6 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                cts.Cancel();
                 Connection.Disconnect();
                 this.Close();
             }
@@ -202,32 +195,19 @@ namespace UI
         {
             addForm = new AddForm(1, Connection);
             addForm.ShowDialog();
+            GetData.Start();
         }
 
         private void ChatList_Load(object sender, EventArgs e)
         {
-            GetData = new Thread(()=> GetDataFromServer(cts.Token));
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
             GetData.Start();
-        }
-
-        private void ChatList_VisibleChanged(object sender, EventArgs e)
-        {
-            if (this.Visible)
-            {
-                GetData = new Thread(() => GetDataFromServer(cts.Token));
-                GetData.Start();
-            }
-            else
-            {
-                cts.Cancel();
-            }
         }
 
         private void Group1_Panel_Click(object sender, EventArgs e)
         {
 
             if (Group1_Info.Text == "") return;
-            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group1.ID, group1.Name, Connection);
             ChatRoom.Show();
         }
@@ -235,7 +215,6 @@ namespace UI
         private void Group2_Panel_Click(object sender, EventArgs e)
         {
             if (Group2_Info.Text == "") return;
-            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group2.ID, group2.Name, Connection);
             ChatRoom.Show();
         }
@@ -243,7 +222,6 @@ namespace UI
         private void Group3_Panel_Click(object sender, EventArgs e)
         {
             if (Group3_Info.Text == "") return;
-            cts.Cancel();
             ChatRoom = new chattingRoom(MyName, group3.ID, group3.Name, Connection);
             ChatRoom.Show();
         }
