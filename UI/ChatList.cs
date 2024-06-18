@@ -195,6 +195,7 @@ namespace UI
         {
             addForm = new AddForm(1, Connection);
             addForm.ShowDialog();
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
             GetData.Start();
         }
 
