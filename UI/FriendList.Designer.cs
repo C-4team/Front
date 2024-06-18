@@ -46,6 +46,7 @@
             Friend2_ID = new Label();
             Friend2_Name = new Label();
             pnlMain = new Panel();
+            refreshBtn = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)Add).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Setting).BeginInit();
             ((System.ComponentModel.ISupportInitialize)toFriend).BeginInit();
@@ -55,6 +56,7 @@
             FriendPanel3.SuspendLayout();
             FriendPanel2.SuspendLayout();
             pnlMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)refreshBtn).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -244,12 +246,24 @@
             pnlMain.Size = new Size(462, 615);
             pnlMain.TabIndex = 8;
             // 
+            // refreshBtn
+            // 
+            refreshBtn.Image = Properties.Resources.새로고침_removebg_preview1;
+            refreshBtn.Location = new Point(288, 13);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(42, 41);
+            refreshBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            refreshBtn.TabIndex = 9;
+            refreshBtn.TabStop = false;
+            refreshBtn.Click += refreshBtn_Click;
+            // 
             // FriendList
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
             ClientSize = new Size(464, 750);
+            Controls.Add(refreshBtn);
             Controls.Add(pnlMain);
             Controls.Add(toChat);
             Controls.Add(toFriend);
@@ -272,6 +286,7 @@
             FriendPanel2.ResumeLayout(false);
             FriendPanel2.PerformLayout();
             pnlMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)refreshBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -295,5 +310,6 @@
         private Label Friend2_ID;
         private Label Friend2_Name;
         private Panel pnlMain;
+        private PictureBox refreshBtn;
     }
 }

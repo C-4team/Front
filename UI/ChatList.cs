@@ -225,6 +225,12 @@ namespace UI
             ChatRoom = new chattingRoom(MyName, group3.ID, group3.Name, Connection);
             ChatRoom.Show();
         }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
+            GetData.Start();
+        }
     }
 
     public class Group
