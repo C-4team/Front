@@ -177,6 +177,7 @@ namespace UI
         private void toFriend_Click(object sender, EventArgs e)
         {
             this.Hide();
+            cts.Cancel();
             friendlist = new FriendList(MyName, Connection);
             friendlist.ShowDialog();
         }
