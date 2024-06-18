@@ -40,7 +40,6 @@ namespace UI
             if (tcpConnection.m_bConnect)
             {
                 Send();
-                //responseThread = new Thread(new ThreadStart(checkResponse));
             }
             inputId.Text = string.Empty;
             this.Close();

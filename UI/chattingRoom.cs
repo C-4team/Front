@@ -53,20 +53,6 @@ namespace UI
             namelbl.Location = new Point(91, 13);
 
             namelbl.Text = groupName;
-<<<<<<< HEAD
-
-            if (tcpConnection.m_bConnect)
-            {
-                groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
-                groupinter.Start();
-
-                Thread.Sleep(1000);
-
-                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
-            }
-
-=======
->>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
         }
 
         //incomming UI
@@ -244,8 +230,6 @@ namespace UI
             }
         }
 
-<<<<<<< HEAD
-=======
         private void chattingRoom_Load(object sender, EventArgs e)
         {
             if (tcpConnection.m_bConnect)
@@ -258,6 +242,5 @@ namespace UI
                 receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
             }
         }
->>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
     }
 }
