@@ -43,7 +43,7 @@ namespace UI
             MessageBox.Show("GroupName : " + groupName); //check용
 
             InitializeComponent();
-            this.Name = MyName;
+            this.Text = MyName;
 
 
             this.MinimumSize = new Size(482, 797);
@@ -52,19 +52,8 @@ namespace UI
             if (!tcpConnection.m_bConnect) tcpConnection.Connect(); //서버에 연결 완결
 
             namelbl.Location = new Point(91, 13);
-            
+
             namelbl.Text = groupName;
-
-            if (tcpConnection.m_bConnect)
-            {
-                groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
-                groupinter.Start();
-
-                Thread.Sleep(1000);
-
-                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
-                receiveThread.Start();
-            }
         }
 
         //incomming UI
@@ -93,49 +82,45 @@ namespace UI
         {
             try
             {
-                string messageNum = "";
-                string UserName = "";
-                string message = "";
-                int loopnum = 0;
-                int index; //parts -> 유저이름 부터 보기 위함
-
                 tcpConnection.m_Write.WriteLine("4," + groupId); //request
 
+                string message = tcpConnection.m_Read.ReadLine();
                 string[] parts = message.Split(',');
 
-                //과거 data 받아올 때
                 if (parts[0] == "8")
                 {
-                    index = 1;
-                    messageNum = parts[1];
-                    loopnum = int.Parse(messageNum);
+                    MessageBox.Show("8!");
+                    int index = 1;
+                    string msgNum = parts[1];
+                    int loop = int.Parse(msgNum);
 
-                    //과거 메시지 보내기
-                    while (loopnum > 0)
+                    while (loop > 0)
                     {
                         index++;
                         string prename = parts[index];
-                        if (myName == prename)
+                        if (prename == myName)
                         {
                             Invoke((MethodInvoker)delegate
                             {
                                 index++;
-                                AddOutgoing(parts[index]); //msg  
+                                AddOutgoing(parts[index]);
                             });
-                            index++; //tinestamp 건너띄기
+                            index++;
+                            loop--;
                         }
                         else
                         {
                             Invoke((MethodInvoker)delegate
                             {
                                 index++;
-                                AddIncomming(prename, parts[index]); //username, msg
+                                AddIncomming(prename, parts[index]);
                             });
-                            index++; //timestamp
+                            index++;
+                            loop--;
                         }
-                        loopnum--;
-                    }//while문
+                    }
                 }
+                receiveThread.Start();
             }
             catch (Exception ex)
             {
@@ -150,30 +135,25 @@ namespace UI
                 while (true)
                 {
                     string messageNum = "";
-                    string UserName = "";
                     int loopnum = 0;
                     int index;
 
                     string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
-                    if (message == null)
-                    {
-                        continue;
-                    }
-
+                    if (message != null)
+                        MessageBox.Show("Message: " + message);
                     string[] parts = message.Split(',');
 
                     //받아오는 data 일 때,
                     if (parts[0] == "11")
                     {
+                        MessageBox.Show("11!");
                         userName = parts[2];
                         chatMessage = parts[3];
                         timeStamp = parts[4];
-
                         if (userName == myName)
                         {
                             Invoke((MethodInvoker)delegate
                             {
-                                MessageBox.Show("outgoing message : " + chatMessage);
                                 AddOutgoing(chatMessage);
                             });
                         }
@@ -181,20 +161,18 @@ namespace UI
                         {
                             Invoke((MethodInvoker)delegate
                             {
-                                MessageBox.Show("incomming message : " + chatMessage);
                                 AddIncomming(userName, chatMessage);
                             });
                         }
                     }
-
-                }//incomming while
+                }
             }
             catch (SocketException ex)
             {
                 MessageBox.Show("ProcessingIncommingMessage 오류 : " + ex.Message);
             }
-            
-            catch(Exception ex)
+
+            catch (Exception ex)
             {
                 MessageBox.Show("ProcessingincommingMessage 오류 : " + ex.Message);
             }
@@ -272,6 +250,19 @@ namespace UI
             if (sendThread != null && sendThread.IsAlive)
             {
                 sendThread.Abort();
+            }
+        }
+
+        private void chattingRoom_Load(object sender, EventArgs e)
+        {
+            if (tcpConnection.m_bConnect)
+            {
+                groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
+                groupinter.Start();
+
+                Thread.Sleep(1000);
+
+                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
             }
         }
     }
