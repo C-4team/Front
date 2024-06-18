@@ -52,14 +52,5 @@ namespace UI
 
             tcpConnection.m_Write.WriteLine("6," + groupID + "," + inputId.Text);
         }
-        /*
-        private void checkResponse()
-        {
-            string response = tcpConnection.m_Read.ReadLine();
-            if (response != "10")
-            {
-                MessageBox.Show("없는 ID 입니다.");
-            }
-        }*/
     }
 }

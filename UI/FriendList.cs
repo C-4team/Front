@@ -16,7 +16,6 @@ namespace UI
     public partial class FriendList : Form
     {
         TcpConnection Connection;
-        CancellationTokenSource cts;
         ChatList chatlist;
         AddForm AddFriendForm;
 
@@ -26,7 +25,6 @@ namespace UI
         {
             Myname = name;
             Connection = connection;
-            cts = new CancellationTokenSource();
             InitializeComponent();
             this.Text = name;
             this.MinimumSize = new Size(482, 797);
@@ -34,14 +32,11 @@ namespace UI
             pnlMain.Controls.Add(TLPanel);
         }
 
-        private void GetDataFromServer(CancellationToken token)
+        private void GetDataFromServer()
         {
-            while (!token.IsCancellationRequested)
-            {
-                RequestDataFromServer();
-                RespondDataFromServer();
-                Thread.Sleep(3000);
-            }
+            RequestDataFromServer();
+            RespondDataFromServer();
+
             return;
         }
 
@@ -238,7 +233,6 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                cts.Cancel();
                 Connection.Disconnect();
                 this.Close();
             }
@@ -252,25 +246,14 @@ namespace UI
         {
             AddFriendForm = new AddForm(0, Connection);
             AddFriendForm.ShowDialog();
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
+            GetData.Start();
         }
 
         private void FriendList_Load(object sender, EventArgs e)
         {
-            GetData = new Thread(() => GetDataFromServer(cts.Token));
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
             GetData.Start();
-        }
-
-        private void FriendList_VisibleChanged(object sender, EventArgs e)
-        {
-            if(this.Visible)
-            {
-                GetData = new Thread(()=>GetDataFromServer(cts.Token));
-                GetData.Start();
-            }
-            else
-            {
-                cts.Cancel();
-            }
         }
     }
 }

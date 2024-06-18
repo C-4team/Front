@@ -260,7 +260,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "FriendList";
             Load += FriendList_Load;
-            VisibleChanged += FriendList_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)Add).EndInit();
             ((System.ComponentModel.ISupportInitialize)Setting).EndInit();
             ((System.ComponentModel.ISupportInitialize)toFriend).EndInit();
