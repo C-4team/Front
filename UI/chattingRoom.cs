@@ -54,6 +54,7 @@ namespace UI
             namelbl.Location = new Point(91, 13);
 
             namelbl.Text = groupName;
+<<<<<<< HEAD
 
             if (tcpConnection.m_bConnect)
             {
@@ -65,6 +66,8 @@ namespace UI
                 receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
             }
 
+=======
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
         }
 
         //incomming UI
@@ -100,15 +103,27 @@ namespace UI
 
                 if (parts[0] == "8")
                 {
+<<<<<<< HEAD
+=======
+                    MessageBox.Show("8!");
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
                     int index = 1;
                     string msgNum = parts[1];
                     int loop = int.Parse(msgNum);
 
+<<<<<<< HEAD
                     while(loop > 0)
+=======
+                    while (loop > 0)
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
                     {
                         index ++;
                         string prename = parts[index];
+<<<<<<< HEAD
                         if(prename == myName)
+=======
+                        if (prename == myName)
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
                         {
                             Invoke((MethodInvoker)delegate
                             {
@@ -149,12 +164,18 @@ namespace UI
                     int index;
 
                     string message = tcpConnection.m_Read.ReadLine(); //incomming 해올거 서버로부터 받ㅇ아오기
+<<<<<<< HEAD
 
+=======
+                    if (message != null)
+                        MessageBox.Show("Message: " + message);
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
                     string[] parts = message.Split(',');
 
                     //받아오는 data 일 때,
                     if (parts[0] == "11")
                     {
+                        MessageBox.Show("11!");
                         userName = parts[2];
                         chatMessage = parts[3];
                         timeStamp = parts[4];
@@ -171,8 +192,13 @@ namespace UI
                             {
                                 AddIncomming(userName, chatMessage);
                             });
+<<<<<<< HEAD
                         }//else
                     }//if
+=======
+                        }
+                    }
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
                 }
             }
             catch (SocketException ex)
@@ -261,5 +287,20 @@ namespace UI
             }
         }
 
+<<<<<<< HEAD
+=======
+        private void chattingRoom_Load(object sender, EventArgs e)
+        {
+            if (tcpConnection.m_bConnect)
+            {
+                groupinter = new Thread(new ThreadStart(Intergroup)); //intergroup의 정보 보기
+                groupinter.Start();
+
+                Thread.Sleep(1000);
+
+                receiveThread = new Thread(new ThreadStart(ProcessIncomingMessage));
+            }
+        }
+>>>>>>> 255ffce0e75c7b70f2bc3420a8b4b518c0545565
     }
 }
