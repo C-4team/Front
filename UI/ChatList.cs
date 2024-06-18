@@ -64,7 +64,9 @@ namespace UI
 
         private void RequestDataFromServer()
         {
-            Connection.m_Write.WriteLine("2");
+            string request = "2";
+            if(request == "2")
+                Connection.m_Write.WriteLine(request);
         }
 
         private void RespondDataFromServer()
