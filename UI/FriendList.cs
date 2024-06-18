@@ -255,5 +255,11 @@ namespace UI
             GetData = new Thread(new ThreadStart(GetDataFromServer));
             GetData.Start();
         }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            GetData = new Thread(new ThreadStart(GetDataFromServer));
+            GetData.Start();
+        }
     }
 }

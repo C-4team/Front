@@ -40,10 +40,11 @@
             Group1_Info = new Label();
             Group2_Panel = new Panel();
             Group2_List = new Label();
+            Group2_Info = new Label();
             Group3_Panel = new Panel();
             Group3_List = new Label();
             Group3_Info = new Label();
-            Group2_Info = new Label();
+            refreshBtn = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)toFriend).BeginInit();
             ((System.ComponentModel.ISupportInitialize)toChat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Setting).BeginInit();
@@ -52,6 +53,7 @@
             Group1_Panel.SuspendLayout();
             Group2_Panel.SuspendLayout();
             Group3_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)refreshBtn).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -183,6 +185,17 @@
             Group2_List.TabIndex = 2;
             Group2_List.Text = "User_Name";
             // 
+            // Group2_Info
+            // 
+            Group2_Info.AutoSize = true;
+            Group2_Info.Font = new Font("Microsoft Sans Serif", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Group2_Info.ForeColor = Color.White;
+            Group2_Info.Location = new Point(52, 25);
+            Group2_Info.Name = "Group2_Info";
+            Group2_Info.Size = new Size(124, 42);
+            Group2_Info.TabIndex = 0;
+            Group2_Info.Text = "label1";
+            // 
             // Group3_Panel
             // 
             Group3_Panel.Controls.Add(Group3_List);
@@ -216,16 +229,17 @@
             Group3_Info.TabIndex = 0;
             Group3_Info.Text = "label1";
             // 
-            // Group2_Info
+            // refreshBtn
             // 
-            Group2_Info.AutoSize = true;
-            Group2_Info.Font = new Font("Microsoft Sans Serif", 22.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Group2_Info.ForeColor = Color.White;
-            Group2_Info.Location = new Point(52, 25);
-            Group2_Info.Name = "Group2_Info";
-            Group2_Info.Size = new Size(124, 42);
-            Group2_Info.TabIndex = 0;
-            Group2_Info.Text = "label1";
+            refreshBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            refreshBtn.Image = Properties.Resources.새로고침_removebg_preview1;
+            refreshBtn.Location = new Point(288, 13);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(42, 41);
+            refreshBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            refreshBtn.TabIndex = 13;
+            refreshBtn.TabStop = false;
+            refreshBtn.Click += refreshBtn_Click;
             // 
             // ChatList
             // 
@@ -233,6 +247,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(12, 13, 19);
             ClientSize = new Size(464, 750);
+            Controls.Add(refreshBtn);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(Setting);
             Controls.Add(Add);
@@ -255,6 +270,7 @@
             Group2_Panel.PerformLayout();
             Group3_Panel.ResumeLayout(false);
             Group3_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)refreshBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -276,5 +292,6 @@
         private Label Group2_List;
         private Label Group3_List;
         private Label Group2_Info;
+        private PictureBox refreshBtn;
     }
 }
